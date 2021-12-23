@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class FloatingTextGenerator : MonoBehaviour
 {
-    [SerializeField] private FloatingText _prefab;
+    [SerializeField] private PoolingObjects _prefab;
 
     public void ShowText(string msg)
     {
-        var ob = Instantiate<FloatingText>(_prefab, transform.position, Camera.main.transform.rotation);
+        Transform cameraTransform = Camera.main.transform;
+        var ob = _prefab.GetObject(transform.position, cameraTransform.rotation).GetComponent<FloatingText>();
         ob.SetText(msg);
     }
 }
