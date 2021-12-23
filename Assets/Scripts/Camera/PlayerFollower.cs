@@ -1,20 +1,26 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerFollower : MonoBehaviour
 {
-    [SerializeField] private Transform _target;
     [SerializeField] private float _smooth;
 
+    private Transform _target;
     private Vector3 _initialOffset;
 
-    private void Start()
+    private IEnumerator Start()
     {
+        yield return PlayerManager.Wait();
+        _target = PlayerManager.Instance.Player.transform;
         _initialOffset = transform.position - _target.position;
     }
 
     private void FixedUpdate()
     {
-        Vector3 desiredPosition = _target.position + _initialOffset;
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, _smooth);
+        if (_target)
+        {
+            Vector3 desiredPosition = _target.position + _initialOffset;
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, _smooth);
+        }
     }
 }
