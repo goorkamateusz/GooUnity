@@ -2,12 +2,15 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class ClickAndGo : MonoBehaviour
+public class CharacterMouseClickController : MonoBehaviour
 {
-    private const string Name = "Walk";
-    private const double MinimalVelocity = 0.05;
+    [Header("Mouse")]
+    [SerializeField] private int _mouseButtonNumber = 0;
 
+    [Header("Animations")]
     [SerializeField] private Animator _animator;
+    [SerializeField] private string _boolParameterName = "Walk";
+    [SerializeField] private double _minimalVelocity = 0.6;
 
     private NavMeshAgent _agent;
     private Camera _main;
@@ -20,7 +23,7 @@ public class ClickAndGo : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(_mouseButtonNumber))
         {
             var mouseRay = _main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseRay, out var hit, Mathf.Infinity))
@@ -29,6 +32,6 @@ public class ClickAndGo : MonoBehaviour
             }
         }
 
-        _animator.SetBool(Name, _agent.velocity.magnitude > MinimalVelocity);
+        _animator.SetBool(_boolParameterName, _agent.velocity.magnitude > _minimalVelocity);
     }
 }
