@@ -6,8 +6,11 @@ public class CharacterInventory : MonoBehaviour
 {
     [SerializeField] private List<InventoryItem> _inventory = new List<InventoryItem>();
 
+    private CharacterInventoryVisuals _visuals;
+
     private void Awake()
     {
+        _visuals = GetComponent<CharacterInventoryVisuals>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,5 +24,6 @@ public class CharacterInventory : MonoBehaviour
     {
         _inventory.Add(item);
         item.Collected();
+        _visuals?.ReportCollect(item);
     }
 }
