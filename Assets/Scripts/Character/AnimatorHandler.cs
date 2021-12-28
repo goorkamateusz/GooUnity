@@ -1,13 +1,12 @@
-using System;
 using UnityEngine;
 
-[Serializable]
-public class AnimatorHandler
+public class AnimatorHandler : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private Player _player;
 
-    public void SetMoveSpeed(float moveSpeed)
+    protected virtual void Update()
     {
-        _animator.SetFloat("Speed", moveSpeed);
+        _animator.SetFloat("Speed", _player.Movement.CurrentSpeed / (_player.Movement.OriginalSpeed + .001f));
     }
 }

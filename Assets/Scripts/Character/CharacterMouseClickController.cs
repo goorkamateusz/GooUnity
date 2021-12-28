@@ -20,16 +20,12 @@ public class CharacterMouseClickController : Ability
 
     private void Update()
     {
-        if (_agent.velocity.magnitude < _minimalVelocity)
-            Player.AnimatorHandler.SetMoveSpeed(0f);
-
         if (Input.GetMouseButtonDown(_mouseButtonNumber))
         {
             var mouseRay = _main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseRay, out var hit, Mathf.Infinity))
             {
                 _agent.SetDestination(hit.point);
-                Player.AnimatorHandler.SetMoveSpeed(0.5f);
             }
         }
     }
