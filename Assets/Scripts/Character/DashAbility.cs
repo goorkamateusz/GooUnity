@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -29,6 +30,16 @@ public class DashAbility : KeyInputOrientedAbility
     {
         Player.Movement.IsEnabled = false;
 
+        yield return DashMovement();
+
+        Player.Movement.IsEnabled = true;
+
+        if (_stopMovingAfterDash)
+            Player.Movement.Stop();
+    }
+
+    private IEnumerator DashMovement()
+    {
         Vector3? direction = GetDirection();
         if (direction is null) yield break;
 
@@ -36,18 +47,28 @@ public class DashAbility : KeyInputOrientedAbility
         Vector3 startPoint = Player.Position;
         Vector3 endPoint = startPoint + direction.Value * _distance;
 
+        Debug.DrawLine(startPoint, endPoint, Color.black, 1f);
+
+        var agent = Player.Movement.Agent;
+
         while (timer < _durationTime)
         {
             timer += Time.deltaTime;
-            endPoint.y = Player.Position.y;
-            Player.Position = Vector3.Lerp(startPoint, endPoint, timer / _durationTime);
+            endPoint.y = startPoint.y;
+            Vector3 move = Vector3.Lerp(startPoint, endPoint, timer / _durationTime);
+
+            if (agent.Raycast(move, out var hit))
+            {
+                Debug.DrawLine(Player.Position, hit.position, Color.blue, 0.2f);
+            }
+            else
+            {
+                Player.Position = move;
+                Debug.DrawLine(Player.Position, move, Color.red, 0.1f);
+            }
+
             yield return null;
         }
-
-        Player.Movement.IsEnabled = true;
-
-        if (_stopMovingAfterDash)
-            Player.Movement.Stop();
     }
 
     private Vector3? GetDirection()

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,6 +22,8 @@ public abstract class PlayerMovement : PlayerComponent
 
     public bool IsEnabled { get; set; } = true;
 
+    public NavMeshAgent Agent => _agent;
+
     public float Speed => _speedOriginal * _speedMultiplier;
     public float CurrentSpeed => _agent.velocity.magnitude;
     public float OriginalSpeed => _speedOriginal;
@@ -39,7 +42,7 @@ public abstract class PlayerMovement : PlayerComponent
 
     public void Stop()
     {
-        _agent.SetDestination(_agent.transform.position);
+        _agent.ResetPath();
     }
 
     protected abstract void HandleInput();
