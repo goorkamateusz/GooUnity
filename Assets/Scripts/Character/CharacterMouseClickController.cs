@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
+// todo it's not ability
 public class CharacterMouseClickController : Ability
 {
     [Header("Mouse")]

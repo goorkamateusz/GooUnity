@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
         UpdateAgent();
     }
 
+    public void Stop()
+    {
+        _agent.SetDestination(_agent.transform.position);
+    }
+
     private void Awake()
     {
         UpdateAgent();
