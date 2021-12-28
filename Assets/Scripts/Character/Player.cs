@@ -3,9 +3,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject[] _abilityNodes;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private AnimatorHandler _animatorHandler;
 
-    public Animator Animator => _animator;
+    public AnimatorHandler AnimatorHandler => _animatorHandler;
 
     private void Awake()
     {

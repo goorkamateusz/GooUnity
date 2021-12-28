@@ -21,12 +21,12 @@ public class RunAbility : KeyInputOrientedAbility
     {
         _originalSpeed = _agent.speed;
         _agent.speed *= _speedMultiplier;
-        Player.Animator.SetBool(Name, true);
+        Player.AnimatorHandler.SetMoveSpeed(1f);
     }
 
     protected override void OnKeyUp()
     {
         _agent.speed = _originalSpeed;
-        Player.Animator.SetBool(Name, false);
+        Player.AnimatorHandler.SetMoveSpeed(0.5f);
     }
 }

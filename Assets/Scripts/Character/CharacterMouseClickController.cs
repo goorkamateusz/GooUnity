@@ -2,36 +2,35 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class CharacterMouseClickController : MonoBehaviour
+public class CharacterMouseClickController : Ability
 {
     [Header("Mouse")]
     [SerializeField] private int _mouseButtonNumber = 0;
+    [SerializeField] private NavMeshAgent _agent;
 
     [Header("Animations")]
-    [SerializeField] private Animator _animator;
-    [SerializeField] private string _boolParameterName = "Walk";
     [SerializeField] private double _minimalVelocity = 0.6;
 
-    private NavMeshAgent _agent;
     private Camera _main;
 
     private void Awake()
     {
-        _agent = GetComponent<NavMeshAgent>();
         _main = Camera.main;
     }
 
     private void Update()
     {
+        if (_agent.velocity.magnitude < _minimalVelocity)
+            Player.AnimatorHandler.SetMoveSpeed(0f);
+
         if (Input.GetMouseButtonDown(_mouseButtonNumber))
         {
             var mouseRay = _main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(mouseRay, out var hit, Mathf.Infinity))
             {
                 _agent.SetDestination(hit.point);
+                Player.AnimatorHandler.SetMoveSpeed(0.5f);
             }
         }
-
-        _animator.SetBool(_boolParameterName, _agent.velocity.magnitude > _minimalVelocity);
     }
 }
