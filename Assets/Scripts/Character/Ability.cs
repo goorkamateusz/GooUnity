@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ability : MonoBehaviour
+public class Ability : MonoBehaviour, IPlayerComponent
 {
     protected Player Player { get; private set; }
 

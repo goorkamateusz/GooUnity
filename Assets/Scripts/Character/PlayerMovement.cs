@@ -1,9 +1,20 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerComponent : MonoBehaviour, IPlayerComponent
 {
-    [SerializeField] private NavMeshAgent _agent;
+    protected Player Player { get; private set; }
+
+    public void InjectPlayer(Player player)
+    {
+        Player = player;
+    }
+}
+
+public abstract class PlayerMovement : PlayerComponent
+{
+    [SerializeField] protected NavMeshAgent _agent;
+
     [SerializeField] private float _speedOriginal;
 
     private float _speedMultiplier = 1f;
@@ -29,9 +40,16 @@ public class PlayerMovement : MonoBehaviour
         _agent.SetDestination(_agent.transform.position);
     }
 
-    private void Awake()
+    protected abstract void HandleInput();
+
+    protected virtual void Awake()
     {
         UpdateAgent();
+    }
+
+    protected void Update()
+    {
+        HandleInput();
     }
 
     private void UpdateAgent()

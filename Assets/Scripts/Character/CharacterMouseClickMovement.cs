@@ -1,24 +1,13 @@
 using UnityEngine;
-using UnityEngine.AI;
 
-// todo it's not ability
-public class CharacterMouseClickController : Ability
+public class CharacterMouseClickMovement : PlayerMovement
 {
     [Header("Mouse")]
     [SerializeField] private int _mouseButtonNumber = 0;
-    [SerializeField] private NavMeshAgent _agent;
-
-    [Header("Animations")]
-    [SerializeField] private double _minimalVelocity = 0.6;
 
     private Camera _main;
 
-    private void Awake()
-    {
-        _main = Camera.main;
-    }
-
-    private void Update()
+    protected override void HandleInput()
     {
         if (Input.GetMouseButtonDown(_mouseButtonNumber))
         {
@@ -28,5 +17,11 @@ public class CharacterMouseClickController : Ability
                 _agent.SetDestination(hit.point);
             }
         }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _main = Camera.main;
     }
 }

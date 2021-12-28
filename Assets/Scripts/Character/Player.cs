@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _movement?.InjectPlayer(this);
+        InitializeAbilities();
+    }
+
+    private void InitializeAbilities()
+    {
         foreach (var node in _abilityNodes)
         {
             Ability[] abilities = node.GetComponents<Ability>();
