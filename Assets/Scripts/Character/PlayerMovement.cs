@@ -19,6 +19,8 @@ public abstract class PlayerMovement : PlayerComponent
 
     private float _speedMultiplier = 1f;
 
+    public bool IsEnabled { get; set; } = true;
+
     public float Speed => _speedOriginal * _speedMultiplier;
     public float CurrentSpeed => _agent.velocity.magnitude;
     public float OriginalSpeed => _speedOriginal;
@@ -49,7 +51,8 @@ public abstract class PlayerMovement : PlayerComponent
 
     protected void Update()
     {
-        HandleInput();
+        if (IsEnabled)
+            HandleInput();
     }
 
     private void UpdateAgent()

@@ -2,11 +2,11 @@ public class DashAbility : KeyInputOrientedAbility
 {
     protected override void OnKeyDown()
     {
-        throw new System.NotImplementedException();
+        Player.Movement.IsEnabled = false;
     }
 
     protected override void OnKeyUp()
     {
-        throw new System.NotImplementedException();
+        Player.Movement.IsEnabled = true;
     }
 }
