@@ -3,7 +3,8 @@ using UnityEngine;
 public class HandleWeapon : InputOrientedAbility
 {
     [Header("Input")]
-    [SerializeField] private KeyCode _pickWeapon;
+    [SerializeField] private KeyCode _pickWeaponKey;
+    [SerializeField] private KeyCode _aimingToggleKey;
     [SerializeField] private int _mouseButtonId;
 
     [Header("Weapon")]
@@ -11,18 +12,25 @@ public class HandleWeapon : InputOrientedAbility
     [SerializeField] private PlayerController _playerController;
 
     private Weapon _weapon = null;
+    private bool _aiming;
 
     public bool IsNotHandled => _weapon is null;
 
     protected override void HandleInput()
     {
-        if (Input.GetKeyDown(_pickWeapon))
+        if (Input.GetKeyDown(_pickWeaponKey))
         {
             PickWeapon();
         }
 
         // todo walka w ręcz
         if (IsNotHandled) return;
+
+        if (Input.GetKeyDown(_aimingToggleKey))
+        {
+            _aiming = !_aiming;
+            Player.AnimatorHandler.SetBool("Aiming", _aiming);
+        }
 
         if (Input.GetMouseButtonDown(_mouseButtonId))
         {

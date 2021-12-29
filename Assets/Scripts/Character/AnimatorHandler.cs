@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AnimatorHandler : MonoBehaviour
@@ -8,6 +9,11 @@ public class AnimatorHandler : MonoBehaviour
     public void SetTrigger(string name)
     {
         _animator.SetTrigger(name);
+    }
+
+    internal void SetInt(string name, int value)
+    {
+        _animator.SetInteger(name, value);
     }
 
     public void SetBool(string name, bool value = true)
