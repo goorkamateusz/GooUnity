@@ -26,4 +26,13 @@ public class CharacterInventory : MonoBehaviour
         item.Collected();
         _visuals?.ReportCollect(item);
     }
+
+    public Weapon GetNextWeapon()
+    {
+        // todo mock
+        return new Weapon
+        {
+            Type = "Rifle"
+        };
+    }
 }
