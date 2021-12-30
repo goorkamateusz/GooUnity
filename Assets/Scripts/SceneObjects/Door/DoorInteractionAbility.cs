@@ -7,15 +7,12 @@ public class DoorInteractionAbility : KeyInputOrientedAbility
     [SerializeField, TextArea] private string _tipOpenMessage;
     [SerializeField, TextArea] private string _tipCloseMessage;
 
-    private ColliderListener<Door> _doorListener = new ColliderListener<Door>();
     private Door _door;
 
     protected override void Start()
     {
         base.Start();
-        _doorListener.OnTriggerEnter += DoorTriggerEnter;
-        _doorListener.OnTriggerExit += DoorTriggerExit;
-        _interactions.AddListener(_doorListener);
+        _interactions.AddListener(new ColliderListener<Door>(DoorTriggerEnter, DoorTriggerExit));
     }
 
     protected override void OnKeyDown()

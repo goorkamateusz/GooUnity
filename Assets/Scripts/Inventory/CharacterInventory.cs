@@ -8,13 +8,11 @@ public class CharacterInventory : MonoBehaviour
     [SerializeField] private CharacterColliderInteractions _interactions;
 
     private CharacterInventoryVisuals _visuals;
-    private ColliderListener<InventoryItem> _inventoryItemListener = new ColliderListener<InventoryItem>();
 
     private void Awake()
     {
         _visuals = GetComponent<CharacterInventoryVisuals>();
-        _inventoryItemListener.OnTriggerEnter += Collect;
-        _interactions.AddListener(_inventoryItemListener);
+        _interactions.AddListener(new ColliderListener<InventoryItem>(Collect, null));
     }
 
     public void Collect(InventoryItem item)

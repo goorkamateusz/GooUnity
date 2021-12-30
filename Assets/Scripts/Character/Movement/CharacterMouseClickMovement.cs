@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-using System;
 using UnityEngine;
 
 public class CharacterMouseClickMovement : PlayerMovement
@@ -40,29 +38,23 @@ public class CharacterMouseClickMovement : PlayerMovement
 
     private void ListenAttack()
     {
-        if (true)
+        _listener.Add(new MovementMouseListener<Player>((other) =>
         {
-            var action = new MovementMouseListener<Player>();
-            action.Action += (other) =>
+            _tasks.Add(new MovementTask
             {
-                _tasks.Add(new MovementTask
-                {
-                    Condition = () => Vector3.Distance(Player.Position, other.Position) < 4f,
-                    Do = () => Stop(),
-                    Otherwise = () => _agent.SetDestination(other.Position),
-                    DisableAutoDelete = true
-                });
-            };
-            _listener.Add(action);
-        }
+                Condition = () => Vector3.Distance(Player.Position, other.Position) < 4f,
+                Do = () => Stop(),
+                Otherwise = () => _agent.SetDestination(other.Position),
+                DisableAutoDelete = true
+            });
+        }));
     }
 
     private void ListenInventory()
     {
         if (_inventory)
         {
-            var action = new MovementMouseListener<InventoryItem>();
-            action.Action += (item) =>
+            _listener.Add(new MovementMouseListener<InventoryItem>((item) =>
             {
                 item.Clicked();
                 _tasks.Add(new MovementTask
@@ -70,8 +62,7 @@ public class CharacterMouseClickMovement : PlayerMovement
                     Condition = () => Vector3.Distance(Player.Position, item.transform.position) < _pickableDistance,
                     Do = () => _inventory.Collect(item)
                 });
-            };
-            _listener.Add(action);
+            }));
         }
     }
 

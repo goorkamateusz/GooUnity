@@ -29,6 +29,13 @@ public class MovementMouseListener<T> : MovementMouseListener where T : UnityEng
 {
     public event Action<T> Action;
 
+    public MovementMouseListener() { }
+
+    public MovementMouseListener(Action<T> initialAction)
+    {
+        Action += initialAction;
+    }
+
     public override void Check(RaycastHit hit)
     {
         T target = hit.GetComponent<T>();
