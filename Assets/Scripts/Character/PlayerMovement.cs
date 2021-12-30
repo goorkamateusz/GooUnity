@@ -52,7 +52,7 @@ public abstract class PlayerMovement : PlayerComponent
         UpdateAgent();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (IsEnabled)
             HandleInput();

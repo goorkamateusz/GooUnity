@@ -21,7 +21,7 @@ public class CharacterInventory : MonoBehaviour
             Collect(item);
     }
 
-    private void Collect(InventoryItem item)
+    public void Collect(InventoryItem item)
     {
         _inventory.Add(item);
         item.Collected();
