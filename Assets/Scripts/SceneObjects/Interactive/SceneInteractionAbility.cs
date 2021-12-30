@@ -11,7 +11,7 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteracti
     protected override void Start()
     {
         base.Start();
-        _interactions.AddListener(new ColliderListener<SceneInteractiveElement>(DoorTriggerEnter, DoorTriggerExit));
+        _interactions.AddListener(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
     }
 
     protected override void OnKeyDown()
@@ -24,13 +24,13 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteracti
         _object?.OnKeyUp(this);
     }
 
-    protected virtual void DoorTriggerEnter(SceneInteractiveElement obj)
+    protected virtual void TriggerEnter(SceneInteractiveElement obj)
     {
         _object = obj;
         _object.ColiderEnter(this);
     }
 
-    protected virtual void DoorTriggerExit(SceneInteractiveElement obj)
+    protected virtual void TriggerExit(SceneInteractiveElement obj)
     {
         _object.ColiderExit(this);
         _object = null;

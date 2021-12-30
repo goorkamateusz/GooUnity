@@ -4,15 +4,15 @@ public class AiSceneInteractionAbility : SceneInteractionAbility
 {
     [SerializeField] private bool _autoOpenDoors;
 
-    protected override void DoorTriggerEnter(SceneInteractiveElement obj)
+    protected override void TriggerEnter(SceneInteractiveElement obj)
     {
-        base.DoorTriggerEnter(obj);
+        base.TriggerEnter(obj);
         ToggleActions(obj);
     }
 
-    protected override void DoorTriggerExit(SceneInteractiveElement obj)
+    protected override void TriggerExit(SceneInteractiveElement obj)
     {
-        base.DoorTriggerExit(obj);
+        base.TriggerExit(obj);
         ToggleActions(obj);
     }
 
