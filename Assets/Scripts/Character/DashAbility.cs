@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class DashAbility : KeyInputOrientedAbility
 {
+    private const string AnimationState = "Squat";
     [SerializeField] private float _distance = 6f;
     [SerializeField] private float _durationTime = 0.2f;
     [SerializeField] private bool _stopMovingAfterDash = true;
+
+    [Header("Visuals")]
+    [SerializeField] private ParticleSystem _particle;
 
     private Coroutine _coroutine;
     private Camera _main;
 
     protected override void OnKeyDown()
     {
-        _coroutine = StartCoroutine(Dash());
+        if (_coroutine == null)
+            _coroutine = StartCoroutine(Dash());
     }
 
     protected override void OnKeyUp()
@@ -29,13 +34,19 @@ public class DashAbility : KeyInputOrientedAbility
     protected virtual IEnumerator Dash()
     {
         Player.Movement.IsEnabled = false;
+        Player.AnimatorHandler.SetBool(AnimationState, true);
+        _particle.Play();
 
         yield return DashMovement();
 
         Player.Movement.IsEnabled = true;
+        Player.AnimatorHandler.SetBool(AnimationState, false);
+        _particle.Stop();
 
         if (_stopMovingAfterDash)
             Player.Movement.Stop();
+
+        _coroutine = null;
     }
 
     private IEnumerator DashMovement()
@@ -56,6 +67,7 @@ public class DashAbility : KeyInputOrientedAbility
             timer += Time.deltaTime;
             endPoint.y = startPoint.y;
             Vector3 move = Vector3.Lerp(startPoint, endPoint, timer / _durationTime);
+            Player.transform.LookAt(move);
 
             if (agent.Raycast(move, out var hit))
             {
