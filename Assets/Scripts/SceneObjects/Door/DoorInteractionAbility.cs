@@ -39,11 +39,18 @@ public class DoorInteractionAbility : KeyInputOrientedAbility
     {
         _door.ColiderExit();
         _door = null;
+        HideTip();
     }
 
     private void DisplayTip()
     {
         if (UiReferenceManager.Initialized && _door)
             UiReferenceManager.Instance?.KeyActionView.DisplayTip(_key, _door.IsOpen ? _tipCloseMessage : _tipOpenMessage);
+    }
+
+    private void HideTip()
+    {
+        if (UiReferenceManager.Initialized)
+            UiReferenceManager.Instance.KeyActionView.HideTip(_key);
     }
 }

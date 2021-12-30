@@ -7,7 +7,7 @@ public class KeyActionView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _letter;
     [SerializeField] private TMP_Text _desc;
-    
+
     private Coroutine _coroutine;
 
     public void DisplayTip(KeyCode key, string desc, float lifeTime = 3f)
@@ -20,6 +20,12 @@ public class KeyActionView : MonoBehaviour
             _coroutine = StartCoroutine(Countdown(lifeTime));
         else
             throw new NotImplementedException("Many invokes");
+    }
+
+    public void HideTip(KeyCode key)
+    {
+        gameObject.SetActive(false);
+        StopCoroutine(_coroutine);
     }
 
     private IEnumerator Countdown(float lifeTime)
