@@ -24,13 +24,13 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteracti
         _object?.OnKeyUp(this);
     }
 
-    private void DoorTriggerEnter(SceneInteractiveElement obj)
+    protected virtual void DoorTriggerEnter(SceneInteractiveElement obj)
     {
         _object = obj;
         _object.ColiderEnter(this);
     }
 
-    private void DoorTriggerExit(SceneInteractiveElement obj)
+    protected virtual void DoorTriggerExit(SceneInteractiveElement obj)
     {
         _object.ColiderExit(this);
         _object = null;

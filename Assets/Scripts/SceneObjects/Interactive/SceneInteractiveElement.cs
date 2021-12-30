@@ -21,13 +21,13 @@ public abstract class SceneInteractiveElement : MonoBehaviour
 
     protected void DisplayTip(IPlayerInteractiveComponent player, string msg)
     {
-        if (UiReferenceManager.Initialized)
+        if (player != null && UiReferenceManager.Initialized)
             UiReferenceManager.Instance?.KeyActionView.DisplayTip(player.Key, msg);
     }
 
     protected void HideTip(IPlayerInteractiveComponent player)
     {
-        if (UiReferenceManager.Initialized)
+        if (player != null && UiReferenceManager.Initialized)
             UiReferenceManager.Instance.KeyActionView.HideTip(player.Key);
     }
 }
