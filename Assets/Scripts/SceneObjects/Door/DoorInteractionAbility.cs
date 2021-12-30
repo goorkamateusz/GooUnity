@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class DoorInteractionAbility : KeyInputOrientedAbility
 {
     [SerializeField] private CharacterColliderInteractions _interactions;
+    [SerializeField, TextArea] private string _tipOpenMessage;
+    [SerializeField, TextArea] private string _tipCloseMessage;
 
     private ColliderListener<Door> _doorListener = new ColliderListener<Door>();
     private Door _door;
@@ -18,6 +21,7 @@ public class DoorInteractionAbility : KeyInputOrientedAbility
     protected override void OnKeyDown()
     {
         _door?.Toggle();
+        DisplayTip();
     }
 
     protected override void OnKeyUp()
@@ -28,11 +32,18 @@ public class DoorInteractionAbility : KeyInputOrientedAbility
     {
         _door = obj;
         _door.ColiderEnter();
+        DisplayTip();
     }
 
     private void DoorTriggerExit(Door obj)
     {
         _door.ColiderExit();
         _door = null;
+    }
+
+    private void DisplayTip()
+    {
+        if (UiReferenceManager.Initialized && _door)
+            UiReferenceManager.Instance?.KeyActionView.DisplayTip(_key, _door.IsOpen ? _tipCloseMessage : _tipOpenMessage);
     }
 }
