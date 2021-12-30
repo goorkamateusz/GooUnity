@@ -1,4 +1,3 @@
-using UnityEngine;
 using System.Collections.Generic;
 
 public class MovementTaskProvider
@@ -17,7 +16,7 @@ public class MovementTaskProvider
 
         for (int i = 0; i < _tasks.Count; i++)
         {
-            if (_tasks[i].Check())
+            if (_tasks[i].Check() && !_tasks[i].DisableAutoDelete)
                 _done.Add(i);
         }
 

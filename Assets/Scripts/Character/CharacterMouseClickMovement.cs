@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
 
 public class CharacterMouseClickMovement : PlayerMovement
@@ -29,10 +31,29 @@ public class CharacterMouseClickMovement : PlayerMovement
     {
         _tasks.Clear();
         ProccessInventory(hit);
+        ProccessAttack(hit);
 
         _agent.SetDestination(hit.point);
         _mouseClickEffect.transform.position = hit.point;
         _mouseClickEffect.Play();
+    }
+
+    private void ProccessAttack(RaycastHit hit)
+    {
+        if (true)
+        {
+            var other = hit.GetComponent<Player>();
+            if (other)
+            {
+                _tasks.Add(new MovementTask
+                {
+                    Condition = () => Vector3.Distance(Player.Position, other.Position) < 4f,
+                    Do = () => Stop(),
+                    Otherwise = () => _agent.SetDestination(other.Position),
+                    DisableAutoDelete = true
+                });
+            }
+        }
     }
 
     private void ProccessInventory(RaycastHit hit)
