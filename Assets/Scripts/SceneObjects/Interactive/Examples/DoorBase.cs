@@ -1,14 +1,9 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Door : SceneInteractiveElement
+public class DoorBase : SceneInteractiveElement
 {
-    [SerializeField] private Transform _door;
-    [SerializeField] private Transform _hinge;
-    [SerializeField] private Vector3 _axis;
-    [SerializeField] private float _angle;
-
     [Header("Config")]
     [SerializeField] private bool _isOpen;
     [SerializeField] private bool _openAutomatically;
@@ -20,6 +15,8 @@ public class Door : SceneInteractiveElement
     [Header("Tips messages")]
     [SerializeField, TextArea] private string _tipOpenMessage;
     [SerializeField, TextArea] private string _tipCloseMessage;
+
+    protected Coroutine _coroutine;
 
     public bool IsOpen { get => _isOpen; private set => _isOpen = value; }
     public bool AutoOpen => _openAutomatically;
@@ -56,16 +53,34 @@ public class Door : SceneInteractiveElement
 
     private void Close()
     {
-        _door.transform.RotateAround(_hinge.position, _axis, -_angle);
-        IsOpen = false;
-        ToggleObstacle();
+        if (_coroutine == null)
+        {
+            _coroutine = StartCoroutine(OpenAnimation());
+            IsOpen = false;
+            ToggleObstacle();
+        }
     }
 
     private void Open()
     {
-        _door.transform.RotateAround(_hinge.position, _axis, _angle);
-        IsOpen = true;
-        ToggleObstacle();
+        if (_coroutine == null)
+        {
+            _coroutine = StartCoroutine(CloseAnimation());
+            IsOpen = true;
+            ToggleObstacle();
+        }
+    }
+
+    protected virtual IEnumerator OpenAnimation()
+    {
+        _coroutine = null;
+        yield break;
+    }
+
+    protected virtual IEnumerator CloseAnimation()
+    {
+        _coroutine = null;
+        yield break;
     }
 
     private void Toggle()
