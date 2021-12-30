@@ -4,6 +4,7 @@ public class CharacterMouseClickMovement : PlayerMovement
 {
     [Header("Mouse")]
     [SerializeField] private int _mouseButtonNumber = 0;
+    [SerializeField] private ParticleSystem _mouseClickEffect;
 
     private Camera _main;
 
@@ -15,6 +16,8 @@ public class CharacterMouseClickMovement : PlayerMovement
             if (Physics.Raycast(mouseRay, out var hit, Mathf.Infinity))
             {
                 _agent.SetDestination(hit.point);
+                _mouseClickEffect.transform.position = hit.point;
+                _mouseClickEffect.Play();
             }
         }
     }

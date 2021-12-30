@@ -15,6 +15,7 @@ public class CharacterInventory : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Hej");
         var item = other.gameObject.GetComponent<InventoryItem>();
         if (item)
             Collect(item);
