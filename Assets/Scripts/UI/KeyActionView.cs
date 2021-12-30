@@ -25,7 +25,8 @@ public class KeyActionView : MonoBehaviour
     public void HideTip(KeyCode key)
     {
         gameObject.SetActive(false);
-        StopCoroutine(_coroutine);
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
     }
 
     private IEnumerator Countdown(float lifeTime)

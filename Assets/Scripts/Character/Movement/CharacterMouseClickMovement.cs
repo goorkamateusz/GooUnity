@@ -14,6 +14,7 @@ public class CharacterMouseClickMovement : PlayerMovement
 
     private Camera _main;
     private MovementTaskProvider _tasks = new MovementTaskProvider();
+    private MovementMouseInteractions _listener = new MovementMouseInteractions();
 
     protected override void HandleInput()
     {
@@ -30,20 +31,19 @@ public class CharacterMouseClickMovement : PlayerMovement
     private void ProcessHit(RaycastHit hit)
     {
         _tasks.Clear();
-        ProccessInventory(hit);
-        ProccessAttack(hit);
+        _listener.CheckAll(hit);
 
         _agent.SetDestination(hit.point);
         _mouseClickEffect.transform.position = hit.point;
         _mouseClickEffect.Play();
     }
 
-    private void ProccessAttack(RaycastHit hit)
+    private void ListenAttack()
     {
         if (true)
         {
-            var other = hit.GetComponent<Player>();
-            if (other)
+            var action = new MovementMouseListener<Player>();
+            action.Action += (other) =>
             {
                 _tasks.Add(new MovementTask
                 {
@@ -52,16 +52,17 @@ public class CharacterMouseClickMovement : PlayerMovement
                     Otherwise = () => _agent.SetDestination(other.Position),
                     DisableAutoDelete = true
                 });
-            }
+            };
+            _listener.Add(action);
         }
     }
 
-    private void ProccessInventory(RaycastHit hit)
+    private void ListenInventory()
     {
         if (_inventory)
         {
-            var item = hit.GetComponent<InventoryItem>();
-            if (item)
+            var action = new MovementMouseListener<InventoryItem>();
+            action.Action += (item) =>
             {
                 item.Clicked();
                 _tasks.Add(new MovementTask
@@ -69,7 +70,8 @@ public class CharacterMouseClickMovement : PlayerMovement
                     Condition = () => Vector3.Distance(Player.Position, item.transform.position) < _pickableDistance,
                     Do = () => _inventory.Collect(item)
                 });
-            }
+            };
+            _listener.Add(action);
         }
     }
 
@@ -77,6 +79,8 @@ public class CharacterMouseClickMovement : PlayerMovement
     {
         base.Awake();
         _main = Camera.main;
+        ListenAttack();
+        ListenInventory();
     }
 
     protected override void Update()

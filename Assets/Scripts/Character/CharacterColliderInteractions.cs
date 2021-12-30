@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterColliderInteractions : PlayerComponent
+public class CharacterColliderInteractions : MonoBehaviour
 {
     private List<ColliderListener> _listener = new List<ColliderListener>();
 
