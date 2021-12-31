@@ -58,8 +58,6 @@ public class DashAbility : KeyInputOrientedAbility
         Vector3 startPoint = Player.Position;
         Vector3 endPoint = startPoint + direction.Value * _distance;
 
-        Debug.DrawLine(startPoint, endPoint, Color.black, 1f);
-
         var agent = Player.Movement.Agent;
 
         while (timer < _durationTime)
@@ -69,14 +67,14 @@ public class DashAbility : KeyInputOrientedAbility
             Vector3 move = Vector3.Lerp(startPoint, endPoint, timer / _durationTime);
             Player.transform.LookAt(move);
 
-            if (agent.Raycast(move, out var hit))
+            if (!agent.Raycast(move, out var hit))
             {
-                Debug.DrawLine(Player.Position, hit.position, Color.blue, 0.2f);
+                Player.Position = move;
+                Debug.DrawLine(Player.Position, move, Color.blue, 0.5f);
             }
             else
             {
-                Player.Position = move;
-                Debug.DrawLine(Player.Position, move, Color.red, 0.1f);
+                Debug.DrawLine(Player.Position, hit.position, Color.red, 1f);
             }
 
             yield return null;
