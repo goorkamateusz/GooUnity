@@ -6,6 +6,7 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteracti
 
     private SceneInteractiveElement _object;
 
+    public virtual bool IsPlayer => true;
     public KeyCode Key => _key;
 
     protected override void Start()

@@ -3,6 +3,7 @@ using UnityEngine;
 public interface IPlayerInteractiveComponent
 {
     public KeyCode Key { get; }
+    public bool IsPlayer { get; }
 }
 
 [RequireComponent(typeof(Collider))]
@@ -21,13 +22,13 @@ public abstract class SceneInteractiveElement : MonoBehaviour
 
     protected void DisplayTip(IPlayerInteractiveComponent player, string msg)
     {
-        if (player != null && UiReferenceManager.Initialized)
+        if (player?.IsPlayer ?? false && UiReferenceManager.Initialized)
             UiReferenceManager.Instance?.KeyActionView.DisplayTip(player.Key, msg);
     }
 
     protected void HideTip(IPlayerInteractiveComponent player)
     {
-        if (player != null && UiReferenceManager.Initialized)
+        if (player?.IsPlayer ?? false && UiReferenceManager.Initialized)
             UiReferenceManager.Instance.KeyActionView.HideTip(player.Key);
     }
 }

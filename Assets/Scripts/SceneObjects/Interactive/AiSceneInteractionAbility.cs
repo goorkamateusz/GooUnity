@@ -4,21 +4,47 @@ public class AiSceneInteractionAbility : SceneInteractionAbility
 {
     [SerializeField] private bool _autoOpenDoors;
 
+    public override bool IsPlayer => false;
+
     protected override void TriggerEnter(SceneInteractiveElement obj)
     {
         base.TriggerEnter(obj);
-        ToggleActions(obj);
+        Enter(obj);
     }
 
     protected override void TriggerExit(SceneInteractiveElement obj)
     {
         base.TriggerExit(obj);
-        ToggleActions(obj);
+        Exit(obj);
     }
 
-    private void ToggleActions(SceneInteractiveElement obj)
+    private void Enter(SceneInteractiveElement obj)
     {
-        if (_autoOpenDoors && obj is DoorBase)
-            obj?.OnKeyDown(null);
+        if (_autoOpenDoors)
+            OpenDoor(obj as DoorBase);
+    }
+
+    private void Exit(SceneInteractiveElement obj)
+    {
+        if (_autoOpenDoors)
+            CloseDoor(obj as DoorBase);
+    }
+
+    private void CloseDoor(DoorBase door)
+    {
+        if (door is null)
+            return;
+
+        if (door.IsOpen)
+            door.OnKeyDown(null);
+    }
+
+    private void OpenDoor(DoorBase door)
+    {
+        if (door is null)
+            return;
+
+        if (!door.IsOpen)
+            door.OnKeyDown(null);
     }
 }
