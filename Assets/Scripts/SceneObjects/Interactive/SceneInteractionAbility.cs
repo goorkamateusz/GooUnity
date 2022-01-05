@@ -8,6 +8,7 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteracti
 
     public virtual bool IsPlayer => true;
     public KeyCode Key => _key;
+    public Player Character => Player;
 
     protected override void Start()
     {

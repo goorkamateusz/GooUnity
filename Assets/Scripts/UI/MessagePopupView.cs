@@ -27,3 +27,7 @@ public class MessagePopupView : UIWindowView
         _blend.SetActive(false);
     }
 }
+
+public class UIWindowView : MonoBehaviour
+{
+}

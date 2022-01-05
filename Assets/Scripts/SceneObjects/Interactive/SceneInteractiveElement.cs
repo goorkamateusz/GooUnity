@@ -4,6 +4,7 @@ public interface IPlayerInteractiveComponent
 {
     public KeyCode Key { get; }
     public bool IsPlayer { get; }
+    public Player Character { get; }
 }
 
 [RequireComponent(typeof(Collider))]
