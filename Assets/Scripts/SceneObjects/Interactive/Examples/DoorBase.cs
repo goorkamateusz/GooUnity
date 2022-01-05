@@ -22,33 +22,33 @@ public class DoorBase : SceneInteractiveElement
     public bool AutoOpen => _openAutomatically;
     public bool AutoClose => _openAutomatically;
 
-    public override void ColiderEnter(IPlayerInteractiveComponent player)
+    public override void ColiderEnter(ICharacterInteractiveComponent character)
     {
         if (AutoOpen)
             Open();
         else
-            DisplayTip(player);
+            DisplayTip(character);
     }
 
-    public override void ColiderExit(IPlayerInteractiveComponent player)
+    public override void ColiderExit(ICharacterInteractiveComponent character)
     {
         if (AutoClose)
             Close();
     }
 
-    public override void OnKeyDown(IPlayerInteractiveComponent player)
+    public override void OnKeyDown(ICharacterInteractiveComponent character)
     {
         Toggle();
-        DisplayTip(player);
+        DisplayTip(character);
     }
 
-    public override void OnKeyUp(IPlayerInteractiveComponent player)
+    public override void OnKeyUp(ICharacterInteractiveComponent character)
     {
     }
 
-    protected override void DisplayTip(IPlayerInteractiveComponent player)
+    protected override void DisplayTip(ICharacterInteractiveComponent character)
     {
-        DisplayTip(player, IsOpen ? _tipCloseMessage : _tipOpenMessage);
+        DisplayTip(character, IsOpen ? _tipCloseMessage : _tipOpenMessage);
     }
 
     private void Close()

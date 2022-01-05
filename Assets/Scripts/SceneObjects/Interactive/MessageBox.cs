@@ -4,22 +4,22 @@ public class MessageBox : SceneInteractiveElement
 {
     [SerializeField, TextArea] private string _message;
 
-    public override void ColiderEnter(IPlayerInteractiveComponent player)
+    public override void ColiderEnter(ICharacterInteractiveComponent character)
     {
         Debug.Log("MessageBox");
-        if (player.IsPlayer && UiReferenceManager.Initialized)
+        if (character.IsCharacter && UiReferenceManager.Initialized)
             UiReferenceManager.Instance.MessagePopup.Open(_message);
     }
 
-    public override void ColiderExit(IPlayerInteractiveComponent player)
+    public override void ColiderExit(ICharacterInteractiveComponent character)
     {
     }
 
-    public override void OnKeyDown(IPlayerInteractiveComponent player)
+    public override void OnKeyDown(ICharacterInteractiveComponent character)
     {
     }
 
-    public override void OnKeyUp(IPlayerInteractiveComponent player)
+    public override void OnKeyUp(ICharacterInteractiveComponent character)
     {
     }
 }

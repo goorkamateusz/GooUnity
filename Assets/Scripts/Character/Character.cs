@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Character : MonoBehaviour
 {
     [SerializeField] private GameObject[] _abilityNodes;
-    [SerializeField] private PlayerMovement _movement;
+    [SerializeField] private CharacterMovement _movement;
     [SerializeField] private AnimatorHandler _animatorHandler;
 
     public AnimatorHandler AnimatorHandler => _animatorHandler;
-    public PlayerMovement Movement => _movement;
+    public CharacterMovement Movement => _movement;
 
     public Vector3 Position
     {
@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _movement?.InjectPlayer(this);
+        _movement?.InjectCharacter(this);
         InitializeAbilities();
     }
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
             Ability[] abilities = node.GetComponents<Ability>();
             foreach (var ability in abilities)
             {
-                ability.InjectPlayer(this);
+                ability.InjectCharacter(this);
             }
         }
     }

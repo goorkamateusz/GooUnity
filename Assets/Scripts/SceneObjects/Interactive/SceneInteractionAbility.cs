@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class SceneInteractionAbility : KeyInputOrientedAbility, IPlayerInteractiveComponent
+public class SceneInteractionAbility : KeyInputOrientedAbility, ICharacterInteractiveComponent
 {
     [SerializeField] private CharacterColliderInteractions _interactions;
 
     private SceneInteractiveElement _object;
 
-    public virtual bool IsPlayer => true;
+    public virtual bool IsCharacter => true;
     public KeyCode Key => _key;
-    public Player Character => Player;
+    public new Character Character => Character;
 
     protected override void Start()
     {

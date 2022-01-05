@@ -10,7 +10,7 @@ public class HandleWeapon : InputOrientedAbility
 
     [Header("Weapon")]
     [SerializeField] private CharacterInventory _inventory; // todo interface
-    [SerializeField] private PlayerController _playerController;
+    [SerializeField] private PlayerController _characterController;
 
     private Weapon _weapon = null;
     private bool _aiming;
@@ -35,7 +35,7 @@ public class HandleWeapon : InputOrientedAbility
         if (Input.GetKeyDown(_attackKey))
         {
             SetAiming(true);
-            Player.AnimatorHandler.SetTrigger("Attack");
+            Character.AnimatorHandler.SetTrigger("Attack");
         }
 
         if (Input.GetMouseButtonDown(_mouseButtonId))
@@ -47,7 +47,7 @@ public class HandleWeapon : InputOrientedAbility
     private void SetAiming(bool state)
     {
         _aiming = state;
-        Player.AnimatorHandler.SetBool("Aiming", _aiming);
+        Character.AnimatorHandler.SetBool("Aiming", _aiming);
     }
 
     private void PickWeapon()
@@ -55,11 +55,11 @@ public class HandleWeapon : InputOrientedAbility
         if (IsNotHandled)
         {
             _weapon = _inventory?.GetNextWeapon();
-            _playerController.SetArsenal(_weapon.Type);
+            _characterController.SetArsenal(_weapon.Type);
         }
         else
         {
-            _playerController.SetArsenal("Empty");
+            _characterController.SetArsenal("Empty");
             _weapon = null;
         }
     }

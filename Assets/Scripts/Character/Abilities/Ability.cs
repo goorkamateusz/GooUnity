@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class Ability : MonoBehaviour, IPlayerComponent
+public class Ability : MonoBehaviour, ICharacterComponent
 {
-    protected Player Player { get; private set; }
+    protected Character Character { get; private set; }
 
-    public void InjectPlayer(Player player)
+    public void InjectCharacter(Character character)
     {
-        Player = player;
+        Character = character;
     }
 }
 

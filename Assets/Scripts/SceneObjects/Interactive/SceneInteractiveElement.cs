@@ -1,35 +1,35 @@
 using UnityEngine;
 
-public interface IPlayerInteractiveComponent
+public interface ICharacterInteractiveComponent
 {
     public KeyCode Key { get; }
-    public bool IsPlayer { get; }
-    public Player Character { get; }
+    public bool IsCharacter { get; }
+    public Character Character { get; }
 }
 
 [RequireComponent(typeof(Collider))]
 public abstract class SceneInteractiveElement : MonoBehaviour
 {
-    public abstract void ColiderEnter(IPlayerInteractiveComponent player);
-    public abstract void ColiderExit(IPlayerInteractiveComponent player);
+    public abstract void ColiderEnter(ICharacterInteractiveComponent character);
+    public abstract void ColiderExit(ICharacterInteractiveComponent character);
 
-    public abstract void OnKeyDown(IPlayerInteractiveComponent player);
-    public abstract void OnKeyUp(IPlayerInteractiveComponent player);
+    public abstract void OnKeyDown(ICharacterInteractiveComponent character);
+    public abstract void OnKeyUp(ICharacterInteractiveComponent character);
 
-    protected virtual void DisplayTip(IPlayerInteractiveComponent player)
+    protected virtual void DisplayTip(ICharacterInteractiveComponent character)
     {
-        DisplayTip(player, string.Empty);
+        DisplayTip(character, string.Empty);
     }
 
-    protected void DisplayTip(IPlayerInteractiveComponent player, string msg)
+    protected void DisplayTip(ICharacterInteractiveComponent character, string msg)
     {
-        if (player?.IsPlayer ?? false && UiReferenceManager.Initialized)
-            UiReferenceManager.Instance?.KeyActionView.DisplayTip(player.Key, msg);
+        if (character?.IsCharacter ?? false && UiReferenceManager.Initialized)
+            UiReferenceManager.Instance?.KeyActionView.DisplayTip(character.Key, msg);
     }
 
-    protected void HideTip(IPlayerInteractiveComponent player)
+    protected void HideTip(ICharacterInteractiveComponent character)
     {
-        if (player?.IsPlayer ?? false && UiReferenceManager.Initialized)
-            UiReferenceManager.Instance.KeyActionView.HideTip(player.Key);
+        if (character?.IsCharacter ?? false && UiReferenceManager.Initialized)
+            UiReferenceManager.Instance.KeyActionView.HideTip(character.Key);
     }
 }

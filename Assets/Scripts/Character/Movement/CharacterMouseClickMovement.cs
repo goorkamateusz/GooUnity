@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterMouseClickMovement : PlayerMovement
+public class CharacterMouseClickMovement : CharacterMovement
 {
     [Header("Mouse")]
     [SerializeField] private int _mouseButtonNumber = 0;
@@ -38,11 +38,11 @@ public class CharacterMouseClickMovement : PlayerMovement
 
     private void ListenAttack()
     {
-        _listener.Add(new MovementMouseListener<Player>((other) =>
+        _listener.Add(new MovementMouseListener<Character>((other) =>
         {
             _tasks.Add(new MovementTask
             {
-                Condition = () => Vector3.Distance(Player.Position, other.Position) < 4f,
+                Condition = () => Vector3.Distance(Character.Position, other.Position) < 4f,
                 Do = () => Stop(),
                 Otherwise = () => _agent.SetDestination(other.Position),
                 DisableAutoDelete = true
@@ -59,7 +59,7 @@ public class CharacterMouseClickMovement : PlayerMovement
                 item.Clicked();
                 _tasks.Add(new MovementTask
                 {
-                    Condition = () => Vector3.Distance(Player.Position, item.transform.position) < _pickableDistance,
+                    Condition = () => Vector3.Distance(Character.Position, item.transform.position) < _pickableDistance,
                     Do = () => _inventory.Collect(item)
                 });
             }));

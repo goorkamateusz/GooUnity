@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class AnimatorHandler : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private Player _player;
+    [SerializeField] private Character _character;
 
     public void SetTrigger(string name)
     {
@@ -23,6 +22,6 @@ public class AnimatorHandler : MonoBehaviour
 
     protected virtual void Update()
     {
-        _animator.SetFloat("Speed", _player.Movement.CurrentSpeed / (_player.Movement.OriginalSpeed + .001f));
+        _animator.SetFloat("Speed", _character.Movement.CurrentSpeed / (_character.Movement.OriginalSpeed + .001f));
     }
 }

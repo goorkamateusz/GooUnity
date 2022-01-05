@@ -11,13 +11,13 @@ public class SquatAbility : KeyInputOrientedAbility
 
     protected override void OnKeyDown()
     {
-        Player.AnimatorHandler.SetBool("Squat", true);
-        Player.Movement.SetMultiplier(_movementMultiplier);
+        Character.AnimatorHandler.SetBool("Squat", true);
+        Character.Movement.SetMultiplier(_movementMultiplier);
     }
 
     protected override void OnKeyUp()
     {
-        Player.AnimatorHandler.SetBool("Squat", false);
-        Player.Movement.ResetMultiplier();
+        Character.AnimatorHandler.SetBool("Squat", false);
+        Character.Movement.ResetMultiplier();
     }
 }

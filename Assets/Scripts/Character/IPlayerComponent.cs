@@ -1,4 +1,4 @@
-public interface IPlayerComponent
+public interface ICharacterComponent
 {
-    void InjectPlayer(Player player);
+    void InjectCharacter(Character character);
 }

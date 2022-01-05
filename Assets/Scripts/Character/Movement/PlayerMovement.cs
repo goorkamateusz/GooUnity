@@ -2,17 +2,17 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerComponent : MonoBehaviour, IPlayerComponent
+public class CharacterComponent : MonoBehaviour, ICharacterComponent
 {
-    protected Player Player { get; private set; }
+    protected Character Character { get; private set; }
 
-    public void InjectPlayer(Player player)
+    public void InjectCharacter(Character character)
     {
-        Player = player;
+        Character = character;
     }
 }
 
-public abstract class PlayerMovement : PlayerComponent
+public abstract class CharacterMovement : CharacterComponent
 {
     [SerializeField] protected NavMeshAgent _agent;
 

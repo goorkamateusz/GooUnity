@@ -33,18 +33,18 @@ public class DashAbility : KeyInputOrientedAbility
 
     protected virtual IEnumerator Dash()
     {
-        Player.Movement.IsEnabled = false;
-        Player.AnimatorHandler.SetBool(AnimationState, true);
+        Character.Movement.IsEnabled = false;
+        Character.AnimatorHandler.SetBool(AnimationState, true);
         _particle.Play();
 
         yield return DashMovement();
 
-        Player.Movement.IsEnabled = true;
-        Player.AnimatorHandler.SetBool(AnimationState, false);
+        Character.Movement.IsEnabled = true;
+        Character.AnimatorHandler.SetBool(AnimationState, false);
         _particle.Stop();
 
         if (_stopMovingAfterDash)
-            Player.Movement.Stop();
+            Character.Movement.Stop();
 
         _coroutine = null;
     }
@@ -55,26 +55,26 @@ public class DashAbility : KeyInputOrientedAbility
         if (direction is null) yield break;
 
         float timer = 0;
-        Vector3 startPoint = Player.Position;
+        Vector3 startPoint = Character.Position;
         Vector3 endPoint = startPoint + direction.Value * _distance;
 
-        var agent = Player.Movement.Agent;
+        var agent = Character.Movement.Agent;
 
         while (timer < _durationTime)
         {
             timer += Time.deltaTime;
             endPoint.y = startPoint.y;
             Vector3 move = Vector3.Lerp(startPoint, endPoint, timer / _durationTime);
-            Player.transform.LookAt(move);
+            Character.transform.LookAt(move);
 
             if (!agent.Raycast(move, out var hit))
             {
-                Player.Position = move;
-                Debug.DrawLine(Player.Position, move, Color.blue, 0.5f);
+                Character.Position = move;
+                Debug.DrawLine(Character.Position, move, Color.blue, 0.5f);
             }
             else
             {
-                Debug.DrawLine(Player.Position, hit.position, Color.red, 1f);
+                Debug.DrawLine(Character.Position, hit.position, Color.red, 1f);
             }
 
             yield return null;

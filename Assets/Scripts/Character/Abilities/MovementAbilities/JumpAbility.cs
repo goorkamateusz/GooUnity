@@ -8,7 +8,7 @@ public class JumpAbility : KeyInputOrientedAbility
 
     protected override void OnKeyDown()
     {
-        Player.AnimatorHandler.SetTrigger("Jump");
+        Character.AnimatorHandler.SetTrigger("Jump");
     }
 
     protected override void OnKeyUp()

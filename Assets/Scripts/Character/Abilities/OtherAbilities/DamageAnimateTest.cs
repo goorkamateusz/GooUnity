@@ -4,8 +4,8 @@ public class DamageAnimateTest : KeyInputOrientedAbility
 
     protected override void OnKeyDown()
     {
-        Player.AnimatorHandler.SetTrigger("Damage");
-        Player.AnimatorHandler.SetInt("DamageID", _damageId);
+        Character.AnimatorHandler.SetTrigger("Damage");
+        Character.AnimatorHandler.SetInt("DamageID", _damageId);
         _damageId = (_damageId + 1) % 3;
     }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AiMovement : PlayerMovement
+public class AiMovement : CharacterMovement
 {
     [SerializeField] private Transform[] _path;
     [SerializeField] const float _minDistance = 2f;
@@ -8,7 +8,7 @@ public class AiMovement : PlayerMovement
     private int _nextPoint = -1;
 
     public Transform NextPoint => _path[_nextPoint];
-    public float DistanceToNext => Vector3.Distance(Player.Position, NextPoint.position);
+    public float DistanceToNext => Vector3.Distance(Character.Position, NextPoint.position);
 
     protected override void HandleInput()
     {

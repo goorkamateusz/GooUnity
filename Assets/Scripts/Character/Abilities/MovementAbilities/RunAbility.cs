@@ -12,11 +12,11 @@ public class RunAbility : KeyInputOrientedAbility
 
     protected override void OnKeyDown()
     {
-        Player.Movement.SetMultiplier(_speedMultiplier);
+        Character.Movement.SetMultiplier(_speedMultiplier);
     }
 
     protected override void OnKeyUp()
     {
-        Player.Movement.ResetMultiplier();
+        Character.Movement.ResetMultiplier();
     }
 }

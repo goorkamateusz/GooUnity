@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerManager : SceneSingleton<PlayerManager>
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private Character _player;
 
-    public Player Player => _player;
+    public Character Player => _player;
 }
