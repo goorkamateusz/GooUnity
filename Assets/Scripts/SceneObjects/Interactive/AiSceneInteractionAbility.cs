@@ -36,7 +36,7 @@ public class AiSceneInteractionAbility : SceneInteractionAbility
             return;
 
         if (door.IsOpen)
-            door.OnKeyDown(null);
+            door.OnKeyDown(this);
     }
 
     private void OpenDoor(DoorBase door)
@@ -45,6 +45,6 @@ public class AiSceneInteractionAbility : SceneInteractionAbility
             return;
 
         if (!door.IsOpen)
-            door.OnKeyDown(null);
+            door.OnKeyDown(this);
     }
 }
