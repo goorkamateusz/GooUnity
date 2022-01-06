@@ -8,7 +8,7 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, ICharacterIntera
 
     public virtual bool IsCharacter => true;
     public KeyCode Key => _key;
-    public new Character Character => Character;
+    public new Character Character => base.Character;
 
     protected override void Start()
     {
