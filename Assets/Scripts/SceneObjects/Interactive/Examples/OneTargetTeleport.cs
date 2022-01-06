@@ -24,7 +24,7 @@ public class OneTargetTeleport : Teleport
 
     protected override bool ValidateCharacter(ICharacterInteractiveComponent character)
     {
-        return base.ValidateCharacter(character); // || _forAi;
+        return base.ValidateCharacter(character) || _forAi;
     }
 
     protected override void TeleportCharacterOnEnter(ICharacterInteractiveComponent character)

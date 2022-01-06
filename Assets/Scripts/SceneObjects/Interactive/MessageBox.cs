@@ -6,7 +6,6 @@ public class MessageBox : SceneInteractiveElement
 
     public override void ColiderEnter(ICharacterInteractiveComponent character)
     {
-        Debug.Log("MessageBox");
         if (character.IsCharacter && UiReferenceManager.Initialized)
             UiReferenceManager.Instance.MessagePopup.Open(_message);
     }
