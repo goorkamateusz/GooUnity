@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class MessagePopupView : UIWindowView
 {
@@ -16,12 +17,22 @@ public class MessagePopupView : UIWindowView
         gameObject.SetActive(true);
     }
 
-    protected void Awake()
+    internal void Open(string message, ICharacterInteractiveComponent character)
     {
-        _button.onClick.AddListener(OnClick);
+        Open(message);
+        character.Character.Input.AddAction(new CharacterInputAction
+        {
+            Key = KeyCode.Escape,
+            OnKeyUp = Close
+        });
     }
 
-    private void OnClick()
+    protected void Awake()
+    {
+        _button.onClick.AddListener(Close);
+    }
+
+    private void Close()
     {
         gameObject.SetActive(false);
         _blend.SetActive(false);
