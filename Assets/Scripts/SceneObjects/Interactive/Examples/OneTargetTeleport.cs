@@ -5,11 +5,12 @@ public class OneTargetTeleport : Teleport
     [SerializeField] protected Transform _target;
     [SerializeField] protected bool _withoutKey;
     [SerializeField] protected bool _forAi;
+    [SerializeField, TextArea] protected string _message = "Use teleport";
 
     public override void ColiderEnter(ICharacterInteractiveComponent character)
     {
         base.ColiderEnter(character);
-        DisplayTip(character, "Use teleport");
+        DisplayTip(character, _message);
     }
 
     public override void OnKeyDown(ICharacterInteractiveComponent character)
