@@ -25,6 +25,7 @@ public abstract class CharacterMovement : CharacterComponent
     public NavMeshAgent Agent => _agent;
 
     public float Speed => _speedOriginal * _speedMultiplier;
+
     public float CurrentSpeed => _agent.velocity.magnitude;
     public float OriginalSpeed => _speedOriginal;
 
@@ -43,6 +44,13 @@ public abstract class CharacterMovement : CharacterComponent
     public void Stop()
     {
         _agent.ResetPath();
+    }
+
+    public void Wrap(Transform target)
+    {
+        Stop();
+        Agent.Warp(target.position);
+        Character.transform.rotation = target.rotation;
     }
 
     protected abstract void HandleInput();
