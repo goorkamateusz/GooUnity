@@ -1,38 +1,59 @@
-using System.Collections;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using TMPro;
+
+public struct KeyTipData
+{
+    public KeyCode key;
+    public string desc;
+    public float lifeTime;
+}
 
 public class KeyActionView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _letter;
-    [SerializeField] private TMP_Text _desc;
+    [SerializeField] private List<KeyActionTipView> _views;
 
-    private Coroutine _coroutine;
+    private Queue<KeyTipData> _queue;
 
     public void DisplayTip(KeyCode key, string desc, float lifeTime = 3f)
     {
-        _letter.text = key.ToString();
-        _desc.text = desc;
-
-        gameObject.SetActive(true);
-        if (_coroutine == null)
-            _coroutine = StartCoroutine(Countdown(lifeTime));
+        var view = GetInactive();
+        if (view is null)
+        {
+            _queue.Enqueue(new KeyTipData
+            {
+                key = key,
+                desc = desc,
+                lifeTime = lifeTime
+            });
+        }
         else
-            throw new NotImplementedException("Many invokes");
+        {
+            view.DisplayTip(key, desc, lifeTime);
+        }
     }
 
     public void HideTip(KeyCode key)
     {
-        gameObject.SetActive(false);
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
+        var view = GetView(key);
+        if (view != null)
+        {
+            view.HideTip();
+        }
     }
 
-    private IEnumerator Countdown(float lifeTime)
+    private int EmptySlots()
     {
-        yield return new WaitForSeconds(lifeTime);
-        gameObject.SetActive(false);
-        _coroutine = null;
+        return _views.Count - _views.Count((view) => view.IsActive);
+    }
+
+    private KeyActionTipView GetInactive()
+    {
+        return _views.FirstOrDefault((view) => !view.IsActive);
+    }
+
+    private KeyActionTipView GetView(KeyCode key)
+    {
+        return _views.FirstOrDefault((view) => view.Key == key);
     }
 }
