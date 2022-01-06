@@ -14,15 +14,12 @@ public abstract class SaveSerializable
         Version = null;
     }
 
-    public abstract SaveSerializable GetDefault();
-
     public override string ToString()
     {
         return Newtonsoft.Json.JsonConvert.SerializeObject(this);
     }
 }
 
-[Serializable]
 public abstract class SaveSerializable<T> : SaveSerializable
 {
     public T Data { get; set; }

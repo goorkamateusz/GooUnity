@@ -29,11 +29,6 @@ public class PlayerPositionSave : Ability
         public Vector3Serializable Rotation;
 
         public override string Key => "PlayerPosition";
-
-        public override SaveSerializable GetDefault()
-        {
-            return new PlayerPositionSerializable();
-        }
     }
 
     private PlayerPositionSerializable _data = new PlayerPositionSerializable();
@@ -51,9 +46,9 @@ public class PlayerPositionSave : Ability
         Debug.Log(_data);
     }
 
-    private void OnSave(PlayerPositionSerializable obj)
+    private void OnSave(PlayerPositionSerializable data)
     {
-        obj.Position = Character.Position;
-        obj.Rotation = Character.Rotation.eulerAngles;
+        data.Position = Character.Position;
+        data.Rotation = Character.Rotation.eulerAngles;
     }
 }

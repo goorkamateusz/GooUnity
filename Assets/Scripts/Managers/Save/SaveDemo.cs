@@ -7,21 +7,16 @@ public class TestSerializable : SaveSerializable
     public int TestInt;
 
     public override string Key => "testKeyName";
-
-    public override SaveSerializable GetDefault()
-    {
-        return new TestSerializable
-        {
-            Version = "1.2",
-            TestString = "Init value",
-            TestInt = 1
-        };
-    }
 }
 
 public class SaveDemo : MonoBehaviour
 {
-    private TestSerializable _test = new TestSerializable();
+    private TestSerializable _test = new TestSerializable
+    {
+        Version = "1.2",
+        TestString = "Init value",
+        TestInt = 1
+    };
 
     IEnumerator Start()
     {

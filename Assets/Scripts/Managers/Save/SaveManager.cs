@@ -54,7 +54,7 @@ public class SaveManager : SceneSingleton<SaveManager>
     public T Load<T>(T test) where T : SaveSerializable
     {
         if (!Save.ContainsKey(test.Key))
-            Save[test.Key] = test.GetDefault();
+            Save[test.Key] = test;
         return Save[test.Key] as T;
     }
 
