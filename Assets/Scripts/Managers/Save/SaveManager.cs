@@ -36,8 +36,19 @@ public class SaveManager : SceneSingleton<SaveManager>
 
     public void SaveFile()
     {
+        PreSave();
         string json = JsonConvert.SerializeObject(Save, _settings);
         File.WriteAllText(FilePath, json);
+    }
+
+    private void PreSave()
+    {
+        foreach (var serializable in Save.Values)
+        {
+            var listener = serializable as SaveListenerSerializable;
+            if (listener != null)
+                listener.PreSaveInvoke();
+        }
     }
 
     public T Load<T>(T test) where T : SaveSerializable

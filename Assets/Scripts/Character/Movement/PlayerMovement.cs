@@ -53,6 +53,13 @@ public abstract class CharacterMovement : CharacterComponent
         Character.transform.rotation = target.rotation;
     }
 
+    public void Wrap(Vector3 position, Quaternion rotation)
+    {
+        Stop();
+        Agent.Warp(position);
+        Character.transform.rotation = rotation;
+    }
+
     protected abstract void HandleInput();
 
     protected virtual void Awake()

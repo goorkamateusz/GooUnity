@@ -19,7 +19,7 @@ public class TestSerializable : SaveSerializable
     }
 }
 
-public class SaveTest : MonoBehaviour
+public class SaveDemo : MonoBehaviour
 {
     private TestSerializable _test = new TestSerializable();
 

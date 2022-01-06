@@ -27,3 +27,21 @@ public abstract class SaveSerializable<T> : SaveSerializable
 {
     public T Data { get; set; }
 }
+
+public abstract class SaveListenerSerializable : SaveSerializable
+{
+    public abstract void PreSaveInvoke();
+}
+
+public abstract class SaveListenerSerializable<T> : SaveListenerSerializable where T : SaveListenerSerializable<T>
+{
+    public delegate void PreSaveDelegate(T obj);
+
+    [JsonIgnore] public PreSaveDelegate PreSave;
+
+    public override void PreSaveInvoke()
+    {
+        if (PreSave != null)
+            PreSave(this as T);
+    }
+}
