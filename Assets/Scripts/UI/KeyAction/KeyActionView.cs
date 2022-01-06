@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class KeyActionTipView : MonoBehaviour
+public class KeyActionView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _letter;
     [SerializeField] private TMP_Text _desc;

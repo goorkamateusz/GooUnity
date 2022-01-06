@@ -9,9 +9,9 @@ public struct KeyTipData
     public float lifeTime;
 }
 
-public class KeyActionView : MonoBehaviour
+public class KeyActionContainer : MonoBehaviour
 {
-    [SerializeField] private List<KeyActionTipView> _views;
+    [SerializeField] private List<KeyActionView> _views;
 
     private Queue<KeyTipData> _queue;
 
@@ -47,12 +47,12 @@ public class KeyActionView : MonoBehaviour
         return _views.Count - _views.Count((view) => view.IsActive);
     }
 
-    private KeyActionTipView GetInactive()
+    private KeyActionView GetInactive()
     {
         return _views.FirstOrDefault((view) => !view.IsActive);
     }
 
-    private KeyActionTipView GetView(KeyCode key)
+    private KeyActionView GetView(KeyCode key)
     {
         return _views.FirstOrDefault((view) => view.Key == key);
     }
