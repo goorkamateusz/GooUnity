@@ -15,7 +15,7 @@ public class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton<T>
             yield return null;
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _instance = this as T;
     }
