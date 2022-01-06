@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AiSceneInteractionAbility : SceneInteractionAbility
+public class AiSceneInteractionAbility : SingleSceneInteractionAbility
 {
     [SerializeField] private bool _autoOpenDoors;
 

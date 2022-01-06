@@ -1,14 +1,30 @@
 using UnityEngine;
 
-public class SceneInteractionAbility : KeyInputOrientedAbility, ICharacterInteractiveComponent
+public class SceneInteractionAbility : InputOrientedAbility
 {
-    [SerializeField] private CharacterColliderInteractions _interactions;
+    private struct CharacterInteractiveDto : ICharacterInteractiveComponent
+    {
+        public SceneInteractionAbility Parent { get; set; }
+        public KeyCode Key { get; set; }
 
-    private SceneInteractiveElement _object;
+        public bool IsCharacter => Parent.IsCharacter;
+        public Character Character => Parent.Character;
+    }
+
+    [SerializeField] private CharacterColliderInteractions _interactions;
+    [SerializeField] private KeyCode[] _actionsKeys;
+
+    private SceneInteractiveElement[] _objects;
+    private CharacterInteractiveDto[] _interactivesDtos;
 
     public virtual bool IsCharacter => true;
-    public KeyCode Key => _key;
-    public new Character Character => base.Character;
+
+    private int Length => _actionsKeys.Length;
+
+    protected void Awake()
+    {
+        Initialize();
+    }
 
     protected override void Start()
     {
@@ -16,25 +32,68 @@ public class SceneInteractionAbility : KeyInputOrientedAbility, ICharacterIntera
         _interactions.AddListener(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
     }
 
-    protected override void OnKeyDown()
-    {
-        _object?.OnKeyDown(this);
-    }
-
-    protected override void OnKeyUp()
-    {
-        _object?.OnKeyUp(this);
-    }
-
     protected virtual void TriggerEnter(SceneInteractiveElement obj)
     {
-        _object = obj;
-        _object.ColiderEnter(this);
+        if (TryGetEmptySlot(out int index))
+        {
+            _objects[index] = obj;
+            obj.ColiderEnter(_interactivesDtos[index]);
+        }
     }
 
     protected virtual void TriggerExit(SceneInteractiveElement obj)
     {
-        _object.ColiderExit(this);
-        _object = null;
+        if (TryGetSlot(obj, out int index))
+        {
+            _objects[index] = null;
+            obj.ColiderExit(_interactivesDtos[index]);
+        }
+    }
+
+    protected override void HandleInput()
+    {
+        for (int i = 0; i < _actionsKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(_actionsKeys[i]))
+            {
+                _objects[i]?.OnKeyDown(_interactivesDtos[i]);
+            }
+
+            if (Input.GetKeyUp(_actionsKeys[i]))
+            {
+                _objects[i]?.OnKeyUp(_interactivesDtos[i]);
+            }
+        }
+    }
+
+    private bool TryGetEmptySlot(out int index)
+    {
+        return TryGetSlot(null, out index);
+    }
+
+    private bool TryGetSlot(SceneInteractiveElement obj, out int index)
+    {
+        for (int i = 0; i < _actionsKeys.Length; i++)
+        {
+            if (_objects[i] == obj)
+            {
+                index = i;
+                return true;
+            }
+        }
+        index = 0;
+        return false;
+    }
+
+    private void Initialize()
+    {
+        _interactivesDtos = new CharacterInteractiveDto[Length];
+        _objects = new SceneInteractiveElement[Length];
+
+        for (int i = 0; i < Length; i++)
+        {
+            _interactivesDtos[i].Key = _actionsKeys[i];
+            _interactivesDtos[i].Parent = this;
+        }
     }
 }

@@ -14,17 +14,20 @@ public class KeyActionView : MonoBehaviour
     public KeyCode Key => _key;
     public bool IsActive => gameObject.activeSelf;
 
-    public void DisplayTip(KeyCode key, string desc, float lifeTime)
+    public void DisplayTip(KeyCode key, string desc, float? lifeTime)
     {
         _letter.text = key.ToString();
         _desc.text = desc;
         _key = key;
 
         gameObject.SetActive(true);
-        if (_coroutine == null)
-            _coroutine = StartCoroutine(Countdown(lifeTime));
-        else
-            throw new NotImplementedException("Many invokes");
+        if (lifeTime.HasValue)
+        {
+            if (_coroutine == null)
+                _coroutine = StartCoroutine(Countdown(lifeTime.Value));
+            else
+                throw new NotImplementedException("Many invokes");
+        }
     }
 
     public void HideTip()

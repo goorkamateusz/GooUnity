@@ -6,18 +6,28 @@ public struct KeyTipData
 {
     public KeyCode key;
     public string desc;
-    public float lifeTime;
+    public float? lifeTime;
 }
 
 public class KeyActionContainer : MonoBehaviour
 {
     [SerializeField] private List<KeyActionView> _views;
 
-    private Queue<KeyTipData> _queue;
+    private Queue<KeyTipData> _queue = new Queue<KeyTipData>();
 
-    public void DisplayTip(KeyCode key, string desc, float lifeTime = 3f)
+    public void DisplayTip(KeyCode key, string desc)
     {
-        var view = GetInactive();
+        DisplayTip(key, desc, null);
+    }
+
+    public void DisplayTip(KeyCode key, string desc, float lifeTime)
+    {
+        DisplayTip(key, desc, lifeTime);
+    }
+
+    private void DisplayTip(KeyCode key, string desc, float? lifeTime)
+    {
+        var view = GetView(key) ?? GetInactive();
         if (view is null)
         {
             _queue.Enqueue(new KeyTipData

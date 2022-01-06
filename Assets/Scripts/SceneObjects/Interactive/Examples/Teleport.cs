@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public abstract class Teleport : SceneInteractiveElement
 {
     private bool _disabled = false;
@@ -14,13 +16,15 @@ public abstract class Teleport : SceneInteractiveElement
     public override void ColiderExit(ICharacterInteractiveComponent character)
     {
         _disabled = false;
+        HideTip(character);
     }
 
-    public void Move(ICharacterInteractiveComponent character)
+    protected static void Move(ICharacterInteractiveComponent character, Transform target)
     {
-        character.Character.transform.SetPositionAndRotation(transform.position, transform.rotation);
-        _disabled = true;
-        // idea visuals
+        character.Character.transform.SetPositionAndRotation(target.position, target.rotation);
+        var targetTeleport = target.GetComponent<Teleport>();
+        if (targetTeleport != null)
+            targetTeleport._disabled = true;
     }
 
     protected virtual bool ValidateCharacter(ICharacterInteractiveComponent character)

@@ -34,6 +34,7 @@ public class DoorBase : SceneInteractiveElement
     {
         if (AutoClose)
             Close();
+        HideTip(character);
     }
 
     public override void OnKeyDown(ICharacterInteractiveComponent character)

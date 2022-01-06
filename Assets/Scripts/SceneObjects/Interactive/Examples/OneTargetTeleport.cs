@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OneTargetTeleport : Teleport
 {
-    [SerializeField] protected Teleport _target;
+    [SerializeField] protected Transform _target;
     [SerializeField] protected bool _withoutKey;
     [SerializeField] protected bool _forAi;
 
@@ -15,7 +15,7 @@ public class OneTargetTeleport : Teleport
     public override void OnKeyDown(ICharacterInteractiveComponent character)
     {
         if (!_withoutKey)
-            _target.Move(character);
+            Move(character, _target);
     }
 
     public override void OnKeyUp(ICharacterInteractiveComponent character)
@@ -30,6 +30,6 @@ public class OneTargetTeleport : Teleport
     protected override void TeleportCharacterOnEnter(ICharacterInteractiveComponent character)
     {
         if (_withoutKey || !character.IsCharacter)
-            _target.Move(character);
+            Move(character, _target);
     }
 }
