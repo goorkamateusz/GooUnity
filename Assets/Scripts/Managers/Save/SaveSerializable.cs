@@ -4,11 +4,13 @@ using Newtonsoft.Json;
 [Serializable]
 public abstract class SaveSerializable
 {
+    private const string NoneVersion = "None";
+
     public string Version { get; set; }
 
     [JsonIgnore] public abstract string Key { get; }
-    [JsonIgnore] public abstract string LatestVersion { get; }
-    [JsonIgnore] public bool Initialized => Version != string.Empty;
+    [JsonIgnore] public virtual string LatestVersion => NoneVersion;
+    [JsonIgnore] public bool Initialized => Version != null;
 
     public SaveSerializable()
     {
@@ -39,25 +41,7 @@ public abstract class SaveSerializable<T> : SaveSerializable
     public T Data { get; set; }
 }
 
-public abstract class SaveListenerSerializable : SaveSerializable
-{
-    public abstract void PreSaveInvoke();
-}
-
-public abstract class SaveListenerSerializable<T> : SaveListenerSerializable where T : SaveListenerSerializable<T>
-{
-    public delegate void PreSaveDelegate(T obj);
-
-    [JsonIgnore] public PreSaveDelegate PreSave;
-
-    public override void PreSaveInvoke()
-    {
-        if (PreSave != null)
-            PreSave(this as T);
-    }
-}
-
-public abstract class CharacterSaveSerializable<T> : SaveListenerSerializable<T>  where T : SaveListenerSerializable<T>
+public abstract class CharacterSaveSerializable : SaveSerializable
 {
     private string _key;
 

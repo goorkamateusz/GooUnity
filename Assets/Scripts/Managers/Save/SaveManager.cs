@@ -11,6 +11,8 @@ public class Save : Dictionary<string, SaveSerializable>
 
 public class SaveManager : SceneSingleton<SaveManager>
 {
+    public event Action PreSave;
+
     private const string FILE_NAME = "save.json";
 
     private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
@@ -36,19 +38,9 @@ public class SaveManager : SceneSingleton<SaveManager>
 
     public void SaveFile()
     {
-        PreSave();
+        PreSave?.Invoke();
         string json = JsonConvert.SerializeObject(Save, _settings);
         File.WriteAllText(FilePath, json);
-    }
-
-    private void PreSave()
-    {
-        foreach (var serializable in Save.Values)
-        {
-            var listener = serializable as SaveListenerSerializable;
-            if (listener != null)
-                listener.PreSaveInvoke();
-        }
     }
 
     public T Load<T>(T test) where T : SaveSerializable

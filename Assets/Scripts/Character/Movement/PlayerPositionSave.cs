@@ -23,12 +23,11 @@ public class Vector3Serializable
 
 public class PlayerPositionSave : Ability
 {
-    public class PlayerPositionSerializable : CharacterSaveSerializable<PlayerPositionSerializable>
+    public class PlayerPositionSerializable : CharacterSaveSerializable
     {
         public Vector3Serializable Position;
         public Vector3Serializable Rotation;
 
-        public override string LatestVersion => "0.0.0";
         public override string SubKey => "position";
 
         public PlayerPositionSerializable(string parentKey) : base(parentKey) { }
@@ -39,16 +38,16 @@ public class PlayerPositionSave : Ability
     protected IEnumerator Start()
     {
         _data = new PlayerPositionSerializable("player1");
+        PreSave();
         yield return SaveManager.Wait();
-        OnSave(_data);
+        SaveManager.Instance.PreSave += PreSave;
         SaveManager.Instance.Load(ref _data);
-        _data.PreSave = OnSave;
         Character.Movement.Wrap(_data.Position, Quaternion.Euler(_data.Rotation));
     }
 
-    private void OnSave(PlayerPositionSerializable data)
+    private void PreSave()
     {
-        data.Position = Character.Position;
-        data.Rotation = Character.Rotation.eulerAngles;
+        _data.Position = Character.Position;
+        _data.Rotation = Character.Rotation.eulerAngles;
     }
 }
