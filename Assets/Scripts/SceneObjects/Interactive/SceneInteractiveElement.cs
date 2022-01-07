@@ -3,7 +3,7 @@ using UnityEngine;
 public interface ICharacterInteractiveComponent
 {
     public KeyCode Key { get; }
-    public bool IsCharacter { get; }
+    public bool IsPlayer { get; }
     public Character Character { get; }
 }
 
@@ -23,13 +23,13 @@ public abstract class SceneInteractiveElement : MonoBehaviour
 
     protected void DisplayTip(ICharacterInteractiveComponent character, string msg)
     {
-        if (character?.IsCharacter ?? false && UiReferenceManager.Initialized)
+        if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
             UiReferenceManager.Instance?.KeyActionView.DisplayTip(character.Key, msg);
     }
 
     protected void HideTip(ICharacterInteractiveComponent character)
     {
-        if (character?.IsCharacter ?? false && UiReferenceManager.Initialized)
+        if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
             UiReferenceManager.Instance.KeyActionView.HideTip(character.Key);
     }
 }

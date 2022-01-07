@@ -6,7 +6,7 @@ public class SingleSceneInteractionAbility : KeyInputOrientedAbility, ICharacter
 
     private SceneInteractiveElement _object;
 
-    public virtual bool IsCharacter => true;
+    public virtual bool IsPlayer => true;
     public KeyCode Key => _key;
     public new Character Character => base.Character;
 

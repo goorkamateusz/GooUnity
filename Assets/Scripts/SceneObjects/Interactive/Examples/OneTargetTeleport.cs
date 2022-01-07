@@ -30,7 +30,7 @@ public class OneTargetTeleport : Teleport
 
     protected override void TeleportCharacterOnEnter(ICharacterInteractiveComponent character)
     {
-        if (_withoutKey || !character.IsCharacter)
+        if (_withoutKey || !character.IsPlayer)
             Move(character, _target);
     }
 }

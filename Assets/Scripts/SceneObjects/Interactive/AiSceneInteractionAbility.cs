@@ -4,7 +4,7 @@ public class AiSceneInteractionAbility : SingleSceneInteractionAbility
 {
     [SerializeField] private bool _autoOpenDoors;
 
-    public override bool IsCharacter => false;
+    public override bool IsPlayer => false;
 
     protected override void TriggerEnter(SceneInteractiveElement obj)
     {

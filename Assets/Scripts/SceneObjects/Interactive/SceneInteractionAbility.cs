@@ -7,7 +7,7 @@ public class SceneInteractionAbility : InputOrientedAbility
         public SceneInteractionAbility Parent { get; set; }
         public KeyCode Key { get; set; }
 
-        public bool IsCharacter => Parent.IsCharacter;
+        public bool IsPlayer => Parent.IsCharacter;
         public Character Character => Parent.Character;
     }
 

@@ -22,7 +22,7 @@ public abstract class Teleport : SceneInteractiveElement
     protected static void Move(ICharacterInteractiveComponent character, Transform target)
     {
         character.Character.Movement.Wrap(target);
-        if (character.IsCharacter)
+        if (character.IsPlayer)
             character.Character.Movement.Stop();
 
 
@@ -33,7 +33,7 @@ public abstract class Teleport : SceneInteractiveElement
 
     protected virtual bool ValidateCharacter(ICharacterInteractiveComponent character)
     {
-        return character.IsCharacter;
+        return character.IsPlayer;
     }
 
     protected abstract void TeleportCharacterOnEnter(ICharacterInteractiveComponent character);
