@@ -35,22 +35,3 @@ public abstract class SaveSerializable
     {
     }
 }
-
-public abstract class SaveSerializable<T> : SaveSerializable
-{
-    public T Data { get; set; }
-}
-
-public abstract class CharacterSaveSerializable : SaveSerializable
-{
-    private string _key;
-
-    public CharacterSaveSerializable(string parentKey)
-    {
-        _key = $"{parentKey}_{SubKey}";
-    }
-
-    public abstract string SubKey { get; }
-
-    public sealed override string Key => _key;
-}

@@ -23,7 +23,7 @@ public class Vector3Serializable
 
 public class PlayerPositionSave : Ability
 {
-    public class PlayerPositionSerializable : CharacterSaveSerializable
+    public class PlayerPositionSerializable : AttributedSaveSerializable
     {
         public Vector3Serializable Position;
         public Vector3Serializable Rotation;
