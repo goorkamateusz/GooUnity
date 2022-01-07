@@ -29,21 +29,18 @@ public class PlayerPositionSave : Ability
         public Vector3Serializable Rotation;
 
         public override string Key => "PlayerPosition";
+        public override string LatestVersion => "0.0.0";
     }
 
     private PlayerPositionSerializable _data = new PlayerPositionSerializable();
 
     protected IEnumerator Start()
     {
-        Debug.Log(_data);
-
         yield return SaveManager.Wait();
+        OnSave(_data);
         SaveManager.Instance.Load(ref _data);
         _data.PreSave = OnSave;
-        if (_data.Position != null)
-            Character.Movement.Wrap(_data.Position, Quaternion.Euler(_data.Rotation));
-
-        Debug.Log(_data);
+        Character.Movement.Wrap(_data.Position, Quaternion.Euler(_data.Rotation));
     }
 
     private void OnSave(PlayerPositionSerializable data)

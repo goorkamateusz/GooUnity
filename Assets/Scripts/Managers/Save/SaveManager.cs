@@ -55,6 +55,7 @@ public class SaveManager : SceneSingleton<SaveManager>
     {
         if (!Save.ContainsKey(test.Key))
             Save[test.Key] = test;
+        Save[test.Key].UpdateVersion();
         return Save[test.Key] as T;
     }
 

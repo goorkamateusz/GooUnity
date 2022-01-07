@@ -7,6 +7,7 @@ public abstract class SaveSerializable
     public string Version { get; set; }
 
     [JsonIgnore] public abstract string Key { get; }
+    [JsonIgnore] public abstract string LatestVersion { get; }
     [JsonIgnore] public bool Initialized => Version != string.Empty;
 
     public SaveSerializable()
@@ -17,6 +18,19 @@ public abstract class SaveSerializable
     public override string ToString()
     {
         return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+    }
+
+    public virtual void UpdateVersion()
+    {
+        if (Version != LatestVersion)
+        {
+            Migrations();
+            Version = LatestVersion;
+        }
+    }
+
+    protected virtual void Migrations()
+    {
     }
 }
 

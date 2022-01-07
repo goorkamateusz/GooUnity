@@ -7,13 +7,13 @@ public class TestSerializable : SaveSerializable
     public int TestInt;
 
     public override string Key => "testKeyName";
+    public override string LatestVersion => "0.0.0";
 }
 
 public class SaveDemo : MonoBehaviour
 {
     private TestSerializable _test = new TestSerializable
     {
-        Version = "1.2",
         TestString = "Init value",
         TestInt = 1
     };
