@@ -14,9 +14,8 @@ public class AiMovement : CharacterMovement
     {
     }
 
-    protected override void Awake()
+    protected override void AfterGameLoaded()
     {
-        base.Awake();
         GoNext();
     }
 

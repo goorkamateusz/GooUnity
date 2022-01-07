@@ -1,16 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
-
-public class CharacterComponent : MonoBehaviour, ICharacterComponent
-{
-    protected Character Character { get; private set; }
-
-    public void InjectCharacter(Character character)
-    {
-        Character = character;
-    }
-}
 
 public abstract class CharacterMovement : CharacterComponent
 {
@@ -48,13 +37,11 @@ public abstract class CharacterMovement : CharacterComponent
 
     public virtual void Wrap(Transform target)
     {
-        Agent.Warp(target.position);
-        Character.transform.rotation = target.rotation;
+        Wrap(target.position, target.rotation);
     }
 
     public void Wrap(Vector3 position, Quaternion rotation)
     {
-        Stop();
         Agent.Warp(position);
         Character.transform.rotation = rotation;
     }

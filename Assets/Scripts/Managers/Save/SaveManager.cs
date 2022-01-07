@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using System.Collections;
 
 [Serializable]
 public class Save : Dictionary<string, SaveSerializable>
@@ -22,6 +23,7 @@ public class SaveManager : SceneSingleton<SaveManager>
     };
 
     public Save Save { get; set; }
+    public bool IsLoaded { get; private set; }
 
     public string FilePath => $"{Application.persistentDataPath}/{FILE_NAME}";
 
@@ -30,10 +32,13 @@ public class SaveManager : SceneSingleton<SaveManager>
         if (File.Exists(FilePath))
         {
             string json = File.ReadAllText(FilePath);
-            Debug.Log(json);
             Save = JsonConvert.DeserializeObject<Save>(json, _settings);
-            Debug.Log(Save);
         }
+        else
+        {
+            Save = new Save();
+        }
+        IsLoaded = true;
     }
 
     public void SaveFile()
@@ -66,5 +71,13 @@ public class SaveManager : SceneSingleton<SaveManager>
     protected void OnApplicationQuit()
     {
         SaveFile();
+    }
+
+    public static IEnumerator WaitUntilGameLoaded()
+    {
+        while (NotInitialized)
+            yield return null;
+        while (!Instance.IsLoaded)
+            yield return null;
     }
 }
