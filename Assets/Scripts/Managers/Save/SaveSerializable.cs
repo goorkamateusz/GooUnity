@@ -56,3 +56,17 @@ public abstract class SaveListenerSerializable<T> : SaveListenerSerializable whe
             PreSave(this as T);
     }
 }
+
+public abstract class CharacterSaveSerializable<T> : SaveListenerSerializable<T>  where T : SaveListenerSerializable<T>
+{
+    private string _key;
+
+    public CharacterSaveSerializable(string parentKey)
+    {
+        _key = $"{parentKey}_{SubKey}";
+    }
+
+    public abstract string SubKey { get; }
+
+    public sealed override string Key => _key;
+}

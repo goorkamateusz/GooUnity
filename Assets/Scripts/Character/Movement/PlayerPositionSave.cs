@@ -23,19 +23,22 @@ public class Vector3Serializable
 
 public class PlayerPositionSave : Ability
 {
-    public class PlayerPositionSerializable : SaveListenerSerializable<PlayerPositionSerializable>
+    public class PlayerPositionSerializable : CharacterSaveSerializable<PlayerPositionSerializable>
     {
         public Vector3Serializable Position;
         public Vector3Serializable Rotation;
 
-        public override string Key => "PlayerPosition";
         public override string LatestVersion => "0.0.0";
+        public override string SubKey => "position";
+
+        public PlayerPositionSerializable(string parentKey) : base(parentKey) { }
     }
 
-    private PlayerPositionSerializable _data = new PlayerPositionSerializable();
+    private PlayerPositionSerializable _data;
 
     protected IEnumerator Start()
     {
+        _data = new PlayerPositionSerializable("player1");
         yield return SaveManager.Wait();
         OnSave(_data);
         SaveManager.Instance.Load(ref _data);

@@ -53,10 +53,11 @@ public class SaveManager : SceneSingleton<SaveManager>
 
     public T Load<T>(T test) where T : SaveSerializable
     {
-        if (!Save.ContainsKey(test.Key))
-            Save[test.Key] = test;
-        Save[test.Key].UpdateVersion();
-        return Save[test.Key] as T;
+        string key = test.Key;
+        if (!Save.ContainsKey(key))
+            Save[key] = test;
+        Save[key].UpdateVersion();
+        return Save[key] as T;
     }
 
     public void Load<T>(ref T test) where T : SaveSerializable
