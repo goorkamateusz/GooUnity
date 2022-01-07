@@ -37,7 +37,7 @@ public class PlayerPositionSave : Ability
 
     protected IEnumerator Start()
     {
-        _data = new PlayerPositionSerializable("player1");
+        _data = new PlayerPositionSerializable(Character.Id);
         PreSave();
         yield return SaveManager.Wait();
         SaveManager.Instance.PreSave += PreSave;

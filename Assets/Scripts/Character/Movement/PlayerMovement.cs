@@ -46,9 +46,8 @@ public abstract class CharacterMovement : CharacterComponent
         _agent.ResetPath();
     }
 
-    public void Wrap(Transform target)
+    public virtual void Wrap(Transform target)
     {
-        Stop();
         Agent.Warp(target.position);
         Character.transform.rotation = target.rotation;
     }

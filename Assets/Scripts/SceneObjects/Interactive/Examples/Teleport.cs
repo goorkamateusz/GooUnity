@@ -22,6 +22,9 @@ public abstract class Teleport : SceneInteractiveElement
     protected static void Move(ICharacterInteractiveComponent character, Transform target)
     {
         character.Character.Movement.Wrap(target);
+        if (character.IsCharacter)
+            character.Character.Movement.Stop();
+
 
         var targetTeleport = target.GetComponent<Teleport>();
         if (targetTeleport != null)
