@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 public abstract class AttributedSaveSerializable : SaveSerializable
 {
     private string _key;
@@ -7,7 +9,7 @@ public abstract class AttributedSaveSerializable : SaveSerializable
         _key = $"{parentKey}_{SubKey}";
     }
 
-    public abstract string SubKey { get; }
+    [JsonIgnore] public abstract string SubKey { get; }
 
     public sealed override string Key => _key;
 }

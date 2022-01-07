@@ -10,7 +10,7 @@ public class AnimatorHandler : MonoBehaviour
         _animator.SetTrigger(name);
     }
 
-    internal void SetInt(string name, int value)
+    public void SetInt(string name, int value)
     {
         _animator.SetInteger(name, value);
     }

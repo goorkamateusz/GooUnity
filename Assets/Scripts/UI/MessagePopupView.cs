@@ -17,7 +17,7 @@ public class MessagePopupView : UIWindowView
         TimeManager.Instance.StopTime();
     }
 
-    internal void Open(string message, ICharacterInteractiveComponent character)
+    public void Open(string message, ICharacterInteractiveComponent character)
     {
         Open(message);
         character.Character.Input.AddAction(new CharacterInputAction

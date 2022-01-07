@@ -1,9 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
-using System.Collections;
 
 [Serializable]
 public class Save : Dictionary<string, SaveSerializable>
@@ -19,34 +19,16 @@ public class SaveManager : SceneSingleton<SaveManager>
     private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
     {
         TypeNameHandling = TypeNameHandling.Auto,
-        Formatting = Formatting.Indented
+        TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple,
+#if UNITY_EDITOR
+        Formatting = Formatting.Indented,
+#endif
     };
 
-    public Save Save { get; set; }
-    public bool IsLoaded { get; private set; }
+    private Save Save { get; set; }
 
-    public string FilePath => $"{Application.persistentDataPath}/{FILE_NAME}";
-
-    public void LoadFile()
-    {
-        if (File.Exists(FilePath))
-        {
-            string json = File.ReadAllText(FilePath);
-            Save = JsonConvert.DeserializeObject<Save>(json, _settings);
-        }
-        else
-        {
-            Save = new Save();
-        }
-        IsLoaded = true;
-    }
-
-    public void SaveFile()
-    {
-        PreSave?.Invoke();
-        string json = JsonConvert.SerializeObject(Save, _settings);
-        File.WriteAllText(FilePath, json);
-    }
+    public bool IsLoaded => Save != null;
+    private string FilePath => $"{Application.persistentDataPath}/{FILE_NAME}";
 
     public T Load<T>(T test) where T : SaveSerializable
     {
@@ -62,10 +44,29 @@ public class SaveManager : SceneSingleton<SaveManager>
         test = Load<T>(test);
     }
 
-    protected override void Awake()
+    private void LoadFile()
+    {
+        if (File.Exists(FilePath))
+        {
+            string json = File.ReadAllText(FilePath);
+            Save = JsonConvert.DeserializeObject<Save>(json, _settings);
+        }
+        else
+        {
+            Save = new Save();
+        }
+    }
+
+    private void SaveFile()
+    {
+        PreSave?.Invoke();
+        string json = JsonConvert.SerializeObject(Save, _settings);
+        File.WriteAllText(FilePath, json);
+    }
+
+    protected override void OnAwake()
     {
         LoadFile();
-        base.Awake();
     }
 
     protected void OnApplicationQuit()
