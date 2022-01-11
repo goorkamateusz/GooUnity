@@ -15,8 +15,7 @@ public class OneTargetTeleport : Teleport
 
     public override void OnKeyDown(ICharacterInteractiveComponent character)
     {
-        if (!_withoutKey)
-            Move(character, _target);
+        Move(character, _target);
     }
 
     public override void OnKeyUp(ICharacterInteractiveComponent character)
