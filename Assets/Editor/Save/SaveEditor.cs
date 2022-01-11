@@ -1,26 +1,38 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 public class SaveEditor : EditorWindow
 {
     private const string CLEAN_SAVE_WINDOW = "Playground/Edit saves";
     private const string CLEAR_SAVE = "Playground/Clear saves";
 
-    private Save _save;
+    private Save _saves;
     private Dictionary<string, bool> _toggles = new Dictionary<string, bool>();
+    private IEnumerable<string> _sortedKeys;
+    private bool _showSorted;
+
+    public IEnumerable<string> Keys => _showSorted ? _sortedKeys : _saves.Keys as IEnumerable<string>;
 
     private void Awake()
     {
-        _save = SaveFileHelper.Load();
-        foreach (var item in _save)
+        _saves = SaveFileHelper.Load();
+        foreach (var item in _saves)
             _toggles[item.Key] = false;
+        UpdateKeys();
     }
 
     private void OnGUI()
     {
         UpdateToggels();
         UpdateButtons();
+        UpdateSettings();
+    }
+
+    private void UpdateSettings()
+    {
+        _showSorted = EditorGUILayout.Toggle("Show key sorted", _showSorted);
     }
 
     private void UpdateButtons()
@@ -31,8 +43,13 @@ public class SaveEditor : EditorWindow
 
     private void UpdateToggels()
     {
-        foreach (var item in _save)
-            _toggles[item.Key] = EditorGUILayout.Toggle(item.Key, _toggles[item.Key]);
+        foreach (var key in Keys)
+            _toggles[key] = EditorGUILayout.Toggle(key, _toggles[key]);
+    }
+
+    private void UpdateKeys()
+    {
+        _sortedKeys = _saves.Keys.OrderBy((key) => key).ToList();
     }
 
     private void DeleteSelected()
@@ -40,9 +57,10 @@ public class SaveEditor : EditorWindow
         foreach (var toggle in _toggles)
         {
             if (toggle.Value)
-                _save.Remove(toggle.Key);
+                _saves.Remove(toggle.Key);
         }
-        SaveFileHelper.Save(_save);
+        SaveFileHelper.Save(_saves);
+        UpdateKeys();
     }
 
     [MenuItem(CLEAN_SAVE_WINDOW)]
