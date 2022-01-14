@@ -12,12 +12,12 @@ public class CharacterInventory : MonoBehaviour
     private void Awake()
     {
         _visuals = GetComponent<CharacterInventoryVisuals>();
-        _interactions.AddListener(new ColliderListener<InventoryItem>(Collect, null));
+        _interactions.AddListener(new ColliderListener<PickableContainer>(Collect, null));
     }
 
-    public void Collect(InventoryItem item)
+    public void Collect(PickableContainer item)
     {
-        _inventory.Add(item);
+        _inventory.Add(item.Item);
         item.Collected();
         _visuals?.ReportCollect(item);
     }

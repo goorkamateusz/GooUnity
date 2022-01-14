@@ -54,7 +54,7 @@ public class CharacterMouseClickMovement : CharacterMovement
     {
         if (_inventory)
         {
-            _listener.Add(new MovementMouseListener<InventoryItem>((item) =>
+            _listener.Add(new MovementMouseListener<PickableContainer>((item) =>
             {
                 item.Clicked();
                 _tasks.Add(new MovementTask
