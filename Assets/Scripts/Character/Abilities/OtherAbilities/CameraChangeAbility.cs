@@ -23,14 +23,9 @@ public class CameraChangeAbility : KeyInputOrientedAbility
         var setting = _settings[_initialState];
 
         if (setting.FollowPlayerRotation)
-        {
-            // todo not working
             PlayerFollowerCamera.Instance.SetDynamicTransform(setting.Offset, setting.Rotation);
-        }
         else
-        {
             PlayerFollowerCamera.Instance.SetStaticTransform(setting.Offset, setting.Rotation);
-        }
     }
 
     protected override void OnKeyUp()

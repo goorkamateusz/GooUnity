@@ -11,17 +11,16 @@ public class PlayerFollowerCamera : SceneSingleton<PlayerFollowerCamera>
 
     public void SetStaticTransform(Vector3 offset, Quaternion rotation)
     {
-        _camera.position = offset;
-        _camera.rotation = rotation;
+        _camera.localPosition = offset;
+        _camera.localRotation = rotation;
         _followPlayerRotation = false;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void SetDynamicTransform(Vector3 offset, Quaternion rotation)
     {
-        // todo not working.
-        _camera.position = offset;
-        _camera.rotation = rotation;
+        _camera.localPosition = offset;
+        _camera.localRotation = rotation;
         _followPlayerRotation = true;
     }
 
