@@ -22,8 +22,8 @@ public class CharacterInventoryCollection : AttributedSaveSerializable
 
         private InventoryItem GetItem()
         {
-            if (_item == null && InventoryRepo.Initialized)
-                _item = InventoryRepo.Instance[Id];
+            if (_item == null && ItemsRepo.Initialized)
+                _item = ItemsRepo.Instance[Id];
             return _item;
         }
 
