@@ -6,7 +6,7 @@ public abstract class SaveSerializable
 {
     private const string NoneVersion = "None";
 
-    public string Version { get; set; }
+    [JsonProperty("Ver")] public string Version { get; set; }
 
     [JsonIgnore] public abstract string Key { get; }
     [JsonIgnore] public virtual string LatestVersion => NoneVersion;
@@ -19,7 +19,11 @@ public abstract class SaveSerializable
 
     public override string ToString()
     {
-        return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        return JsonConvert.SerializeObject(this);
+    }
+
+    public virtual void AfterLoad()
+    {
     }
 
     public virtual void UpdateVersion()

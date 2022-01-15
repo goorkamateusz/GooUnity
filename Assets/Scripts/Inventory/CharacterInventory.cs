@@ -1,27 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class CharacterInventory : Ability
 {
-    private class CharacterInventoryData : AttributedSaveSerializable
-    {
-        public override string SubKey => "inventory";
-        public CharacterInventoryData(string parentKey) : base(parentKey) { }
-
-        public void Add(InventoryItem item)
-        {
-            // todo
-        }
-    }
-
     [SerializeField] private CharacterColliderInteractions _interactions;
 
     private CharacterInventoryVisuals _visuals;
-    private CharacterInventoryData _inventory;
+    private CharacterInventoryCollection _inventory;
 
     protected void Awake()
     {
@@ -31,7 +17,7 @@ public class CharacterInventory : Ability
 
     protected IEnumerator Start()
     {
-        _inventory = new CharacterInventoryData(Character.Id);
+        _inventory = new CharacterInventoryCollection(Character.Id);
         yield return SaveManager.Wait();
         SaveManager.Instance.Load(ref _inventory);
     }
