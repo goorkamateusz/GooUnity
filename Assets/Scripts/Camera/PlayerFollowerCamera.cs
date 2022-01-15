@@ -3,25 +3,20 @@ using UnityEngine;
 
 public class PlayerFollowerCamera : SceneSingleton<PlayerFollowerCamera>
 {
-    [SerializeField] private float _smooth;
-    [SerializeField] private Transform _camera;
-    [SerializeField] private bool _followPlayerRotation;
+    [SerializeField] private Camera _camera;
 
     private Transform _target;
+    private float _smooth;
+    private bool _followPlayerRotation;
 
-    public void SetStaticTransform(Vector3 offset, Quaternion rotation)
+    public void SetConfig(ICameraSettings settings)
     {
-        _camera.localPosition = offset;
-        _camera.localRotation = rotation;
-        _followPlayerRotation = false;
-        transform.localRotation = Quaternion.Euler(0, 0, 0);
-    }
+        settings.ConfigCamera(_camera);
+        _smooth = settings.Smooth;
+        _followPlayerRotation = settings.FollowPlayerRotation;
 
-    public void SetDynamicTransform(Vector3 offset, Quaternion rotation)
-    {
-        _camera.localPosition = offset;
-        _camera.localRotation = rotation;
-        _followPlayerRotation = true;
+        if (!_followPlayerRotation)
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
     }
 
     private IEnumerator Start()
@@ -37,9 +32,7 @@ public class PlayerFollowerCamera : SceneSingleton<PlayerFollowerCamera>
             transform.position = Vector3.Lerp(transform.position, _target.position, _smooth);
 
             if (_followPlayerRotation)
-            {
                 transform.rotation = Quaternion.Lerp(transform.rotation, _target.rotation, _smooth);
-            }
         }
     }
 }

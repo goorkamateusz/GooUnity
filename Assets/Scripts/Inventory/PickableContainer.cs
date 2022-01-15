@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
 public class PickableContainer : MonoBehaviour
 {
     [SerializeField] private InventoryItem _item;
@@ -19,24 +18,24 @@ public class PickableContainer : MonoBehaviour
 
     public InventoryItem Item => _item;
 
-    public void Collected()
+    public virtual void Collected()
     {
         _colider.enabled = false;
         _onCollected?.Play();
         _model.SetActive(false);
     }
 
-    public void Clicked()
+    public virtual void Clicked()
     {
         _floatingText.ShowText("Klikłeś to zbierz mnie");
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _colider.isTrigger = _autoPickUp;
     }
 
-    private void Reset()
+    protected virtual void Reset()
     {
         var colider = GetComponent<Collider>();
         colider.isTrigger = true;
