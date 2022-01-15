@@ -1,9 +1,9 @@
 using UnityEngine;
 
-// idea container & pooling in seperated component for dynamic UI
 public class InventoryView : MonoBehaviour
 {
     [SerializeField] private PoolingObjects _pooling;
+    [SerializeField] private RectTransform _emptyMsg;
 
     public void Open(CharacterInventoryCollection inventory)
     {
@@ -12,6 +12,7 @@ public class InventoryView : MonoBehaviour
             var view = _pooling.GetObject<InventoryItemView>();
             view.Show(item);
         }
+        _emptyMsg.gameObject.SetActive(inventory.Inventory.Count == 0);
         gameObject.SetActive(true);
     }
 
