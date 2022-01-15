@@ -30,7 +30,6 @@ public class FloatingText : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
-            Destroy(this);
         }
     }
 }

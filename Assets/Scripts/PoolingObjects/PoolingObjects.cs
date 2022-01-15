@@ -1,22 +1,59 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolingObjects<T> : MonoBehaviour where T : Object
+public class PoolingObjects : MonoBehaviour
 {
-    // todo mock
-    [SerializeField] private T _prefab;
+    [SerializeField] private GameObject _prefab;
+    [Tooltip("If null parent will be created automatically")]
+    [SerializeField] private Transform _parent;
 
-    public T GetObject()
+    private List<GameObject> _list = new List<GameObject>();
+
+    public T GetObject<T>()
     {
-        return Instantiate<T>(_prefab);
+        GameObject obj = GetObject();
+        return obj.GetComponent<T>();
     }
 
-    public T GetObject(Vector3 position, Quaternion rotation)
+    public GameObject GetObject()
     {
-        return Instantiate<T>(_prefab, position, rotation);
+        GameObject obj = null;
+        foreach (var o in _list)
+        {
+            if (!o.activeSelf)
+                obj = o;
+        }
+
+        if (obj == null)
+        {
+            obj = Instantiate(_prefab, _parent);
+            _list.Add(obj);
+        }
+
+        obj.SetActive(true);
+        return obj;
     }
-}
 
-public class PoolingObjects : PoolingObjects<GameObject>
-{
+    public void DisableAll()
+    {
+        foreach (var item in _list)
+            item.SetActive(false);
+    }
 
+    public GameObject GetObject(Vector3 position, Quaternion rotation)
+    {
+        var obj = GetObject();
+        obj.transform.position = position;
+        obj.transform.rotation = rotation;
+        return obj;
+    }
+
+    protected void Awake()
+    {
+        if (_parent == null)
+        {
+            var parent = new GameObject($"[Pooling] {_prefab.name}");
+            _parent = parent.transform;
+        }
+    }
 }
