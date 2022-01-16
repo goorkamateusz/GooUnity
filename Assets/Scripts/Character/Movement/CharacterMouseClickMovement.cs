@@ -3,42 +3,43 @@ using UnityEngine;
 public class CharacterMouseClickMovement : CharacterMovement
 {
     [Header("Mouse")]
-    [SerializeField] private int _mouseButtonNumber = 0;
     [SerializeField] private ParticleSystem _mouseClickEffect;
 
     [Header("Integrations")]
     [SerializeField] private CharacterInventory _inventory;
     [SerializeField] private float _pickableDistance = 1f;
 
-    private Camera _main;
     private MovementTaskProvider _tasks = new MovementTaskProvider();
-    private MovementMouseInteractions _listener = new MovementMouseInteractions();
+
+    protected override void AfterGameLoaded()
+    {
+        ListenAttack();
+        ListenInventory();
+    }
 
     protected override void HandleInput()
     {
-        if (Input.GetMouseButtonDown(_mouseButtonNumber))
+        if (Character.Input.Clicked)
         {
-            var mouseRay = _main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(mouseRay, out var hit, Mathf.Infinity))
-            {
-                ProcessHit(hit);
-            }
+            var hit = Character.Input.Hit;
+            _tasks.Clear();
+            _agent.SetDestination(hit.point);
+            _mouseClickEffect.transform.position = hit.point;
+            _mouseClickEffect.Play();
         }
     }
 
-    private void ProcessHit(RaycastHit hit)
+    protected override void Update()
     {
-        _tasks.Clear();
-        _listener.CheckAll(hit);
+        base.Update();
 
-        _agent.SetDestination(hit.point);
-        _mouseClickEffect.transform.position = hit.point;
-        _mouseClickEffect.Play();
+        if (_tasks.CheckAll())
+            Stop();
     }
 
     private void ListenAttack()
     {
-        _listener.Add(new MovementMouseListener<Character>((other) =>
+        Character.Input.MouseInteraction.Add(new MovementMouseListener<Character>((other) =>
         {
             _tasks.Add(new MovementTask
             {
@@ -54,7 +55,7 @@ public class CharacterMouseClickMovement : CharacterMovement
     {
         if (_inventory)
         {
-            _listener.Add(new MovementMouseListener<PickableContainer>((item) =>
+            Character.Input.MouseInteraction.Add(new MovementMouseListener<PickableContainer>((item) =>
             {
                 item.Clicked();
                 _tasks.Add(new MovementTask
@@ -63,23 +64,6 @@ public class CharacterMouseClickMovement : CharacterMovement
                     Do = () => _inventory.Collect(item)
                 });
             }));
-        }
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        _main = Camera.main;
-        ListenAttack();
-        ListenInventory();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        if (_tasks.CheckAll())
-        {
-            Stop();
         }
     }
 }
