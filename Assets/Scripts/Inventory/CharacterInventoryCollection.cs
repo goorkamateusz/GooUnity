@@ -38,7 +38,7 @@ public class CharacterInventoryCollection : AttributedSaveSerializable
     public override string SubKey => "inventory";
     public CharacterInventoryCollection(string parentKey) : base(parentKey) { }
 
-    public override void AfterLoad()
+    protected override void AfterLoad()
     {
         foreach (var pair in Inventory)
             pair.Value.Inject(pair);

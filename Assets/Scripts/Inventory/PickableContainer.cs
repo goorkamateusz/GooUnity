@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PickableContainer : MonoBehaviour
+public class PickableContainer : ObjectStateSave
 {
     [SerializeField] private InventoryItem _item;
 
@@ -23,6 +23,7 @@ public class PickableContainer : MonoBehaviour
         _colider.enabled = false;
         _onCollected?.Play();
         _model.SetActive(false);
+        SaveDisabled();
     }
 
     public virtual void Clicked()

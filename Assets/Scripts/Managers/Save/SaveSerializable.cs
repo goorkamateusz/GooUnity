@@ -22,11 +22,13 @@ public abstract class SaveSerializable
         return JsonConvert.SerializeObject(this);
     }
 
-    public virtual void AfterLoad()
+    public void ReportLoaded()
     {
+        AfterLoad();
+        UpdateVersion();
     }
 
-    public virtual void UpdateVersion()
+    protected void UpdateVersion()
     {
         if (Version != LatestVersion)
         {
@@ -36,6 +38,10 @@ public abstract class SaveSerializable
     }
 
     protected virtual void Migrations()
+    {
+    }
+
+    protected virtual void AfterLoad()
     {
     }
 }

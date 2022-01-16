@@ -20,8 +20,7 @@ public class SaveManager : SceneSingleton<SaveManager>
         string key = test.Key;
         if (!Save.ContainsKey(key))
             Save[key] = test;
-        Save[key].UpdateVersion();
-        Save[key].AfterLoad();
+        Save[key].ReportLoaded();
         return Save[key] as T;
     }
 
