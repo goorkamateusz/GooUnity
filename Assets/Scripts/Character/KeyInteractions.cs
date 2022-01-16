@@ -1,25 +1,39 @@
-using System.Collections.Generic;
+using UnityEngine;
 
-public class KeyInteractions
+public class KeyInteractions : InteractionsProvider<CharacterInputAction>
 {
-    private List<CharacterInputAction> _actions = new List<CharacterInputAction>();
-
-    public void Add(CharacterInputAction action)
-    {
-        _actions.Add(action);
-    }
-
-    public void Remove(CharacterInputAction action)
-    {
-        _actions.Remove(action);
-    }
-
     public void CheckAll()
     {
-        for (int i = _actions.Count - 1; i > -1; i--)
+        for (int i = _listener.Count - 1; i > -1; i--)
         {
-            if (_actions[i].ProcessAction())
-                _actions.RemoveAt(i);
+            if (_listener[i].ProcessAction())
+                _listener.RemoveAt(i);
         }
+    }
+}
+
+public struct CharacterInputAction
+{
+    public delegate void OnKeyDelegate();
+    public delegate void OnKeyUpDelegate();
+
+    public KeyCode Key;
+    public OnKeyDelegate OnKeyDown;
+    public OnKeyUpDelegate OnKeyUp;
+
+    public bool ProcessAction()
+    {
+        if (Input.GetKeyDown(Key))
+        {
+            if (OnKeyDown != null)
+                OnKeyDown();
+        }
+        if (Input.GetKeyUp(Key))
+        {
+            if (OnKeyUp != null)
+                OnKeyUp();
+            return true;
+        }
+        return false;
     }
 }

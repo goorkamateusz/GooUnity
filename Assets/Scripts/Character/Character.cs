@@ -7,11 +7,13 @@ public class Character : MonoBehaviour
     [SerializeField] private CharacterMovement _movement;
     [SerializeField] private AnimatorHandler _animatorHandler;
     [SerializeField] private CharacterInput _characterInput;
+    [SerializeField] private CharacterColliderInteractions _colliderInteractions;
 
     public string Id => _identifier;
     public AnimatorHandler AnimatorHandler => _animatorHandler;
     public CharacterMovement Movement => _movement;
     public CharacterInput Input => _characterInput;
+    public CharacterColliderInteractions ColliderInteractions => _colliderInteractions;
 
     public Vector3 Position
     {

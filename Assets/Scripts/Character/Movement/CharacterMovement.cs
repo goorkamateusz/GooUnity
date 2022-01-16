@@ -56,10 +56,14 @@ public abstract class CharacterMovement : CharacterComponent
     protected virtual void Update()
     {
         if (IsEnabled)
+        {
             HandleInput();
+        }
 
         if (Tasks.CheckAll())
+        {
             Stop();
+        }
     }
 
     private void UpdateAgent()

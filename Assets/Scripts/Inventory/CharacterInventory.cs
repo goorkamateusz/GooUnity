@@ -15,7 +15,6 @@ public class CharacterInventory : Ability
     protected void Awake()
     {
         _visuals = GetComponent<CharacterInventoryVisuals>();
-        _interactions.AddListener(new ColliderListener<PickableContainer>(Collect, null));
     }
 
     protected IEnumerator Start()
@@ -39,13 +38,6 @@ public class CharacterInventory : Ability
         }
     }
 
-    public void Collect(PickableContainer item)
-    {
-        _inventory.Add(item.Item);
-        item.Collected();
-        _visuals?.ReportCollect(item);
-    }
-
     public Weapon GetNextWeapon()
     {
         // todo mock
@@ -57,14 +49,24 @@ public class CharacterInventory : Ability
 
     private void InitInteractives()
     {
-        Character.Input.MouseInteraction.Add(new MovementMouseListener<PickableContainer>((item) =>
+        Character.ColliderInteractions?.AddListener(new ColliderListener<PickableContainer>(Collect, null));
+        Character.Input?.MouseInteraction.Add(new MovementMouseListener<PickableContainer>(HandlePickable));
+    }
+
+    private void HandlePickable(PickableContainer obj)
+    {
+        obj.Clicked();
+        Character.Movement.Tasks.Add(new MovementTask
         {
-            item.Clicked();
-            Character.Movement.Tasks.Add(new MovementTask
-            {
-                Condition = () => Vector3.Distance(Character.Position, item.transform.position) < _pickableDistance,
-                Do = () => Collect(item)
-            });
-        }));
+            Condition = () => Vector3.Distance(Character.Position, obj.transform.position) < _pickableDistance,
+            Do = () => Collect(obj)
+        });
+    }
+
+    private void Collect(PickableContainer item)
+    {
+        _inventory.Add(item.Item);
+        item.Collected();
+        _visuals?.ReportCollect(item);
     }
 }
