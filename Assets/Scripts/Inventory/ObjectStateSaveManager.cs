@@ -6,7 +6,7 @@ public class ObjectStateSaveManager : SceneSingleton<ObjectStateSaveManager>
 {
     private class Data : SaveSerializable
     {
-        public List<string> Disabled = new List<string>();
+        public HashSet<string> Disabled = new HashSet<string>();
         public override string Key => "ObjectStates";
     }
 

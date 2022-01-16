@@ -38,7 +38,10 @@ public class SaveEditor : EditorWindow
     private void UpdateButtons()
     {
         if (GUILayout.Button("Delete selected"))
+        {
             DeleteSelected();
+            Close();
+        }
     }
 
     private void UpdateToggels()
