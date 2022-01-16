@@ -1,6 +1,12 @@
 using System.Collections.Generic;
 
-public class InteractionsProvider<T>
+public interface IInteractionsProvider<T>
+{
+    void Add(T action);
+    void Remove(T action);
+}
+
+public class InteractionsProvider<T> : IInteractionsProvider<T>
 {
     protected List<T> _listener = new List<T>();
 

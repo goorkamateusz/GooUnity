@@ -49,7 +49,7 @@ public class CharacterInventory : Ability
 
     private void InitInteractives()
     {
-        Character.ColliderInteractions?.AddListener(new ColliderListener<PickableContainer>(Collect, null));
+        Character.ColliderInteractions?.Add(new ColliderListener<PickableContainer>(Collect, null));
         Character.Input?.MouseInteraction.Add(new MovementMouseListener<PickableContainer>(HandlePickable));
     }
 

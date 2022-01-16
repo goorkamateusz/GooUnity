@@ -13,7 +13,7 @@ public class SingleSceneInteractionAbility : KeyInputOrientedAbility, ICharacter
     protected override void Start()
     {
         base.Start();
-        _interactions.AddListener(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
+        _interactions.Add(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
     }
 
     protected override void OnKeyDown()

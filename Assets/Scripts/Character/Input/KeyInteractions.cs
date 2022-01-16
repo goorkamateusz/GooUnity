@@ -28,12 +28,14 @@ public struct CharacterInputAction
             if (OnKeyDown != null)
                 OnKeyDown();
         }
+
         if (Input.GetKeyUp(Key))
         {
             if (OnKeyUp != null)
                 OnKeyUp();
             return true;
         }
+
         return false;
     }
 }

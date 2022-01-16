@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterColliderInteractions : MonoBehaviour
+public class CharacterColliderInteractions : MonoBehaviour, IInteractionsProvider<ColliderListener>
 {
-    private List<ColliderListener> _listener = new List<ColliderListener>();
+    protected List<ColliderListener> _listener = new List<ColliderListener>();
 
     protected virtual void OnTriggerEnter(Collider colider)
     {
@@ -18,10 +18,8 @@ public class CharacterColliderInteractions : MonoBehaviour
             listener.CheckTriggerExit(colider);
     }
 
-    public void AddListener(ColliderListener listener)
-    {
-        _listener.Add(listener);
-    }
+    public void Add(ColliderListener listener) => _listener.Add(listener);
+    public void Remove(ColliderListener action) => _listener.Remove(action);
 }
 
 public abstract class ColliderListener
