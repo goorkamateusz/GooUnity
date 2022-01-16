@@ -1,54 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
-
-public struct CharacterInputAction
-{
-    public delegate void OnKeyDelegate();
-    public delegate void OnKeyUpDelegate();
-
-    public KeyCode Key;
-    public OnKeyDelegate OnKeyDown;
-    public OnKeyUpDelegate OnKeyUp;
-
-    public bool ProcessAction()
-    {
-        if (Input.GetKeyDown(Key))
-        {
-            if (OnKeyDown != null)
-                OnKeyDown();
-        }
-        if (Input.GetKeyUp(Key))
-        {
-            if (OnKeyUp != null)
-                OnKeyUp();
-            return true;
-        }
-        return false;
-    }
-}
 
 public class CharacterInput : MonoBehaviour
 {
     [SerializeField] private int _mouseButtonNumber = 0;
 
-    private List<CharacterInputAction> _actions = new List<CharacterInputAction>();
-    private MovementMouseInteractions _listener = new MovementMouseInteractions();
+    private KeyInteractions _keys = new KeyInteractions();
+    private MouseInteractions _mouse = new MouseInteractions();
     private Camera _main;
     private RaycastHit _hit;
 
-    public MovementMouseInteractions MouseInteraction => _listener;
+    public MouseInteractions MouseInteraction => _mouse;
+    public KeyInteractions KeyInteractions => _keys;
+
     public RaycastHit Hit => _hit;
     public bool Clicked { get; private set; }
-
-    public void AddAction(CharacterInputAction action)
-    {
-        _actions.Add(action);
-    }
-
-    public void RemoveAction(CharacterInputAction action)
-    {
-        _actions.Remove(action);
-    }
 
     protected void Awake()
     {
@@ -57,13 +22,8 @@ public class CharacterInput : MonoBehaviour
 
     protected void Update()
     {
-        for (int i = _actions.Count - 1; i > -1; i--)
-        {
-            if (_actions[i].ProcessAction())
-                _actions.RemoveAt(i);
-        }
-
         Clicked = false;
+        _keys.CheckAll();
 
         if (Input.GetMouseButtonDown(_mouseButtonNumber))
         {
@@ -80,7 +40,7 @@ public class CharacterInput : MonoBehaviour
     {
         if (Clicked)
         {
-            _listener.CheckAll(_hit);
+            _mouse.CheckAll(_hit);
         }
     }
 }
