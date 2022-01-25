@@ -10,7 +10,6 @@ public class HandleWeapon : InputOrientedAbility
 
     [Header("Weapon")]
     [SerializeField] private CharacterInventory _inventory; // todo interface
-    [SerializeField] private PlayerController _characterController;
 
     private Weapon _weapon = null;
     private bool _aiming;
@@ -52,15 +51,6 @@ public class HandleWeapon : InputOrientedAbility
 
     private void PickWeapon()
     {
-        if (IsNotHandled)
-        {
-            _weapon = _inventory?.GetNextWeapon();
-            _characterController.SetArsenal(_weapon.Type);
-        }
-        else
-        {
-            _characterController.SetArsenal("Empty");
-            _weapon = null;
-        }
+        // todo
     }
 }
