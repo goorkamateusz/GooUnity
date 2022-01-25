@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Goo.Saves;
+using Goo.Tools;
 
 public class ObjectStateSaveManager : SceneSingleton<ObjectStateSaveManager>
 {

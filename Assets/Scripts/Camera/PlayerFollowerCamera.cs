@@ -1,4 +1,5 @@
 using System.Collections;
+using Goo.Tools;
 using UnityEngine;
 
 public class PlayerFollowerCamera : SceneSingleton<PlayerFollowerCamera>

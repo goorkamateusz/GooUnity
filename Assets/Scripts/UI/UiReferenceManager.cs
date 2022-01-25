@@ -1,3 +1,5 @@
+using Goo.Tools;
+
 public class UiReferenceManager : SceneSingleton<UiReferenceManager>
 {
     public KeyActionContainer KeyActionView;

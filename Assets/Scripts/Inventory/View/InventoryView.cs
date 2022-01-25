@@ -1,3 +1,4 @@
+using Goo.Tools;
 using UnityEngine;
 
 public class InventoryView : MonoBehaviour
