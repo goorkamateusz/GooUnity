@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Goo.Saves;
 
 [RequireComponent(typeof(Collider))]
 public class CharacterInventory : Ability

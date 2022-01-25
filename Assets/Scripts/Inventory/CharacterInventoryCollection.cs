@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Goo.Saves;
 using Newtonsoft.Json;
 
 public class CharacterInventoryCollection : AttributedSaveSerializable
