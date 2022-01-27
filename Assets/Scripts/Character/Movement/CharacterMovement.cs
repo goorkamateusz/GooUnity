@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
-[RequireComponent(typeof(NavMeshAgent))]
+// [RequireComponent(typeof(Rigidbody))]
+// [RequireComponent(typeof(Collider))]
+// [RequireComponent(typeof(NavMeshAgent))]
 public abstract class CharacterMovement : CharacterComponent
 {
     [SerializeField] protected NavMeshAgent _agent;

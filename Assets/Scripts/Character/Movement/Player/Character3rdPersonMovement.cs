@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Character3rdPersonMovement : CharacterMovement
 {
+    [SerializeField] private CharacterController _controller;
+
     public class MovementData
     {
-        public Vector3 Direction;
+        public int Sign;
+        public float Angle;
     }
 
     [Serializable]
-    private class Keyboard<T> where T : new()
+    private class Keyboard
     {
-        public T Up = new T();
-        public T Down = new T();
-        public T Left = new T();
-        public T Right = new T();
+        [SerializeField] private ForwardAction Up;
+        [SerializeField] private BackAction Down;
+        [SerializeField] private TurnAction Left;
+        [SerializeField] private TurnAction Right;
 
-        public IEnumerable<T> ForEach()
+        public IEnumerable<KeyAction> ForEach()
         {
             yield return Up;
             yield return Down;
@@ -26,24 +29,56 @@ public class Character3rdPersonMovement : CharacterMovement
         }
     }
 
-    [Serializable]
-    private class KeyAction : InputKeyAction
+    private abstract class KeyAction : InputKeyAction
     {
-        public Vector3 Vector;
         public MovementData Movement { get; internal set; }
+    }
 
+    [Serializable]
+    private class ForwardAction : KeyAction
+    {
         protected override void KeyDown()
         {
-            Movement.Direction += Vector;
+            Movement.Sign = 1;
         }
 
         protected override void KeyUp()
         {
-            Movement.Direction -= Vector;
+            Movement.Sign = 0;
         }
     }
 
-    [SerializeField] private Keyboard<KeyAction> _actions;
+    [Serializable]
+    private class BackAction : KeyAction
+    {
+        protected override void KeyDown()
+        {
+            Movement.Sign = -1;
+        }
+
+        protected override void KeyUp()
+        {
+            Movement.Sign = 0;
+        }
+    }
+
+    [Serializable]
+    private class TurnAction : KeyAction
+    {
+        [SerializeField] private float _angleSpeed = 180;
+
+        protected override void KeyDown()
+        {
+            Movement.Angle = _angleSpeed;
+        }
+
+        protected override void KeyUp()
+        {
+            Movement.Angle = 0;
+        }
+    }
+
+    [SerializeField] private Keyboard _actions;
 
     private MovementData Movement = new MovementData();
 
@@ -63,6 +98,17 @@ public class Character3rdPersonMovement : CharacterMovement
     protected override void Update()
     {
         base.Update();
-        _agent.SetDestination(transform.position + (Movement.Direction * Speed));
+
+        Quaternion rotation = Quaternion.AngleAxis(Movement.Angle * Time.deltaTime, Vector3.up);
+        Vector3 forward = rotation * transform.forward;
+        Vector3 move = Movement.Sign * forward * Speed * Time.deltaTime;
+
+        transform.localRotation *= rotation;
+        _controller.Move(move);
+
+        if (!_controller.isGrounded)
+        {
+            _controller.Move(Vector3.down * 0.2f);
+        }
     }
 }

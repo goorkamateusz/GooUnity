@@ -27,6 +27,12 @@ public abstract class InputKeyAction
             return CancelAfterDown;
         }
 
+        if (Input.GetKey(Key))
+        {
+            KeyHold();
+            return false;
+        }
+
         if (Input.GetKeyUp(Key))
         {
             KeyUp();
@@ -38,6 +44,8 @@ public abstract class InputKeyAction
 
     protected abstract void KeyUp();
     protected abstract void KeyDown();
+
+    protected virtual void KeyHold() { }
 }
 
 public class PersistantKeyHandler : InputKeyAction
