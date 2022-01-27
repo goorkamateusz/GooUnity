@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(NavMeshAgent))]
 public abstract class CharacterMovement : CharacterComponent
 {
     [SerializeField] protected NavMeshAgent _agent;
-    [SerializeField] private float _speedOriginal;
+    [SerializeField] private float _speedOriginal = 5f;
 
     private MovementTaskProvider _tasks = new MovementTaskProvider();
     private float _speedMultiplier = 1f;
@@ -69,5 +72,10 @@ public abstract class CharacterMovement : CharacterComponent
     private void UpdateAgent()
     {
         _agent.speed = Speed;
+    }
+
+    protected void Reset()
+    {
+        _agent = GetComponent<NavMeshAgent>();
     }
 }

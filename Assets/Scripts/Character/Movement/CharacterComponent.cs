@@ -1,5 +1,4 @@
 using System.Collections;
-using Goo.Saves;
 using UnityEngine;
 
 public class CharacterComponent : MonoBehaviour, ICharacterComponent
@@ -15,7 +14,7 @@ public class CharacterComponent : MonoBehaviour, ICharacterComponent
     {
         OnStart();
         enabled = false;
-        yield return SaveManager.WaitUntilGameLoaded();
+        yield return LoadingManager.Instance.WaitUntilGameLoaded();
         AfterGameLoaded();
         enabled = true;
     }
