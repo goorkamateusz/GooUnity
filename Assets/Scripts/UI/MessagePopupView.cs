@@ -20,7 +20,7 @@ public class MessagePopupView : UIWindowView
     public void Open(string message, ICharacterInteractiveComponent character)
     {
         Open(message);
-        character.Character.Input.KeyInteractions.Add(new CharacterInputAction
+        character.Character.Input.KeyInteractions.Add(new SingleUseKeyHandler
         {
             Key = KeyCode.Escape,
             OnKeyUp = Close

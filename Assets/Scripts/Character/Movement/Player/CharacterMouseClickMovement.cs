@@ -24,6 +24,7 @@ public class CharacterMouseClickMovement : CharacterMovement
 
     private void FollowOtherCharacter()
     {
+        // todo separate to other class
         Character.Input.MouseInteraction.Add(new MovementMouseListener<Character>((other) =>
         {
             Tasks.Add(new MovementTask

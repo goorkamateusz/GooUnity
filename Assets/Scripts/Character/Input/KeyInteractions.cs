@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KeyInteractions : InteractionsProvider<CharacterInputAction>
+public class KeyInteractions : InteractionsProvider<InputKeyAction>
 {
     public void CheckAll()
     {
@@ -12,30 +12,57 @@ public class KeyInteractions : InteractionsProvider<CharacterInputAction>
     }
 }
 
-public struct CharacterInputAction
+public abstract class InputKeyAction
 {
-    public delegate void OnKeyDelegate();
-    public delegate void OnKeyUpDelegate();
-
     public KeyCode Key;
-    public OnKeyDelegate OnKeyDown;
-    public OnKeyUpDelegate OnKeyUp;
 
-    public bool ProcessAction()
+    protected virtual bool CancelAfterUp => false;
+    protected virtual bool CancelAfterDown => false;
+
+    public virtual bool ProcessAction()
     {
         if (Input.GetKeyDown(Key))
         {
-            if (OnKeyDown != null)
-                OnKeyDown();
+            KeyDown();
+            return CancelAfterDown;
         }
 
         if (Input.GetKeyUp(Key))
         {
-            if (OnKeyUp != null)
-                OnKeyUp();
-            return true;
+            KeyUp();
+            return CancelAfterUp;
         }
 
         return false;
     }
+
+    protected abstract void KeyUp();
+    protected abstract void KeyDown();
+}
+
+public class PersistantKeyHandler : InputKeyAction
+{
+    public delegate void OnKeyDelegate();
+    public delegate void OnKeyUpDelegate();
+
+    public OnKeyDelegate OnKeyDown;
+    public OnKeyUpDelegate OnKeyUp;
+
+    protected override void KeyUp()
+    {
+        if (OnKeyUp != null)
+            OnKeyUp();
+    }
+
+    protected override void KeyDown()
+    {
+        if (OnKeyDown != null)
+            OnKeyDown();
+    }
+}
+
+
+public class SingleUseKeyHandler : PersistantKeyHandler
+{
+    protected override bool CancelAfterUp => false;
 }
