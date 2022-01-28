@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Character3rdPersonRotate : CharacterComponent
@@ -8,6 +9,7 @@ public class Character3rdPersonRotate : CharacterComponent
     [SerializeField] private float _cameraTopDownMaximumAmplitude = 30f;
     [SerializeField] private KeyCode _cameraModeKey = KeyCode.LeftShift;
     [SerializeField] private Vector3 _cameraPositionScale = new Vector3(1, 1.5f, 3);
+    [SerializeField] private float _modeChangeDuration = 1.5f;
 
     private PersistantKeyHandler _rotateToggle;
     private bool _lock = false;
@@ -42,15 +44,27 @@ public class Character3rdPersonRotate : CharacterComponent
         }
     }
 
-    private void TurnOffCameraToggle()
+    private async void TurnOffCameraToggle()
     {
         _lock = false;
-        _cameraParent.localScale = Vector3.one;
+        await SmoothChange(Vector3.one);
     }
 
-    private void TurnOnCameraToggle()
+    private async void TurnOnCameraToggle()
     {
         _lock = true;
+        await SmoothChange(_cameraPositionScale);
+    }
+
+    private async Task SmoothChange(Vector3 _cameraPositionScale)
+    {
+        float timer = 0f;
+        while (timer < _modeChangeDuration)
+        {
+            timer += Time.deltaTime;
+            _cameraParent.localScale = Vector3.Lerp(_cameraParent.localScale, _cameraPositionScale, timer / _modeChangeDuration);
+            await Task.Yield();
+        }
         _cameraParent.localScale = _cameraPositionScale;
     }
 }
