@@ -32,7 +32,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         _movement?.InjectCharacter(this);
-        InitializeComponents<Ability>(_compontentNodes);
+        InitializeComponents<CharacterComponent>(_compontentNodes);
         InitializeComponents<Ability>(_abilityNodes);
     }
 
