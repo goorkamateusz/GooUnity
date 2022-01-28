@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     [SerializeField] private string _identifier;
     [SerializeField] private GameObject[] _abilityNodes;
+    [SerializeField] private GameObject[] _compontentNodes;
     [SerializeField] private CharacterMovement _movement;
     [SerializeField] private AnimatorHandler _animatorHandler;
     [SerializeField] private CharacterInput _characterInput;
@@ -30,14 +32,20 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         _movement?.InjectCharacter(this);
-        InitializeAbilities();
+        InitializeComponents<Ability>(_compontentNodes);
+        InitializeComponents<Ability>(_abilityNodes);
     }
 
-    private void InitializeAbilities()
+    private void InitializeComponents()
     {
-        foreach (var node in _abilityNodes)
+        throw new NotImplementedException();
+    }
+
+    private void InitializeComponents<T>(GameObject[] nodes) where T : ICharacterComponent
+    {
+        foreach (var node in nodes)
         {
-            Ability[] abilities = node.GetComponents<Ability>();
+            T[] abilities = node.GetComponents<T>();
             foreach (var ability in abilities)
             {
                 ability.InjectCharacter(this);

@@ -8,8 +8,7 @@ public class Character3rdPersonMovement : CharacterMovement
 
     public class MovementData
     {
-        public int Sign;
-        public float Angle;
+        public Vector3 Direction;
     }
 
     [Serializable]
@@ -39,12 +38,12 @@ public class Character3rdPersonMovement : CharacterMovement
     {
         protected override void KeyDown()
         {
-            Movement.Sign = 1;
+            Movement.Direction += Vector3.forward;
         }
 
         protected override void KeyUp()
         {
-            Movement.Sign = 0;
+            Movement.Direction -= Vector3.forward;
         }
     }
 
@@ -53,34 +52,36 @@ public class Character3rdPersonMovement : CharacterMovement
     {
         protected override void KeyDown()
         {
-            Movement.Sign = -1;
+            Movement.Direction += Vector3.back;
         }
 
         protected override void KeyUp()
         {
-            Movement.Sign = 0;
+            Movement.Direction -= Vector3.back;
         }
     }
 
     [Serializable]
     private class TurnAction : KeyAction
     {
-        [SerializeField] private float _angleSpeed = 180;
+        [SerializeField] private Vector3 _vector = Vector3.right;
 
         protected override void KeyDown()
         {
-            Movement.Angle = _angleSpeed;
+            Movement.Direction += _vector;
         }
 
         protected override void KeyUp()
         {
-            Movement.Angle = 0;
+            Movement.Direction -= _vector;
         }
     }
 
     [SerializeField] private Keyboard _actions;
 
     private MovementData Movement = new MovementData();
+
+    public Vector3 Move { get; protected set; }
 
     protected override void OnStart()
     {
@@ -99,12 +100,10 @@ public class Character3rdPersonMovement : CharacterMovement
     {
         base.Update();
 
-        Quaternion rotation = Quaternion.AngleAxis(Movement.Angle * Time.deltaTime, Vector3.up);
-        Vector3 forward = rotation * transform.forward;
-        Vector3 move = Movement.Sign * forward * Speed * Time.deltaTime;
+        Vector3 forward = transform.rotation * Movement.Direction;
+        Move = forward * Speed * Time.deltaTime;
 
-        transform.localRotation *= rotation;
-        _controller.Move(move);
+        _controller.Move(Move);
 
         if (!_controller.isGrounded)
         {
