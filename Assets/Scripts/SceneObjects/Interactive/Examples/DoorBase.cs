@@ -13,8 +13,8 @@ public class DoorBase : SceneInteractiveElement
     [SerializeField] private NavMeshObstacle _obstacle;
 
     [Header("Tips messages")]
-    [SerializeField, TextArea] private string _tipOpenMessage;
-    [SerializeField, TextArea] private string _tipCloseMessage;
+    [SerializeField, TextArea] private string _tipOpenMessage = "Open door";
+    [SerializeField, TextArea] private string _tipCloseMessage = "Close door";
 
     protected Coroutine _coroutine;
 
