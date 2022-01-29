@@ -3,7 +3,6 @@ using System.Collections.Generic;
 public class MovementTaskProvider
 {
     private List<MovementTask> _tasks = new List<MovementTask>();
-    private List<int> _done = new List<int>();
 
     public void Add(MovementTask task)
     {
@@ -12,19 +11,18 @@ public class MovementTaskProvider
 
     public bool CheckAll()
     {
-        _done.Clear();
-
-        // todo deleting form list
-        for (int i = 0; i < _tasks.Count; i++)
+        bool anyDone = false;
+        
+        for (int i = _tasks.Count - 1; i > -1; --i)
         {
             if (_tasks[i].Check() && !_tasks[i].DisableAutoDelete)
-                _done.Add(i);
+            {
+                _tasks.RemoveAt(i);
+                anyDone = true;
+            }
         }
 
-        foreach (var doneId in _done)
-            _tasks.RemoveAt(doneId);
-
-        return _done.Count > 0;
+        return anyDone;
     }
 
     public void Clear()

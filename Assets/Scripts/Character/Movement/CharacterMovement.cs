@@ -65,9 +65,11 @@ public abstract class CharacterMovement : CharacterComponent
 
     protected abstract void OnSpeedChange();
 
-    public virtual void SetDestination(Transform transform)
+    public virtual void SetDestination(Transform target)
     {
-        _agent.SetDestination(transform.position);
+        // todo pathfinding in navmashagant but moving realise with char. controller
+        _agent.Warp(transform.position);
+        _agent.SetDestination(target.position);
     }
 
     public void EnablePathfinding()

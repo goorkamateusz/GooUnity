@@ -52,6 +52,7 @@ public class SceneInteractionAbility : InputOrientedAbility
 
     protected override void HandleInput()
     {
+        // todo move to Char. Input
         for (int i = 0; i < _actionsKeys.Length; i++)
         {
             if (Input.GetKeyDown(_actionsKeys[i]))

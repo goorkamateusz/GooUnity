@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface ICharacterInteractiveComponent
@@ -29,7 +30,14 @@ public abstract class SceneInteractiveElement : MonoBehaviour
 
     protected void HideTip(ICharacterInteractiveComponent character)
     {
-        if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
-            UiReferenceManager.Instance.KeyActionView.HideTip(character.Key);
+        try
+        {
+            if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
+                UiReferenceManager.Instance.KeyActionView.HideTip(character.Key);
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.LogWarning(e.Message);
+        }
     }
 }
