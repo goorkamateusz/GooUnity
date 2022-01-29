@@ -81,7 +81,7 @@ public class Character3rdPersonMovement : CharacterMovement
 
     private MovementData Movement = new MovementData();
 
-    public Vector3 Move { get; protected set; }
+    public Vector3 LastPositionChange { get; protected set; }
 
     public override float CurrentSpeed => _controller.velocity.magnitude;
 
@@ -102,9 +102,9 @@ public class Character3rdPersonMovement : CharacterMovement
             DisablePathfinding();
             
             Vector3 forward = transform.rotation * Movement.Direction;
-            Move = forward * Speed * Time.deltaTime;
+            LastPositionChange = forward * Speed * Time.deltaTime;
 
-            _controller.Move(Move);
+            _controller.Move(LastPositionChange);
 
             if (!_controller.isGrounded)
             {
@@ -115,13 +115,18 @@ public class Character3rdPersonMovement : CharacterMovement
 
     public override void Stop()
     {
-        Move = Vector3.zero;
+        LastPositionChange = Vector3.zero;
     }
 
     public override void Wrap(Vector3 position, Quaternion rotation)
     {
         transform.position = position;
         transform.rotation = rotation;
+    }
+
+    public override void Move(Vector3 move)
+    {
+        _controller.Move(move);
     }
 
     protected override void OnSpeedChange()

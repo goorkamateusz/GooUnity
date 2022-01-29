@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // [RequireComponent(typeof(Rigidbody))]
@@ -20,6 +21,7 @@ public abstract class CharacterMovement : CharacterComponent
     public MovementTaskProvider Tasks => _tasks;
 
     public CharacterPathfinding Pathfinding => _pathfinding;
+
 
     public void SetMultiplier(float multiplier)
     {
@@ -70,6 +72,12 @@ public abstract class CharacterMovement : CharacterComponent
         {
             Stop();
         }
+    }
+
+    public virtual void Move(Vector3 move)
+    {
+        // todo make abstract
+        throw new NotImplementedException();
     }
 
     protected abstract void OnSpeedChange();
