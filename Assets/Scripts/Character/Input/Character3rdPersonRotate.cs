@@ -41,7 +41,7 @@ public class Character3rdPersonRotate : CharacterComponent
         {
             float angle = _centerDistance.x * _centerDistance.x * _centerDistance.x * Time.deltaTime;
             _cameraParent.localRotation = Quaternion.Euler(_centerDistance.y * _cameraTopDownMaximumAmplitude, 0, 0);
-            transform.Rotate(Vector3.up, -angle * _characterAngelVelocity);
+            Character.transform.Rotate(Vector3.up, -angle * _characterAngelVelocity);
         }
     }
 

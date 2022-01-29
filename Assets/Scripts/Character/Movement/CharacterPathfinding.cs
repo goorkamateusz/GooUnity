@@ -29,6 +29,7 @@ public class CharacterPathfinding : ICharacterComponent
 
     public void SetDestination(Vector3 target)
     {
+        // bug when set destination durring hold A or D
         _agent.Warp(_character.Position);
         _agent.CalculatePath(target, _path);
         _i = 0;
