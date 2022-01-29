@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -63,4 +64,19 @@ public abstract class CharacterMovement : CharacterComponent
     }
 
     protected abstract void OnSpeedChange();
+
+    public virtual void SetDestination(Transform transform)
+    {
+        _agent.SetDestination(transform.position);
+    }
+
+    public void EnablePathfinding()
+    {
+        _agent.updatePosition = _agent.updateRotation = true;
+    }
+
+    public void DisablePathfinding()
+    {
+        _agent.updatePosition = _agent.updateRotation = false;
+    }
 }

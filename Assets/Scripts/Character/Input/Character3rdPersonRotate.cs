@@ -13,6 +13,8 @@ public class Character3rdPersonRotate : CharacterComponent
 
     private PersistantKeyHandler _rotateToggle;
     private bool _lock = false;
+    private Vector2 _referencePoint;
+    private Vector2 _centerDistance;
 
     protected override void OnStart()
     {
@@ -21,25 +23,24 @@ public class Character3rdPersonRotate : CharacterComponent
             Key = _cameraModeKey,
             OnKeyDown = TurnOnCameraToggle,
             OnKeyUp = TurnOffCameraToggle
-
         };
         Character.Input.KeyInteractions.Add(_rotateToggle);
     }
 
     protected virtual void Update()
     {
-        Vector2 difference = new Vector2(1 - 2 * Input.mousePosition.x / Screen.width,
-                                         1 - 2 * Input.mousePosition.y / Screen.height);
-
-        float angle = difference.x * difference.x * difference.x * Time.deltaTime;
+        _centerDistance = new Vector2(1 - 2 * Input.mousePosition.x / Screen.width,
+                                      1 - 2 * Input.mousePosition.y / Screen.height);
 
         if (_lock)
         {
-            _cameraParent.localRotation = Quaternion.Euler(difference.y * _cameraTopDownMaximumAmplitude, difference.x * 180, 0);
+            Vector2 deflection = _centerDistance - _referencePoint;
+            _cameraParent.localRotation = Quaternion.Euler(deflection.y * _cameraTopDownMaximumAmplitude, deflection.x * 180, 0);
         }
         else
         {
-            _cameraParent.localRotation = Quaternion.Euler(difference.y * _cameraTopDownMaximumAmplitude, 0, 0);
+            float angle = _centerDistance.x * _centerDistance.x * _centerDistance.x * Time.deltaTime;
+            _cameraParent.localRotation = Quaternion.Euler(_centerDistance.y * _cameraTopDownMaximumAmplitude, 0, 0);
             transform.Rotate(Vector3.up, -angle * _characterAngelVelocity);
         }
     }
@@ -53,6 +54,7 @@ public class Character3rdPersonRotate : CharacterComponent
     private async void TurnOnCameraToggle()
     {
         _lock = true;
+        _referencePoint = _centerDistance;
         await SmoothChange(_cameraPositionScale);
     }
 

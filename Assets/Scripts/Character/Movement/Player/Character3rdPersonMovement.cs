@@ -96,14 +96,19 @@ public class Character3rdPersonMovement : CharacterMovement
 
     protected override void HandleInput()
     {
-        Vector3 forward = transform.rotation * Movement.Direction;
-        Move = forward * Speed * Time.deltaTime;
-
-        _controller.Move(Move);
-
-        if (!_controller.isGrounded)
+        if (Movement.Direction != Vector3.zero)
         {
-            _controller.Move(Vector3.down * 0.2f);
+            DisablePathfinding();
+            
+            Vector3 forward = transform.rotation * Movement.Direction;
+            Move = forward * Speed * Time.deltaTime;
+
+            _controller.Move(Move);
+
+            if (!_controller.isGrounded)
+            {
+                _controller.Move(Vector3.down * 0.2f);
+            }
         }
     }
 
@@ -120,5 +125,12 @@ public class Character3rdPersonMovement : CharacterMovement
 
     protected override void OnSpeedChange()
     {
+    }
+
+    public override void SetDestination(Transform transform)
+    {
+        EnablePathfinding();
+        base.SetDestination(transform);
+        Movement.Direction = Vector3.zero;
     }
 }

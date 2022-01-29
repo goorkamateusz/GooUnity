@@ -14,6 +14,7 @@ public class MovementTaskProvider
     {
         _done.Clear();
 
+        // todo deleting form list
         for (int i = 0; i < _tasks.Count; i++)
         {
             if (_tasks[i].Check() && !_tasks[i].DisableAutoDelete)

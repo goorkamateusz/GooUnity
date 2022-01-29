@@ -57,6 +57,7 @@ public class CharacterInventory : Ability
     private void HandlePickable(PickableContainer obj)
     {
         obj.Clicked();
+        Character.Movement.SetDestination(obj.transform);
         Character.Movement.Tasks.Add(new MovementTask
         {
             Condition = () => Vector3.Distance(Character.Position, obj.transform.position) < _pickableDistance,
