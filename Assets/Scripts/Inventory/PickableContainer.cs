@@ -1,4 +1,5 @@
 using UnityEngine;
+using Goo.Tools;
 
 public class PickableContainer : ObjectStateSave
 {
@@ -21,7 +22,7 @@ public class PickableContainer : ObjectStateSave
     public virtual void Collected()
     {
         _colider.enabled = false;
-        _onCollected?.Play();
+        _onCollected.Null()?.Play();
         _model.SetActive(false);
         SaveDisabled();
     }

@@ -83,6 +83,8 @@ public class Character3rdPersonMovement : CharacterMovement
 
     public Vector3 Move { get; protected set; }
 
+    public override float CurrentSpeed => _controller.velocity.magnitude;
+
     protected override void OnStart()
     {
         foreach (var action in _actions.ForEach())
@@ -103,5 +105,20 @@ public class Character3rdPersonMovement : CharacterMovement
         {
             _controller.Move(Vector3.down * 0.2f);
         }
+    }
+
+    public override void Stop()
+    {
+        Move = Vector3.zero;
+    }
+
+    public override void Wrap(Vector3 position, Quaternion rotation)
+    {
+        transform.position = position;
+        transform.rotation = rotation;
+    }
+
+    protected override void OnSpeedChange()
+    {
     }
 }

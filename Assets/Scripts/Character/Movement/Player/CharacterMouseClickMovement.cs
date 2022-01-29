@@ -1,9 +1,23 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CharacterMouseClickMovement : CharacterMovement
 {
     [Header("Mouse")]
     [SerializeField] private ParticleSystem _mouseClickEffect;
+
+    public override float CurrentSpeed => _agent.velocity.magnitude;
+
+    public override void Stop()
+    {
+        _agent.ResetPath();
+    }
+
+    public override void Wrap(Vector3 position, Quaternion rotation)
+    {
+        Agent.Warp(position);
+        Character.transform.rotation = rotation;
+    }
 
     protected override void AfterGameLoaded()
     {
@@ -35,5 +49,21 @@ public class CharacterMouseClickMovement : CharacterMovement
                 DisableAutoDelete = true
             });
         }));
+    }
+
+    private void UpdateAgent()
+    {
+        _agent.speed = Speed;
+    }
+
+    protected void Reset()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+    }
+
+    protected override void OnSpeedChange()
+    {
+        // todo very awful method
+        _agent.speed = Speed;
     }
 }

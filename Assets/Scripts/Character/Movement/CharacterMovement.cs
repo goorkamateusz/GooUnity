@@ -6,7 +6,7 @@ using UnityEngine.AI;
 // [RequireComponent(typeof(NavMeshAgent))]
 public abstract class CharacterMovement : CharacterComponent
 {
-    [SerializeField] protected NavMeshAgent _agent;
+    [SerializeField] protected NavMeshAgent _agent; // todo it should be in other class
     [SerializeField] private float _speedOriginal = 5f;
 
     private MovementTaskProvider _tasks = new MovementTaskProvider();
@@ -16,44 +16,37 @@ public abstract class CharacterMovement : CharacterComponent
 
     public NavMeshAgent Agent => _agent;
     public float Speed => _speedOriginal * _speedMultiplier;
-    public float CurrentSpeed => _agent.velocity.magnitude;
     public float OriginalSpeed => _speedOriginal;
+    public abstract float CurrentSpeed { get; }
 
     public MovementTaskProvider Tasks => _tasks;
 
     public void SetMultiplier(float multiplier)
     {
         _speedMultiplier = multiplier;
-        UpdateAgent();
+        OnSpeedChange();
     }
 
     public void ResetMultiplier()
     {
         _speedMultiplier = 1f;
-        UpdateAgent();
+        OnSpeedChange();
     }
 
-    public void Stop()
-    {
-        _agent.ResetPath();
-    }
+    public abstract void Stop();
 
     public virtual void Wrap(Transform target)
     {
         Wrap(target.position, target.rotation);
     }
 
-    public void Wrap(Vector3 position, Quaternion rotation)
-    {
-        Agent.Warp(position);
-        Character.transform.rotation = rotation;
-    }
+    public abstract void Wrap(Vector3 position, Quaternion rotation);
 
     protected abstract void HandleInput();
 
     protected virtual void Awake()
     {
-        UpdateAgent();
+        OnSpeedChange();
     }
 
     protected virtual void Update()
@@ -69,13 +62,5 @@ public abstract class CharacterMovement : CharacterComponent
         }
     }
 
-    private void UpdateAgent()
-    {
-        _agent.speed = Speed;
-    }
-
-    protected void Reset()
-    {
-        _agent = GetComponent<NavMeshAgent>();
-    }
+    protected abstract void OnSpeedChange();
 }
