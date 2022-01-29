@@ -53,7 +53,7 @@ public class AiMovement : CharacterMouseClickMovement
 
     private void SetDestination()
     {
-        _agent.SetDestination(NextPoint.position);
+        _pathfinding.SetDestination(NextPoint.position);
     }
 
     private void NextTarget()

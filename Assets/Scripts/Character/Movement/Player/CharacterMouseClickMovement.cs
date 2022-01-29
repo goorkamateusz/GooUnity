@@ -1,21 +1,20 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CharacterMouseClickMovement : CharacterMovement
 {
     [Header("Mouse")]
     [SerializeField] private ParticleSystem _mouseClickEffect;
 
-    public override float CurrentSpeed => _agent.velocity.magnitude;
+    public override float CurrentSpeed => _pathfinding.Agent.velocity.magnitude; // todo
 
     public override void Stop()
     {
-        _agent.ResetPath();
+        _pathfinding.ResetPath();
     }
 
     public override void Wrap(Vector3 position, Quaternion rotation)
     {
-        Agent.Warp(position);
+        _pathfinding.Agent.Warp(position);
         Character.transform.rotation = rotation;
     }
 
@@ -30,7 +29,7 @@ public class CharacterMouseClickMovement : CharacterMovement
         {
             var hit = Character.Input.Hit;
             Tasks.Clear();
-            _agent.SetDestination(hit.point);
+            _pathfinding.SetDestination(hit.point);
             _mouseClickEffect.transform.position = hit.point;
             _mouseClickEffect.Play();
         }
@@ -45,7 +44,7 @@ public class CharacterMouseClickMovement : CharacterMovement
             {
                 Condition = () => Vector3.Distance(Character.Position, other.Position) < 4f,
                 Do = () => Stop(),
-                Otherwise = () => _agent.SetDestination(other.Position),
+                Otherwise = () => _pathfinding.SetDestination(other.Position),
                 DisableAutoDelete = true
             });
         }));
@@ -53,17 +52,12 @@ public class CharacterMouseClickMovement : CharacterMovement
 
     private void UpdateAgent()
     {
-        _agent.speed = Speed;
-    }
-
-    protected void Reset()
-    {
-        _agent = GetComponent<NavMeshAgent>();
+        _pathfinding.Agent.speed = Speed; // todo agent coupling
     }
 
     protected override void OnSpeedChange()
     {
-        // todo very awful method
-        _agent.speed = Speed;
+        // todo very awful method & Agent coupling
+        _pathfinding.Agent.speed = Speed;
     }
 }

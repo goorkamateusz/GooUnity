@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 // [RequireComponent(typeof(Rigidbody))]
 // [RequireComponent(typeof(Collider))]
 // [RequireComponent(typeof(NavMeshAgent))]
 public abstract class CharacterMovement : CharacterComponent
 {
-    [SerializeField] protected NavMeshAgent _agent; // todo it should be in other class
+    [SerializeField] protected CharacterPathfinding _pathfinding;
     [SerializeField] private float _speedOriginal = 5f;
 
     private MovementTaskProvider _tasks = new MovementTaskProvider();
@@ -15,12 +13,13 @@ public abstract class CharacterMovement : CharacterComponent
 
     public bool IsEnabled { get; set; } = true;
 
-    public NavMeshAgent Agent => _agent;
     public float Speed => _speedOriginal * _speedMultiplier;
     public float OriginalSpeed => _speedOriginal;
     public abstract float CurrentSpeed { get; }
 
     public MovementTaskProvider Tasks => _tasks;
+
+    public CharacterPathfinding Pathfinding => _pathfinding;
 
     public void SetMultiplier(float multiplier)
     {
@@ -50,11 +49,21 @@ public abstract class CharacterMovement : CharacterComponent
         OnSpeedChange();
     }
 
+    protected override void OnStart()
+    {
+        _pathfinding.InjectCharacter(Character);
+    }
+
     protected virtual void Update()
     {
         if (IsEnabled)
         {
             HandleInput();
+        }
+
+        if (_pathfinding.Active)
+        {
+            _pathfinding.Update();
         }
 
         if (Tasks.CheckAll())
@@ -65,20 +74,9 @@ public abstract class CharacterMovement : CharacterComponent
 
     protected abstract void OnSpeedChange();
 
-    public virtual void SetDestination(Transform target)
-    {
-        // todo pathfinding in navmashagant but moving realise with char. controller
-        _agent.Warp(transform.position);
-        _agent.SetDestination(target.position);
-    }
+    public virtual void SetDestination(Transform target) => _pathfinding.SetDestination(target.position);
 
-    public void EnablePathfinding()
-    {
-        _agent.updatePosition = _agent.updateRotation = true;
-    }
+    public void EnablePathfinding() => _pathfinding.Enable();
 
-    public void DisablePathfinding()
-    {
-        _agent.updatePosition = _agent.updateRotation = false;
-    }
+    public void DisablePathfinding() => _pathfinding.Disable();
 }

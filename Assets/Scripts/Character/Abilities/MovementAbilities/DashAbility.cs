@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -58,7 +57,8 @@ public class DashAbility : KeyInputOrientedAbility
         Vector3 startPoint = Character.Position;
         Vector3 endPoint = startPoint + direction.Value * _distance;
 
-        var agent = Character.Movement.Agent;
+        // todo change logic of obstacles detection
+        var agent = Character.Movement.Pathfinding.Agent;
 
         while (timer < _durationTime)
         {

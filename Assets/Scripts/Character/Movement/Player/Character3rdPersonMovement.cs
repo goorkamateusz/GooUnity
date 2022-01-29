@@ -87,6 +87,7 @@ public class Character3rdPersonMovement : CharacterMovement
 
     protected override void OnStart()
     {
+        base.OnStart();
         foreach (var action in _actions.ForEach())
         {
             action.Movement = Movement;
