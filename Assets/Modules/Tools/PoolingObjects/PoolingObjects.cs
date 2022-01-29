@@ -42,6 +42,12 @@ namespace Goo.Tools
                 item.SetActive(false);
         }
 
+        public void DestoryAll()
+        {
+            foreach (var item in _list)
+                Destroy(item);
+        }
+
         public GameObject GetObject(Vector3 position, Quaternion rotation)
         {
             var obj = GetObject();

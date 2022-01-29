@@ -1,14 +1,20 @@
-using Goo.Tools;
 using UnityEngine;
+using Goo.Tools;
 
 public class FloatingTextGenerator : MonoBehaviour
 {
-    [SerializeField] private PoolingObjects _prefab;
+    [SerializeField] private PoolingObjects _pooling;
 
     public void ShowText(string msg)
     {
         Transform cameraTransform = Camera.main.transform;
-        var ob = _prefab.GetObject(transform.position, cameraTransform.rotation).GetComponent<FloatingText>();
-        ob.SetText(msg);
+        var ob = _pooling.GetObject(transform.position, cameraTransform.rotation).GetComponent<FloatingText>();
+        ob.Launch(msg);
+    }
+
+    [ContextMenu("Test")]
+    private void Test()
+    {
+        ShowText("Test");
     }
 }

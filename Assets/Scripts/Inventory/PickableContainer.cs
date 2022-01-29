@@ -28,7 +28,8 @@ public class PickableContainer : ObjectStateSave
 
     public virtual void Clicked()
     {
-        _floatingText.ShowText("Klikłeś to zbierz mnie");
+        _floatingText?.ShowText("Klikłeś to zbierz mnie");
+        // idea editable feedbacks
     }
 
     protected virtual void Awake()

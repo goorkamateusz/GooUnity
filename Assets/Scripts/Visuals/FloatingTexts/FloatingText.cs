@@ -10,13 +10,10 @@ public class FloatingText : MonoBehaviour
     private float _timer = 0f;
     private Vector3 _originalPosition;
 
-    public virtual void SetText(string msg)
+    public virtual void Launch(string msg)
     {
+        _timer = 0f;
         _text.text = msg;
-    }
-
-    private void Start()
-    {
         _originalPosition = transform.position;
     }
 

@@ -94,12 +94,6 @@ public class Character3rdPersonMovement : CharacterMovement
 
     protected override void HandleInput()
     {
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
         Vector3 forward = transform.rotation * Movement.Direction;
         Move = forward * Speed * Time.deltaTime;
 
