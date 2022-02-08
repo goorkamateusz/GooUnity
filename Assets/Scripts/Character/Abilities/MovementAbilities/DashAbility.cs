@@ -24,9 +24,9 @@ public class DashAbility : KeyInputOrientedAbility
     {
     }
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
         _main = Camera.main;
     }
 

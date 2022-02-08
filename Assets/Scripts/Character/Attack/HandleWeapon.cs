@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HandleWeapon : InputOrientedAbility
+public class HandleWeapon : Ability
 {
     [Header("Input")]
     [SerializeField] private KeyCode _pickWeaponKey;
@@ -16,7 +16,12 @@ public class HandleWeapon : InputOrientedAbility
 
     public bool IsNotHandled => _weapon is null;
 
-    protected override void HandleInput()
+    protected virtual void Update()
+    {
+        HandleInput();
+    }
+
+    protected virtual void HandleInput()
     {
         if (Input.GetKeyDown(_pickWeaponKey))
         {

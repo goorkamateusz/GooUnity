@@ -4,9 +4,9 @@ public class SquatAbility : KeyInputOrientedAbility
 {
     [SerializeField] private float _movementMultiplier = 0.8f;
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
     }
 
     protected override void OnKeyDown()

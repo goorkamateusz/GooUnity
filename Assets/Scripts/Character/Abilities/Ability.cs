@@ -1,41 +1,24 @@
 using UnityEngine;
 
-public class Ability : MonoBehaviour, ICharacterComponent
+public class Ability : CharacterComponent
 {
-    protected Character Character { get; private set; }
-
-    public void InjectCharacter(Character character)
-    {
-        Character = character;
-    }
 }
 
-public abstract class InputOrientedAbility : Ability
-{
-    protected abstract void HandleInput();
-
-    protected virtual void Start() { }
-
-    protected virtual void Update()
-    {
-        HandleInput();
-    }
-}
-
-public abstract class KeyInputOrientedAbility : InputOrientedAbility
+public abstract class KeyInputOrientedAbility : Ability
 {
     [SerializeField] protected KeyCode _key;
 
-    protected override void HandleInput()
+    private InputKeyAction _action;
+
+    protected override void OnStart()
     {
-        if (Input.GetKeyDown(_key))
+        _action = new PersistantKeyHandler
         {
-            OnKeyDown();
-        }
-        if (Input.GetKeyUp(_key))
-        {
-            OnKeyUp();
-        }
+            Key = _key,
+            OnKeyDown = OnKeyDown,
+            OnKeyUp = OnKeyUp
+        };
+        Character.Input.KeyInteractions.Add(_action);
     }
 
     protected abstract void OnKeyDown();

@@ -5,9 +5,9 @@ public class RunAbility : KeyInputOrientedAbility
     [Header("Run Ability")]
     [SerializeField] private float _speedMultiplier;
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
     }
 
     protected override void OnKeyDown()

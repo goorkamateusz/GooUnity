@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SceneInteractionAbility : InputOrientedAbility
+public class SceneInteractionAbility : Ability
 {
     private struct CharacterInteractiveDto : ICharacterInteractiveComponent
     {
@@ -26,10 +26,15 @@ public class SceneInteractionAbility : InputOrientedAbility
         Initialize();
     }
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
         _interactions.Add(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
+    }
+
+    protected virtual void Update()
+    {
+        HandleInput();
     }
 
     protected virtual void TriggerEnter(SceneInteractiveElement obj)
@@ -50,7 +55,7 @@ public class SceneInteractionAbility : InputOrientedAbility
         }
     }
 
-    protected override void HandleInput()
+    protected virtual void HandleInput()
     {
         // todo move to Char. Input
         for (int i = 0; i < _actionsKeys.Length; i++)

@@ -5,9 +5,9 @@ public class CameraChangeAbility : KeyInputOrientedAbility
     [SerializeField] private CameraReferencedSettings[] _settings;
     [SerializeField] private int _initialState;
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
         SetCameraSettings();
     }
 

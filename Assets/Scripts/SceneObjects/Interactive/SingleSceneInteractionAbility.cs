@@ -10,9 +10,9 @@ public class SingleSceneInteractionAbility : KeyInputOrientedAbility, ICharacter
     public KeyCode Key => _key;
     public new Character Character => base.Character;
 
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
         _interactions.Add(new ColliderListener<SceneInteractiveElement>(TriggerEnter, TriggerExit));
     }
 

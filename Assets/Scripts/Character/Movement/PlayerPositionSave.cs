@@ -36,11 +36,14 @@ public class PlayerPositionSave : Ability
 
     private PlayerPositionSerializable _data;
 
-    protected IEnumerator Start()
+    protected override void OnStart()
     {
         _data = new PlayerPositionSerializable(Character.Id);
         PreSave();
-        yield return SaveManager.Wait();
+    }
+
+    protected override void AfterGameLoaded()
+    {
         SaveManager.Instance.PreSave += PreSave;
         SaveManager.Instance.Load(ref _data);
         Character.Movement.Wrap(_data.Position, Quaternion.Euler(_data.Rotation));

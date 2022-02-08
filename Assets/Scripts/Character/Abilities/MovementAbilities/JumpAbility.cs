@@ -1,9 +1,9 @@
 /// It's only animations...
 public class JumpAbility : KeyInputOrientedAbility
 {
-    protected override void Start()
+    protected override void OnStart()
     {
-        base.Start();
+        base.OnStart();
     }
 
     protected override void OnKeyDown()
