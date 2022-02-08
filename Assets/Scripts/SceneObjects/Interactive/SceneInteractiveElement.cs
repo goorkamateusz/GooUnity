@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using Goo.Tools;
 
 public interface ICharacterInteractiveComponent
 {
@@ -22,22 +22,15 @@ public abstract class SceneInteractiveElement : MonoBehaviour
         DisplayTip(character, string.Empty);
     }
 
-    protected void DisplayTip(ICharacterInteractiveComponent character, string msg)
+    protected virtual void DisplayTip(ICharacterInteractiveComponent character, string msg)
     {
-        if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
-            UiReferenceManager.Instance?.KeyActionView.DisplayTip(character.Key, msg);
+        if (character != null && character.IsPlayer && UiReferenceManager.Initialized)
+            UiReferenceManager.Instance.KeyActionView.Null()?.DisplayTip(character.Key, msg);
     }
 
-    protected void HideTip(ICharacterInteractiveComponent character)
+    protected virtual void HideTip(ICharacterInteractiveComponent character)
     {
-        try
-        {
-            if (character?.IsPlayer ?? false && UiReferenceManager.Initialized)
-                UiReferenceManager.Instance.KeyActionView.HideTip(character.Key);
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.LogWarning(e.Message);
-        }
+        if (character != null && character.IsPlayer && UiReferenceManager.Initialized)
+            UiReferenceManager.Instance.KeyActionView.Null()?.HideTip(character.Key);
     }
 }
