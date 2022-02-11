@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// idea: two-side classic doors
 public class ClassicDoor : DoorBase
 {
     [Header("Animations")]
@@ -9,6 +10,11 @@ public class ClassicDoor : DoorBase
     [SerializeField] private Axis3.Enum _axis = Axis3.Enum.up;
     [SerializeField] private float _angle = 90f;
     [SerializeField] private float _angleSpeed = 90f;
+
+    protected virtual void Awake()
+    {
+        _door.eulerAngles = Vector3.zero;
+    }
 
     protected override IEnumerator OpenAnimation()
     {
