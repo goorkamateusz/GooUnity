@@ -7,8 +7,7 @@ public class CharacterInventory : Ability
 {
     [SerializeField] private CharacterColliderInteractions _interactions;
     [SerializeField] private float _pickableDistance = 1f;
-
-    private const KeyCode _openInventory = KeyCode.I; // todo mock
+    [SerializeField] private KeyCode _openInventory = KeyCode.I;
 
     private CharacterInventoryVisuals _visuals;
     private CharacterInventoryCollection _inventory;
@@ -20,32 +19,26 @@ public class CharacterInventory : Ability
 
     protected IEnumerator Start()
     {
+        Character.Input.KeyInteractions.Add(new PersistantKeyHandler
+        {
+            Key = _openInventory,
+            OnKeyDown = OnKeyDown,
+            OnKeyUp = OnKeyUp
+        });
         InitInteractives();
         _inventory = new CharacterInventoryCollection(Character.Id);
         yield return SaveManager.Wait();
         SaveManager.Instance.Load(ref _inventory);
     }
 
-    protected void Update()
+    private void OnKeyUp()
     {
-        // todo mock
-        if (Input.GetKeyDown(_openInventory))
-        {
-            UiReferenceManager.Instance.Inventory.Open(_inventory);
-        }
-        if (Input.GetKeyUp(_openInventory))
-        {
-            UiReferenceManager.Instance.Inventory.Close();
-        }
+        UiReferenceManager.Instance.Inventory.Close();
     }
 
-    public Weapon GetNextWeapon()
+    private void OnKeyDown()
     {
-        // todo mock
-        return new Weapon
-        {
-            Type = "Rifle"
-        };
+        UiReferenceManager.Instance.Inventory.Open(_inventory);
     }
 
     private void InitInteractives()

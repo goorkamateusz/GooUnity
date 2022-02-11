@@ -74,11 +74,7 @@ public abstract class CharacterMovement : CharacterComponent
         }
     }
 
-    public virtual void Move(Vector3 move)
-    {
-        // todo make abstract
-        throw new NotImplementedException();
-    }
+    public abstract void Move(Vector3 move);
 
     protected abstract void OnSpeedChange();
 

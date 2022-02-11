@@ -60,4 +60,9 @@ public class CharacterMouseClickMovement : CharacterMovement
         // todo very awful method & Agent coupling
         _pathfinding.Agent.speed = Speed;
     }
+
+    public override void Move(Vector3 move)
+    {
+        throw new System.NotImplementedException();
+    }
 }

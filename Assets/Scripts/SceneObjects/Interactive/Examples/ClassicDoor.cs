@@ -6,37 +6,48 @@ public class ClassicDoor : DoorBase
     [Header("Animations")]
     [SerializeField] private Transform _door;
     [SerializeField] private Transform _hinge;
-    [SerializeField] private Vector3 _axis = Vector3.up;
+    [SerializeField] private Axis3.Enum _axis = Axis3.Enum.up;
     [SerializeField] private float _angle = 90f;
+    [SerializeField] private float _angleSpeed = 90f;
 
     protected override IEnumerator OpenAnimation()
-    {
-        return Rotate(-_angle);
-    }
-
-    protected override IEnumerator CloseAnimation()
     {
         return Rotate(_angle);
     }
 
-    private IEnumerator Rotate(float angle)
+    protected override IEnumerator CloseAnimation()
     {
-        int steps = 10;
+        return Rotate(0);
+    }
 
-        while (--steps > 0)
+    private IEnumerator Rotate(float targetAngle)
+    {
+        float change;
+
+        Vector3 axis = Axis3.Translate(_axis);
+        float currentAngle = Vector3.Dot(_door.localEulerAngles, axis);
+
+        while (true)
         {
-            if (_hinge != null)
-            {
-                _door.transform.RotateAround(_hinge.position, _axis, angle / 10f);
-            }
+            change = _angleSpeed * Time.deltaTime;
+
+            if (change > Mathf.Abs(targetAngle - currentAngle))
+                break;
+
+            if (currentAngle > targetAngle)
+                change *= -1;
+
+            currentAngle += change;
+
+            if (_hinge == null)
+                _door.localEulerAngles += axis * change;
             else
-            {
-                _door.transform.Rotate(_axis, angle / 10f);
-                // bug that case not working correct
-            }
-            yield return new WaitForSeconds(0.1f);
+                _door.RotateAround(_hinge.position, axis, change);
+
+            yield return null;
         }
 
+        _door.localEulerAngles = axis * targetAngle;
         _coroutine = null;
     }
 }

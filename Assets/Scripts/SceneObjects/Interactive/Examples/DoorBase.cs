@@ -52,24 +52,26 @@ public class DoorBase : SceneInteractiveElement
         DisplayTip(character, IsOpen ? _tipCloseMessage : _tipOpenMessage);
     }
 
+    [ContextMenu("Close")]
     private void Close()
     {
-        if (_coroutine == null)
-        {
-            _coroutine = StartCoroutine(OpenAnimation());
-            IsOpen = false;
-            ToggleObstacle();
-        }
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _coroutine = StartCoroutine(CloseAnimation());
+        IsOpen = false;
+        ToggleObstacle();
     }
 
+    [ContextMenu("Open")]
     private void Open()
     {
-        if (_coroutine == null)
-        {
-            _coroutine = StartCoroutine(CloseAnimation());
-            IsOpen = true;
-            ToggleObstacle();
-        }
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _coroutine = StartCoroutine(OpenAnimation());
+        IsOpen = true;
+        ToggleObstacle();
     }
 
     protected virtual IEnumerator OpenAnimation()

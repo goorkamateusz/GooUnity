@@ -8,9 +8,6 @@ public class HandleWeapon : Ability
     [SerializeField] private KeyCode _attackKey;
     [SerializeField] private int _mouseButtonId;
 
-    [Header("Weapon")]
-    [SerializeField] private CharacterInventory _inventory; // todo interface
-
     private Weapon _weapon = null;
     private bool _aiming;
 
@@ -23,13 +20,13 @@ public class HandleWeapon : Ability
 
     protected virtual void HandleInput()
     {
+        // todo move to Char. Input
         if (Input.GetKeyDown(_pickWeaponKey))
         {
             PickWeapon();
         }
 
-        // todo walka w ręcz
-        // if (IsNotHandled) return;
+        if (IsNotHandled) return;
 
         if (Input.GetKeyDown(_aimingToggleKey))
         {
