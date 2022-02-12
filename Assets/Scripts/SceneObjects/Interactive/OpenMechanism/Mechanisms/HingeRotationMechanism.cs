@@ -2,13 +2,12 @@ using System.Collections;
 using Goo.Tools;
 using UnityEngine;
 
-public class ClassicDoor : DoorMechanism
+public class HingeRotationMechanism : OpenMechanism
 {
-    [Header("Animations")]
-    [SerializeField] private Transform _hinge;
-    [SerializeField] private Axis3.Enum _axis = Axis3.Enum.up;
-    [SerializeField, Range(-180, 180)] private float _angle = 90f;
-    [SerializeField] private float _angleSpeed = 90f;
+    [SerializeField] protected Transform _hinge;
+    [SerializeField] protected Axis3.Enum _axis = Axis3.Enum.up;
+    [SerializeField, Range(-180, 180)] protected float _angle = 90f;
+    [SerializeField] protected float _angleSpeed = 90f;
 
     protected virtual void Awake()
     {

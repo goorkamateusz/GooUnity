@@ -1,7 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class DoorMechanism : MonoBehaviour
+// idea execute open mechanism in editor
+public abstract class OpenMechanism : MonoBehaviour
 {
     protected Coroutine _coroutine;
 

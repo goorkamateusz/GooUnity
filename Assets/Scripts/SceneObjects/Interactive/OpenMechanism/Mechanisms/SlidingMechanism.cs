@@ -1,11 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-public class SlidingDoor : DoorMechanism
+public class SlidingMechanism : OpenMechanism
 {
-    [Header("Animations")]
-    [SerializeField] private Vector3 _move;
-    [SerializeField] private float _speed;
+    [SerializeField] protected Vector3 _move;
+    [SerializeField] protected float _speed;
 
     protected virtual void Awake()
     {
