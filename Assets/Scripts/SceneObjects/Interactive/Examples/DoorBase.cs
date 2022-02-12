@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,7 +15,8 @@ public class DoorBase : SceneInteractiveElement
     [SerializeField, TextArea] private string _tipOpenMessage = "Open door";
     [SerializeField, TextArea] private string _tipCloseMessage = "Close door";
 
-    protected Coroutine _coroutine;
+    [Header("Mechanism")]
+    [SerializeField] private DoorMechanism[] _mechanism;
 
     public bool IsOpen { get => _isOpen; private set => _isOpen = value; }
     public bool AutoOpen => _openAutomatically;
@@ -55,10 +55,9 @@ public class DoorBase : SceneInteractiveElement
     [ContextMenu("Close")]
     private void Close()
     {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
+        foreach (var mech in _mechanism)
+            mech.Close();
 
-        _coroutine = StartCoroutine(CloseAnimation());
         IsOpen = false;
         ToggleObstacle();
     }
@@ -66,24 +65,11 @@ public class DoorBase : SceneInteractiveElement
     [ContextMenu("Open")]
     private void Open()
     {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
+        foreach (var mech in _mechanism)
+            mech.Open();
 
-        _coroutine = StartCoroutine(OpenAnimation());
         IsOpen = true;
         ToggleObstacle();
-    }
-
-    protected virtual IEnumerator OpenAnimation()
-    {
-        _coroutine = null;
-        yield break;
-    }
-
-    protected virtual IEnumerator CloseAnimation()
-    {
-        _coroutine = null;
-        yield break;
     }
 
     private void Toggle()

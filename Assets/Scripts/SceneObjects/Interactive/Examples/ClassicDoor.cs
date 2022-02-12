@@ -1,19 +1,18 @@
 using System.Collections;
+using Goo.Tools;
 using UnityEngine;
 
-// idea: two-side classic doors
-public class ClassicDoor : DoorBase
+public class ClassicDoor : DoorMechanism
 {
     [Header("Animations")]
-    [SerializeField] private Transform _door;
     [SerializeField] private Transform _hinge;
     [SerializeField] private Axis3.Enum _axis = Axis3.Enum.up;
-    [SerializeField] private float _angle = 90f;
+    [SerializeField, Range(-180, 180)] private float _angle = 90f;
     [SerializeField] private float _angleSpeed = 90f;
 
     protected virtual void Awake()
     {
-        _door.eulerAngles = Vector3.zero;
+        transform.localEulerAngles = Vector3.zero;
     }
 
     protected override IEnumerator OpenAnimation()
@@ -31,7 +30,8 @@ public class ClassicDoor : DoorBase
         float change;
 
         Vector3 axis = Axis3.Translate(_axis);
-        float currentAngle = Vector3.Dot(_door.localEulerAngles, axis);
+        float currentAngle = Vector3.Dot(transform.localEulerAngles, axis);
+        currentAngle = AngleHelper.From180To180(currentAngle);
 
         while (true)
         {
@@ -40,20 +40,20 @@ public class ClassicDoor : DoorBase
             if (change > Mathf.Abs(targetAngle - currentAngle))
                 break;
 
-            if (currentAngle > targetAngle)
+            if (targetAngle - currentAngle < 0)
                 change *= -1;
 
             currentAngle += change;
 
             if (_hinge == null)
-                _door.localEulerAngles += axis * change;
+                transform.localEulerAngles += axis * change;
             else
-                _door.RotateAround(_hinge.position, axis, change);
+                transform.RotateAround(_hinge.position, axis, change);
 
             yield return null;
         }
 
-        _door.localEulerAngles = axis * targetAngle;
+        transform.localEulerAngles = axis * targetAngle;
         _coroutine = null;
     }
 }

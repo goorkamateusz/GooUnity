@@ -1,17 +1,15 @@
 using System.Collections;
 using UnityEngine;
 
-// idea: two-side sliding doors
-public class SlidingDoor : DoorBase
+public class SlidingDoor : DoorMechanism
 {
     [Header("Animations")]
-    [SerializeField] private Transform _door;
     [SerializeField] private Vector3 _move;
     [SerializeField] private float _speed;
 
     protected virtual void Awake()
     {
-        _door.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
     }
 
     protected override IEnumerator OpenAnimation()
@@ -27,20 +25,20 @@ public class SlidingDoor : DoorBase
     private IEnumerator Move(Vector3 targetPosition)
     {
         Vector3 change;
-        Vector3 direction = (targetPosition - _door.position).normalized;
+        Vector3 direction = (targetPosition - transform.localPosition).normalized;
 
         while (true)
         {
             change = direction * Time.deltaTime * _speed;
 
-            if (change.magnitude > (_door.position - targetPosition).magnitude)
+            if (change.magnitude > (transform.localPosition - targetPosition).magnitude)
                 break;
 
-            _door.position += change;
+            transform.localPosition += change;
             yield return null;
         }
 
-        _door.position = targetPosition;
+        transform.localPosition = targetPosition;
         _coroutine = null;
     }
 }
