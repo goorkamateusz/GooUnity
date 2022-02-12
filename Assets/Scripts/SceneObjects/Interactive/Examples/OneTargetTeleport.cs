@@ -1,5 +1,5 @@
-using Assets.Goo.SceneObjects;
 using UnityEngine;
+using Assets.Goo.SceneObjects;
 
 public class OneTargetTeleport : Teleport
 {
@@ -30,7 +30,7 @@ public class OneTargetTeleport : Teleport
 
     protected override void TeleportCharacterOnEnter(ICharacterInteraction character)
     {
-        if (_withoutKey || !character.IsPlayer)
+        if (_withoutKey || !(character.Character is Player))
             Move(character, _target);
     }
 }

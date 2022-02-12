@@ -1,15 +1,16 @@
 using Assets.Goo.SceneObjects;
 using UnityEngine;
 
-public class SceneInteractionAbility : Ability
+public class MultipleSceneInteractionAbility : Ability
 {
     private struct CharacterInteractiveDto : ICharacterInteraction
     {
-        public SceneInteractionAbility Parent { get; set; }
+        public MultipleSceneInteractionAbility Parent { get; set; }
         public KeyCode Key { get; set; }
 
         public bool IsPlayer => Parent.IsCharacter;
         public Character Character => Parent.Character;
+        public bool DisplayUI => true;
     }
 
     [SerializeField] private CharacterColliderInteractions _interactions;
