@@ -4,6 +4,7 @@ namespace Assets.Goo.SceneObjects.Characters
 {
     public class SceneInteractionAbility : KeyInputOrientedAbility, ICharacterInteraction
     {
+        // bug when colliders overlaps
         private SceneInteractiveElement _object;
 
         public KeyCode Key => _key;
