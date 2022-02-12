@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Assets.Goo.SceneObjects;
 
 public class MessagePopupView : UIWindowView
 {
@@ -17,7 +18,7 @@ public class MessagePopupView : UIWindowView
         TimeManager.Instance.StopTime();
     }
 
-    public void Open(string message, ICharacterInteractiveComponent character)
+    public void Open(string message, ICharacterInteraction character)
     {
         Open(message);
         character.Character.Input.KeyInteractions.Add(new SingleUseKeyHandler

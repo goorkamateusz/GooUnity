@@ -1,5 +1,5 @@
 using System;
-using Goo.Tools;
+using Assets.Goo.Tools.UnityHelpers;
 using UnityEngine;
 
 public class MouseInteractions : InteractionsProvider<MovementMouseListener>

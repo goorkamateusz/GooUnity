@@ -1,8 +1,9 @@
+using Assets.Goo.SceneObjects;
 using UnityEngine;
 
 public class SceneInteractionAbility : Ability
 {
-    private struct CharacterInteractiveDto : ICharacterInteractiveComponent
+    private struct CharacterInteractiveDto : ICharacterInteraction
     {
         public SceneInteractionAbility Parent { get; set; }
         public KeyCode Key { get; set; }

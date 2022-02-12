@@ -1,5 +1,5 @@
 using System.Collections;
-using Goo.Tools;
+using Assets.Goo.Tools.Patterns;
 using UnityEngine;
 
 public class PlayerFollowerCamera : SceneSingleton<PlayerFollowerCamera>

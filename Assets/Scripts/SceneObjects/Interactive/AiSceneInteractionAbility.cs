@@ -1,3 +1,5 @@
+using Assets.Goo.SceneObjects;
+using Assets.Goo.SceneObjects.OpenMechanism.Objects;
 using UnityEngine;
 
 public class AiSceneInteractionAbility : SingleSceneInteractionAbility

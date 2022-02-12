@@ -1,10 +1,11 @@
+using Assets.Goo.SceneObjects;
 using UnityEngine;
 
 public abstract class Teleport : SceneInteractiveElement
 {
     private bool _disabled = false;
 
-    public override void ColiderEnter(ICharacterInteractiveComponent character)
+    public override void ColiderEnter(ICharacterInteraction character)
     {
         if (_disabled) return;
         if (ValidateCharacter(character))
@@ -13,13 +14,13 @@ public abstract class Teleport : SceneInteractiveElement
         }
     }
 
-    public override void ColiderExit(ICharacterInteractiveComponent character)
+    public override void ColiderExit(ICharacterInteraction character)
     {
         _disabled = false;
         HideTip(character);
     }
 
-    protected static void Move(ICharacterInteractiveComponent character, Transform target)
+    protected static void Move(ICharacterInteraction character, Transform target)
     {
         character.Character.Movement.Wrap(target);
         if (character.IsPlayer)
@@ -31,10 +32,10 @@ public abstract class Teleport : SceneInteractiveElement
             targetTeleport._disabled = true;
     }
 
-    protected virtual bool ValidateCharacter(ICharacterInteractiveComponent character)
+    protected virtual bool ValidateCharacter(ICharacterInteraction character)
     {
         return character.IsPlayer;
     }
 
-    protected abstract void TeleportCharacterOnEnter(ICharacterInteractiveComponent character);
+    protected abstract void TeleportCharacterOnEnter(ICharacterInteraction character);
 }

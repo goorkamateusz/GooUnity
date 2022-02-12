@@ -1,4 +1,4 @@
-namespace Goo.Tools
+namespace Assets.Goo.Tools.UnityHelpers
 {
     public static class AngleHelper
     {

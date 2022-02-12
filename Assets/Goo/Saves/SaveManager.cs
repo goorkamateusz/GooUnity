@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Goo.Tools;
+using Assets.Goo.Tools.Patterns;
 
 namespace Goo.Saves
 {

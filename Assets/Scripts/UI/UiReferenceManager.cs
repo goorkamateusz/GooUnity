@@ -1,4 +1,4 @@
-using Goo.Tools;
+using Assets.Goo.Tools.Patterns;
 
 public class UiReferenceManager : SceneSingleton<UiReferenceManager>
 {

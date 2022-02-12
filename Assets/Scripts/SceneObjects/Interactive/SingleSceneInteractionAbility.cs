@@ -1,6 +1,7 @@
+using Assets.Goo.SceneObjects;
 using UnityEngine;
 
-public class SingleSceneInteractionAbility : KeyInputOrientedAbility, ICharacterInteractiveComponent
+public class SingleSceneInteractionAbility : KeyInputOrientedAbility, ICharacterInteraction
 {
     [SerializeField] private CharacterColliderInteractions _interactions;
 

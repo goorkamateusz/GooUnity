@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Goo.Tools
+namespace Assets.Goo.Tools.Patterns
 {
     public class SceneSingleton<T> : MonoBehaviour where T : SceneSingleton<T>
     {

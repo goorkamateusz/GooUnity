@@ -1,5 +1,5 @@
 using System.Linq;
-using Goo.Tools;
+using Assets.Goo.Tools.Patterns;
 using UnityEngine;
 
 public class ItemsRepo : SceneSingleton<ItemsRepo>
