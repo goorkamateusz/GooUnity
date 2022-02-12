@@ -24,7 +24,7 @@ public class CharacterPathfinding : ICharacterComponent
 
     internal void ResetPath()
     {
-        throw new NotImplementedException();
+        _path.ClearCorners();
     }
 
     public void SetDestination(Vector3 target)

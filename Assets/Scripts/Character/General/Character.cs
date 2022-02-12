@@ -4,17 +4,14 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [SerializeField] private string _identifier;
-    [SerializeField] private GameObject[] _abilityNodes;
     [SerializeField] private GameObject[] _compontentNodes;
     [SerializeField] private CharacterMovement _movement;
     [SerializeField] private AnimatorHandler _animatorHandler;
-    [SerializeField] private CharacterInput _characterInput;
     [SerializeField] private CharacterColliderInteractions _colliderInteractions;
 
     public string Id => _identifier;
     public AnimatorHandler AnimatorHandler => _animatorHandler;
     public CharacterMovement Movement => _movement;
-    public CharacterInput Input => _characterInput;
     public CharacterColliderInteractions ColliderInteractions => _colliderInteractions;
 
     public Vector3 Position
@@ -32,20 +29,14 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         _movement?.InjectCharacter(this);
-        InitializeComponents<CharacterComponent>(_compontentNodes);
-        InitializeComponents<Ability>(_abilityNodes);
+        InitializeComponents();
     }
 
     private void InitializeComponents()
     {
-        throw new NotImplementedException();
-    }
-
-    private void InitializeComponents<T>(GameObject[] nodes) where T : ICharacterComponent
-    {
-        foreach (var node in nodes)
+        foreach (var node in _compontentNodes)
         {
-            T[] abilities = node.GetComponents<T>();
+            var abilities = node.GetComponents<ICharacterComponent>();
             foreach (var ability in abilities)
             {
                 ability.InjectCharacter(this);

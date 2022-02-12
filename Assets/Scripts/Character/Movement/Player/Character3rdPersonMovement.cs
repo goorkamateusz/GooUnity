@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character3rdPersonMovement : CharacterMovement
+public class Character3rdPersonMovement : PlayerMovement
 {
     [SerializeField] private CharacterController _controller;
 

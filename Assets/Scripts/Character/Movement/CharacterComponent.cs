@@ -1,13 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
-public class CharacterComponent : MonoBehaviour, ICharacterComponent
+public class CharacterComponent<T> : MonoBehaviour, ICharacterComponent where T : Character
 {
-    protected Character Character { get; private set; }
+    protected T Character { get; private set; }
 
     public void InjectCharacter(Character character)
     {
-        Character = character;
+        Character = character as T;
     }
 
     protected virtual IEnumerator Start()
@@ -21,4 +21,12 @@ public class CharacterComponent : MonoBehaviour, ICharacterComponent
 
     protected virtual void OnStart() { }
     protected virtual void AfterGameLoaded() { }
+}
+
+public class CharacterComponent : CharacterComponent<Character>
+{
+}
+
+public class PlayerComponent : CharacterComponent<Player>
+{
 }

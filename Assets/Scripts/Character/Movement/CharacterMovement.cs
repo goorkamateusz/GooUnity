@@ -4,7 +4,7 @@ using UnityEngine;
 // [RequireComponent(typeof(Rigidbody))]
 // [RequireComponent(typeof(Collider))]
 // [RequireComponent(typeof(NavMeshAgent))]
-public abstract class CharacterMovement : CharacterComponent
+public abstract class CharacterMovement<T> : CharacterComponent<T> where T : Character
 {
     [SerializeField] protected CharacterPathfinding _pathfinding;
     [SerializeField] private float _speedOriginal = 5f;
@@ -83,4 +83,14 @@ public abstract class CharacterMovement : CharacterComponent
     public void EnablePathfinding() => _pathfinding.Enable();
 
     public void DisablePathfinding() => _pathfinding.Disable();
+}
+
+public abstract class CharacterMovement : CharacterMovement<Character>
+{
+}
+
+public abstract class PlayerMovement : CharacterMovement
+{
+    // hack !!!
+    protected new Player Character => base.Character as Player;
 }

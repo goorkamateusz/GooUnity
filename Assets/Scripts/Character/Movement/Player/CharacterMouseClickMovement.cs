@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterMouseClickMovement : CharacterMovement
+public class CharacterMouseClickMovement : PlayerMovement
 {
     [Header("Mouse")]
     [SerializeField] private ParticleSystem _mouseClickEffect;

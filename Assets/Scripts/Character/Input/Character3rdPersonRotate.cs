@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Character3rdPersonRotate : CharacterComponent
+public class Character3rdPersonRotate : PlayerComponent
 {
     [SerializeField] private Transform _cameraParent;
     [SerializeField] private Character3rdPersonMovement _movement;

@@ -21,7 +21,7 @@ public class MessagePopupView : UIWindowView
     public void Open(string message, ICharacterInteraction character)
     {
         Open(message);
-        character.Character.Input.KeyInteractions.Add(new SingleUseKeyHandler
+        (character.Character as Player)?.Input.KeyInteractions.Add(new SingleUseKeyHandler
         {
             Key = KeyCode.Escape,
             OnKeyUp = Close

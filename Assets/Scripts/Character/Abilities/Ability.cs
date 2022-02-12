@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ability : CharacterComponent
+public class Ability : PlayerComponent
 {
 }
 

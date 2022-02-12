@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InteractWithPathfindingTarget : CharacterComponent
+public class InteractWithPathfindingTarget : PlayerComponent
 {
     [SerializeField] private float _minimalDistance = 1f;
 
