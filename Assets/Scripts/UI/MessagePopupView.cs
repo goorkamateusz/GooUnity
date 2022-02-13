@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Assets.Goo.SceneObjects;
+using Assets.Goo.Tools.UnityHelpers;
 
 public class MessagePopupView : UIWindowView
 {
@@ -13,7 +14,7 @@ public class MessagePopupView : UIWindowView
     public void Open(string message)
     {
         _message.text = message;
-        _blend.SetActive(true);
+        _blend.Null()?.SetActive(true);
         gameObject.SetActive(true);
         TimeManager.Instance.StopTime();
     }
@@ -36,7 +37,7 @@ public class MessagePopupView : UIWindowView
     private void Close()
     {
         gameObject.SetActive(false);
-        _blend.SetActive(false);
+        _blend.Null()?.SetActive(false);
         TimeManager.Instance.ResetTime();
     }
 }
