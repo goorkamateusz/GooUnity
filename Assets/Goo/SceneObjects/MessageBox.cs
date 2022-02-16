@@ -5,6 +5,10 @@ namespace Assets.Goo.SceneObjects
 {
     public class MessageBox : SceneInteractiveElement
     {
+        // IDEAS for messageBox's
+        // [ ] Close buy UI button
+        // [ ] Close buy key
+        // [ ] Close on exit
         [SerializeField, TextArea] private string _message;
 
         public override void ColiderEnter(ICharacterInteraction character)

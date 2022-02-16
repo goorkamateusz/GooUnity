@@ -1,0 +1,19 @@
+{
+    "recommendations": [
+        "piotrpalarz.vscode-gitignore-generator",
+        "aaron-bond.better-comments",
+        "ms-dotnettools.csharp",
+        "gaoshan0621.csharp-format-usings",
+        "streetsidesoftware.code-spell-checker",
+        "wmaurer.change-case",
+        "tobiastengler.csharper",
+        "unity.unity-debug",
+        "usernamehw.errorlens",
+        "sleistner.vscode-fileutils",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker-polish",
+        "gruntfuggly.todo-tree",
+        "Tobiah.unity-tools"
+    ]
+}
