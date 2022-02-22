@@ -5,7 +5,6 @@ using Goo.Saves;
 [RequireComponent(typeof(Collider))]
 public class CharacterInventory : Ability
 {
-    [SerializeField] private CharacterColliderInteractions _interactions;
     [SerializeField] private float _pickableDistance = 1f;
     [SerializeField] private KeyCode _openInventory = KeyCode.I;
 

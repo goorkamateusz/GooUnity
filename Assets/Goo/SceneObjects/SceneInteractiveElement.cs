@@ -10,6 +10,8 @@ namespace Assets.Goo.SceneObjects
         public Character Character { get; }
     }
 
+    // todo separate colider entry
+    // todo colider mouse click
     [RequireComponent(typeof(Collider))]
     public abstract class SceneInteractiveElement : MonoBehaviour
     {
