@@ -87,6 +87,7 @@ public abstract class CharacterMovement<T> : CharacterComponent<T> where T : Cha
 
 public abstract class CharacterMovement : CharacterMovement<Character>
 {
+    public bool State { get; internal set; }
 }
 
 public abstract class PlayerMovement : CharacterMovement
