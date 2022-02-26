@@ -11,6 +11,7 @@ namespace Assets.Goo.Tools.Effects.Inertia
         private T _current;
         private T _last;
         private float _sampleTimer;
+        // idea optimise with CircleArray 
         private Queue<T> _queue = new Queue<T>();
 
         protected abstract T Value { get; set; }
