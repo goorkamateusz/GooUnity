@@ -6,6 +6,8 @@ using UnityEngine;
 // [RequireComponent(typeof(NavMeshAgent))]
 public abstract class CharacterMovement<T> : CharacterComponent<T> where T : Character
 {
+    // todo movement status
+    // todo Speed object with temporary multiplers
     [SerializeField] protected CharacterPathfinding _pathfinding;
     [SerializeField] private float _speedOriginal = 5f;
 

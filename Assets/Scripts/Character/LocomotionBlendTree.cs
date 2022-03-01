@@ -1,70 +1,32 @@
 using UnityEngine;
 
-public class LocomotionBlendTree : StateMachineBehaviour
+public class LocomotionBlendTree : CharacterStateMachineBehaviour
 {
-    // todo seperate CharacterStateMachine
-    [SerializeField] private string _XAxisName;
-    [SerializeField] private string _YAxisName;
+    [SerializeField] private string _xAxisName = "X";
+    [SerializeField] private string _yAxisName = "Y";
 
-    private Character character;
-    private Character3rdPersonMovement movement;
-    private AnimatorHandler animator;
+    private CharacterMovement movement;
+    private Character3rdPersonMovement movement3rdPerson; // todo create needed interfce in CharacterMovement
+    private AnimatorHandler animator; // todo temporary
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    protected override void Initialize()
     {
-        Initialize(animator);
-    }
-
-    private void Initialize(Animator animator)
-    {
-        if (character == null)
-        {
-            var charAnimator = animator.GetComponent<CharacterAnimatorReference>();
-            if (charAnimator != null)
-            {
-                character = charAnimator.Character;
-                movement = character.Movement as Character3rdPersonMovement;
-                this.animator = character.AnimatorHandler;
-            }
-            #if UNITY_EDITOR
-            else
-            {
-                Debug.LogWarning("StateMachineBehaviour need CharacterAnimatorReference script");
-            }
-            #endif
-        }
+        movement = Character.Movement;
+        movement3rdPerson = Character.Movement as Character3rdPersonMovement;
+        this.animator = Character.AnimatorHandler;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (movement.Movement.Direction.magnitude > 0.01f)
+        if (movement3rdPerson.Movement.Direction.magnitude > 0.01f)
         {
-            animator.SetFloat(_XAxisName, movement.Movement.Direction.x);
-            animator.SetFloat(_YAxisName, movement.Movement.Direction.z);
+            animator.SetFloat(_xAxisName, movement3rdPerson.Movement.Direction.x);
+            animator.SetFloat(_yAxisName, movement3rdPerson.Movement.Direction.z);
         }
         else
         {
-            this.animator.Animator.Play("Idle", 0.5f); // todo temporary
+            this.animator.Animator.Play("Idle", 0.5f);
         }
     }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }
