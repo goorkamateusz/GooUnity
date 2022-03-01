@@ -79,7 +79,8 @@ public class Character3rdPersonMovement : PlayerMovement
 
     [SerializeField] private Keyboard _actions;
 
-    private MovementData Movement = new MovementData();
+    private MovementData _movement = new MovementData();
+    public MovementData Movement => _movement;
 
     public Vector3 LastPositionChange { get; protected set; }
 
@@ -90,18 +91,18 @@ public class Character3rdPersonMovement : PlayerMovement
         base.OnStart();
         foreach (var action in _actions.ForEach())
         {
-            action.Movement = Movement;
+            action.Movement = _movement;
             Character.Input.KeyInteractions.Add(action);
         }
     }
 
     protected override void HandleInput()
     {
-        if (Movement.Direction != Vector3.zero)
+        if (_movement.Direction != Vector3.zero)
         {
             DisablePathfinding();
             
-            Vector3 forward = transform.rotation * Movement.Direction;
+            Vector3 forward = transform.rotation * _movement.Direction;
             LastPositionChange = forward * Speed * Time.deltaTime;
 
             _controller.Move(LastPositionChange);
@@ -137,6 +138,6 @@ public class Character3rdPersonMovement : PlayerMovement
     {
         EnablePathfinding();
         base.SetDestination(transform);
-        Movement.Direction = Vector3.zero;
+        _movement.Direction = Vector3.zero;
     }
 }

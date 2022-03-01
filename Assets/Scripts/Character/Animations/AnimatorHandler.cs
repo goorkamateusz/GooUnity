@@ -4,31 +4,27 @@ using UnityEngine;
 /// idea No editor state machine animation management
 public class AnimatorHandler : CharacterComponent
 {
-    [SerializeField] private Animator _animator;
+    [SerializeField] protected AnimatorAsyncController _animator;
 
-    private AnimatorAsyncController _stateController;
+    // todo good practice?
+    public AnimatorAsyncController Animator => _animator;
 
     [Obsolete]
     public void SetTrigger(string name)
     {
-        _animator.SetTrigger(name);
+        _animator.Animator.SetTrigger(name);
     }
 
     [Obsolete]
     public void SetInt(string name, int value)
     {
-        _animator.SetInteger(name, value);
+        _animator.Animator.SetInteger(name, value);
     }
 
     [Obsolete]
     public void SetBool(string name, bool value = true)
     {
-        _animator.SetBool(name, value);
-    }
-
-    protected override void OnStart()
-    {
-        _stateController = new AnimatorAsyncController(_animator);
+        _animator.Animator.SetBool(name, value);
     }
 
     protected virtual void Update()
@@ -36,14 +32,9 @@ public class AnimatorHandler : CharacterComponent
         // todo temporary
         if (Input.GetKeyDown(KeyCode.W))
         {
-            const string StateName = "Walk";
+            const string StateName = "Locomotion";
             const float FixedTransitionDuration = 0.75f;
-            _stateController.Play(StateName, FixedTransitionDuration);
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            const string StateName = "Idle";
-            _stateController.Play(StateName, 0.5f);
+            _animator.Play(StateName, FixedTransitionDuration);
         }
     }
 }

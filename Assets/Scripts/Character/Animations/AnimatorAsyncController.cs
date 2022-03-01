@@ -1,18 +1,15 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-/// idea No editor state machine animation management
+[Serializable]
 public class AnimatorAsyncController
 {
-    private Animator animator;
-    public string currentState;
+    [SerializeField] private Animator animator;
+
+    private string currentState;
 
     public Animator Animator => animator;
-
-    public AnimatorAsyncController(Animator animator)
-    {
-        this.animator = animator;
-    }
 
     public async void Play(string stateName, float fixedTransitionDuration = 0f)
     {
