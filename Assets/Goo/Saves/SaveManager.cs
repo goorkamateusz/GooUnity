@@ -1,15 +1,9 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Assets.Goo.Tools.Patterns;
 
 namespace Goo.Saves
 {
-    [Serializable]
-    public class Save : Dictionary<string, SaveSerializable>
-    {
-    }
-
     public class SaveManager : SceneSingleton<SaveManager>
     {
         public event Action PreSave;
@@ -34,13 +28,13 @@ namespace Goo.Saves
 
         private void LoadFile()
         {
-            Save = SaveFileHelper.Load();
+            Save = SaveFileProvider.Load();
         }
 
         private void SaveFile()
         {
             PreSave?.Invoke();
-            SaveFileHelper.Save(Save);
+            SaveFileProvider.Save(Save);
         }
 
         protected override void OnAwake()

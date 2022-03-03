@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 namespace Goo.Saves.Editor
 {
@@ -19,7 +19,7 @@ namespace Goo.Saves.Editor
 
         private void Awake()
         {
-            _saves = SaveFileHelper.Load();
+            _saves = SaveFileProvider.Load();
             foreach (var item in _saves)
                 _toggles[item.Key] = false;
             UpdateKeys();
@@ -64,7 +64,7 @@ namespace Goo.Saves.Editor
                 if (toggle.Value)
                     _saves.Remove(toggle.Key);
             }
-            SaveFileHelper.Save(_saves);
+            SaveFileProvider.Save(_saves);
             UpdateKeys();
         }
 
@@ -72,12 +72,12 @@ namespace Goo.Saves.Editor
         private static void OpenWindow() => GetWindow<SaveEditor>();
 
         [MenuItem(CLEAN_SAVE_WINDOW, true)]
-        private static bool ValidateOpenWindow() => SaveFileHelper.Exist();
+        private static bool ValidateOpenWindow() => SaveFileProvider.Exist();
 
         [MenuItem(CLEAR_SAVE)]
-        private static void ClearSave() => SaveFileHelper.Delete();
+        private static void ClearSave() => SaveFileProvider.Delete();
 
         [MenuItem(CLEAR_SAVE, true)]
-        private static bool ValidateClearSave() => SaveFileHelper.Exist();
+        private static bool ValidateClearSave() => SaveFileProvider.Exist();
     }
 }
