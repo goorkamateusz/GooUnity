@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Goo.EditorTools;
 
 namespace Goo.Saves.Editor
 {
@@ -64,40 +65,5 @@ namespace Goo.Saves.Editor
             Manager.GetFileProvider().Save(_saves);
             UpdateKeys();
         }
-    }
-
-    public class EditorWindowRelatedToManager<T> : EditorWindow where T : MonoBehaviour
-    {
-        private static T _manager;
-
-        protected static T Manager
-        {
-            get
-            {
-                if (!_manager)
-                    _manager = FindObjectOfType<T>(true);
-                return _manager;
-            }
-        }
-
-        protected static bool ManagerExist => Manager;
-    }
-
-    public class SaveEditorItemsMenu : EditorWindowRelatedToManager<SaveManager>
-    {
-        private const string CLEAN_SAVE_WINDOW = "Playground/Edit saves";
-        private const string CLEAR_SAVE = "Playground/Clear saves";
-
-        [MenuItem(CLEAN_SAVE_WINDOW)]
-        private static void OpenWindow() => GetWindow<SaveEditor>();
-
-        [MenuItem(CLEAN_SAVE_WINDOW, true)]
-        private static bool ValidateOpenWindow() => ManagerExist && Manager.GetFileProvider().Exist();
-
-        [MenuItem(CLEAR_SAVE)]
-        private static void ClearSave() => Manager.GetFileProvider().Delete();
-
-        [MenuItem(CLEAR_SAVE, true)]
-        private static bool ValidateClearSave() => ManagerExist && Manager.GetFileProvider().Exist();
     }
 }

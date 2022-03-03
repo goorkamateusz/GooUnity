@@ -10,7 +10,7 @@ namespace Goo.Saves
         // todo clear saves API
         public event Action PreSave;
 
-        [SerializeField] private SaveFileProvider file = new SaveFileProvider();
+        [SerializeField] private SaveFileProvider _file = new SaveFileProvider();
 
         private Save Save { get; set; }
 
@@ -32,13 +32,13 @@ namespace Goo.Saves
 
         private void LoadFile()
         {
-            Save = file.Load();
+            Save = _file.Load();
         }
 
         private void SaveFile()
         {
             PreSave?.Invoke();
-            file.Save(Save);
+            _file.Save(Save);
         }
 
         protected override void OnAwake()
@@ -60,7 +60,7 @@ namespace Goo.Saves
         }
 
 #if UNITY_EDITOR
-        public SaveFileProvider GetFileProvider() => file;
+        public SaveFileProvider GetFileProvider() => _file;
 #endif
     }
 }
