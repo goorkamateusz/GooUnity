@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Goo.Tools.UnityHelpers;
 using UnityEditor;
 using UnityEngine;
 
 namespace Goo.Saves.Editor
 {
-    public class SaveEditor : EditorWindow
+    public class SaveEditor : EditorWindowRelatedToManager<SaveManager>
     {
         private Save _saves;
         private Dictionary<string, bool> _toggles = new Dictionary<string, bool>();
@@ -17,7 +16,7 @@ namespace Goo.Saves.Editor
 
         private void Awake()
         {
-            // _saves = SaveFileProvider.Load();
+            _saves = Manager.GetFileProvider().Load();
             foreach (var item in _saves)
                 _toggles[item.Key] = false;
             UpdateKeys();
@@ -62,15 +61,30 @@ namespace Goo.Saves.Editor
                 if (toggle.Value)
                     _saves.Remove(toggle.Key);
             }
-            // SaveFileProvider.Save(_saves);
+            Manager.GetFileProvider().Save(_saves);
             UpdateKeys();
         }
     }
 
-    public class SaveEditorItemsMenu : EditorWindow
+    public class EditorWindowRelatedToManager<T> : EditorWindow where T : MonoBehaviour
     {
-        private static SaveManager manager;
+        private static T _manager;
 
+        protected static T Manager
+        {
+            get
+            {
+                if (!_manager)
+                    _manager = FindObjectOfType<T>(true);
+                return _manager;
+            }
+        }
+
+        protected static bool ManagerExist => Manager;
+    }
+
+    public class SaveEditorItemsMenu : EditorWindowRelatedToManager<SaveManager>
+    {
         private const string CLEAN_SAVE_WINDOW = "Playground/Edit saves";
         private const string CLEAR_SAVE = "Playground/Clear saves";
 
@@ -78,23 +92,12 @@ namespace Goo.Saves.Editor
         private static void OpenWindow() => GetWindow<SaveEditor>();
 
         [MenuItem(CLEAN_SAVE_WINDOW, true)]
-        private static bool ValidateOpenWindow() => SavesEnabled();
+        private static bool ValidateOpenWindow() => ManagerExist && Manager.GetFileProvider().Exist();
 
         [MenuItem(CLEAR_SAVE)]
-        private static void ClearSave() => manager.GetFileProvider().Delete();
+        private static void ClearSave() => Manager.GetFileProvider().Delete();
 
         [MenuItem(CLEAR_SAVE, true)]
-        private static bool ValidateClearSave() => SavesEnabled();
-
-        private static bool SavesEnabled()
-        {
-            if (!manager)
-            {
-                manager = FindObjectOfType<SaveManager>(true);
-                if (manager == null)
-                    return false;
-            }
-            return manager.GetFileProvider().Exist();
-        }
+        private static bool ValidateClearSave() => ManagerExist && Manager.GetFileProvider().Exist();
     }
 }

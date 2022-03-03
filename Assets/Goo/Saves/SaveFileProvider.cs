@@ -5,12 +5,12 @@ using Newtonsoft.Json;
 
 namespace Goo.Saves
 {
+    [Serializable]
     public class SaveFileProvider
     {
-        private const string FILE_NAME = "save.json";
+        private const string DEFAULT_NAME = "save.json";
 
-        [Obsolete]
-        public static string Path => $"{Application.persistentDataPath}/{FILE_NAME}";
+        public string Path => $"{Application.persistentDataPath}/{_fileName}";
 
         private static readonly JsonSerializerSettings _settings = new JsonSerializerSettings()
         {
@@ -21,6 +21,8 @@ namespace Goo.Saves
 #endif
         };
 
+        [SerializeField] private string _fileName = DEFAULT_NAME;
+
         public Save Load()
         {
             return Load(Path);
@@ -30,7 +32,7 @@ namespace Goo.Saves
         {
             if (File.Exists(path))
             {
-                string json = File.ReadAllText(path);
+                string json = Decode(File.ReadAllText(path));
                 var save = JsonConvert.DeserializeObject<Save>(json, _settings);
                 if (save != null)
                     return save;
@@ -46,7 +48,7 @@ namespace Goo.Saves
         public void Save(Save save, string path)
         {
             string json = JsonConvert.SerializeObject(save, _settings);
-            File.WriteAllText(path, json);
+            File.WriteAllText(path, Encode(json));
         }
 
         public void Delete()
@@ -68,6 +70,16 @@ namespace Goo.Saves
         public static bool Exist(string path)
         {
             return File.Exists(path);
+        }
+
+        protected virtual string Encode(string json)
+        {
+            return json;
+        }
+
+        protected virtual string Decode(string content)
+        {
+            return content;
         }
     }
 }

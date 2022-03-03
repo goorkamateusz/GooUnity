@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UnityEngine;
 using Assets.Goo.Tools.Patterns;
 
 namespace Goo.Saves
@@ -7,10 +8,9 @@ namespace Goo.Saves
     public class SaveManager : SceneSingleton<SaveManager>
     {
         // todo clear saves API
-        // todo changing file name option
         public event Action PreSave;
 
-        private SaveFileProvider file = new SaveFileProvider();
+        [SerializeField] private SaveFileProvider file = new SaveFileProvider();
 
         private Save Save { get; set; }
 
