@@ -21,14 +21,9 @@ namespace Goo.Saves
 #endif
         };
 
-        private static SaveFileProvider _instance; // todo temp
-
-        [Obsolete]
-        public static Save Load()
+        public Save Load()
         {
-            if (_instance == null)
-                _instance = new SaveFileProvider();
-            return _instance.Load(Path);
+            return Load(Path);
         }
 
         public Save Load(string path)
@@ -36,17 +31,16 @@ namespace Goo.Saves
             if (File.Exists(path))
             {
                 string json = File.ReadAllText(path);
-                return JsonConvert.DeserializeObject<Save>(json, _settings);
+                var save = JsonConvert.DeserializeObject<Save>(json, _settings);
+                if (save != null)
+                    return save;
             }
             return new Save();
         }
 
-        [Obsolete]
-        public static void Save(Save save)
+        public void Save(Save save)
         {
-            if (_instance == null)
-                _instance = new SaveFileProvider();
-            _instance.Save(save, Path);
+            Save(save, Path);
         }
 
         public void Save(Save save, string path)
@@ -55,29 +49,23 @@ namespace Goo.Saves
             File.WriteAllText(path, json);
         }
 
-        [Obsolete]
-        public static void Delete()
+        public void Delete()
         {
-            if (_instance == null)
-                _instance = new SaveFileProvider();
-            _instance.Delete(Path);
+            Delete(Path);
         }
 
-        public void Delete(string path)
+        public static void Delete(string path)
         {
             if (Exist(path))
                 File.Delete(path);
         }
 
-        [Obsolete]
-        public static bool Exist()
+        public bool Exist()
         {
-            if (_instance == null)
-                _instance = new SaveFileProvider();
-            return _instance.Exist(Path);
+            return Exist(Path);
         }
 
-        public bool Exist(string path)
+        public static bool Exist(string path)
         {
             return File.Exists(path);
         }

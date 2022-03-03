@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Goo.Tools.UnityHelpers;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,9 +8,6 @@ namespace Goo.Saves.Editor
 {
     public class SaveEditor : EditorWindow
     {
-        private const string CLEAN_SAVE_WINDOW = "Playground/Edit saves";
-        private const string CLEAR_SAVE = "Playground/Clear saves";
-
         private Save _saves;
         private Dictionary<string, bool> _toggles = new Dictionary<string, bool>();
         private IEnumerable<string> _sortedKeys;
@@ -19,7 +17,7 @@ namespace Goo.Saves.Editor
 
         private void Awake()
         {
-            _saves = SaveFileProvider.Load();
+            // _saves = SaveFileProvider.Load();
             foreach (var item in _saves)
                 _toggles[item.Key] = false;
             UpdateKeys();
@@ -64,20 +62,39 @@ namespace Goo.Saves.Editor
                 if (toggle.Value)
                     _saves.Remove(toggle.Key);
             }
-            SaveFileProvider.Save(_saves);
+            // SaveFileProvider.Save(_saves);
             UpdateKeys();
         }
+    }
+
+    public class SaveEditorItemsMenu : EditorWindow
+    {
+        private static SaveManager manager;
+
+        private const string CLEAN_SAVE_WINDOW = "Playground/Edit saves";
+        private const string CLEAR_SAVE = "Playground/Clear saves";
 
         [MenuItem(CLEAN_SAVE_WINDOW)]
         private static void OpenWindow() => GetWindow<SaveEditor>();
 
         [MenuItem(CLEAN_SAVE_WINDOW, true)]
-        private static bool ValidateOpenWindow() => SaveFileProvider.Exist();
+        private static bool ValidateOpenWindow() => SavesEnabled();
 
         [MenuItem(CLEAR_SAVE)]
-        private static void ClearSave() => SaveFileProvider.Delete();
+        private static void ClearSave() => manager.GetFileProvider().Delete();
 
         [MenuItem(CLEAR_SAVE, true)]
-        private static bool ValidateClearSave() => SaveFileProvider.Exist();
+        private static bool ValidateClearSave() => SavesEnabled();
+
+        private static bool SavesEnabled()
+        {
+            if (!manager)
+            {
+                manager = FindObjectOfType<SaveManager>(true);
+                if (manager == null)
+                    return false;
+            }
+            return manager.GetFileProvider().Exist();
+        }
     }
 }

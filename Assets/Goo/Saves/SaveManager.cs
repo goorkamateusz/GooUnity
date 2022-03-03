@@ -6,7 +6,11 @@ namespace Goo.Saves
 {
     public class SaveManager : SceneSingleton<SaveManager>
     {
+        // todo clear saves API
+        // todo changing file name option
         public event Action PreSave;
+
+        private SaveFileProvider file = new SaveFileProvider();
 
         private Save Save { get; set; }
 
@@ -28,13 +32,13 @@ namespace Goo.Saves
 
         private void LoadFile()
         {
-            Save = SaveFileProvider.Load();
+            Save = file.Load();
         }
 
         private void SaveFile()
         {
             PreSave?.Invoke();
-            SaveFileProvider.Save(Save);
+            file.Save(Save);
         }
 
         protected override void OnAwake()
@@ -54,5 +58,9 @@ namespace Goo.Saves
             while (!Instance.IsLoaded)
                 yield return null;
         }
+
+#if UNITY_EDITOR
+        public SaveFileProvider GetFileProvider() => file;
+#endif
     }
 }
