@@ -1,3 +1,4 @@
+using Assets.Goo.Characters;
 using UnityEngine;
 
 public class Ability : PlayerComponent

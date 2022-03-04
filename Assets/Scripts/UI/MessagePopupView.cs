@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Assets.Goo.SceneObjects;
 using Assets.Goo.Tools.UnityHelpers;
+using Assets.Goo.Characters;
 
 public class MessagePopupView : UIWindowView
 {

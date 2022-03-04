@@ -1,3 +1,4 @@
+using Assets.Goo.Characters;
 using Assets.Goo.SceneObjects;
 using UnityEngine;
 

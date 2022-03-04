@@ -1,4 +1,5 @@
 using System;
+using Assets.Goo.Characters;
 using UnityEngine;
 
 /// idea No editor state machine animation management

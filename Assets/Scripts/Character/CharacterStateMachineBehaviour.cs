@@ -1,5 +1,6 @@
 using UnityEngine;
 using Assets.Goo.Tools.UnityHelpers;
+using Assets.Goo.Characters;
 
 public class CharacterStateMachineBehaviour : StateMachineBehaviour
 {

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Assets.Goo.Characters;
 using UnityEngine;
 
 public class Character3rdPersonRotate : PlayerComponent
