@@ -1,0 +1,3 @@
+[submodule "Theme"]
+	path = Docs/doxygen-vscode-theme
+	url = https://github.com/goorkamateusz/doxygen-vscode-theme
