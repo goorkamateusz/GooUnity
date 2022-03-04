@@ -88,6 +88,8 @@ public class Character3rdPersonMovement : PlayerMovement
 
     public override float CurrentSpeed => _controller.velocity.magnitude;
 
+    public override Vector3 NormalizedVelocity => Movement.Direction; // todo
+
     protected override void OnStart()
     {
         base.OnStart();
