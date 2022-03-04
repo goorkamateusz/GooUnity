@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Goo.EditorTools;
+using Assets.Goo.EditorTools.Editor;
 
 namespace Goo.Saves.Editor
 {

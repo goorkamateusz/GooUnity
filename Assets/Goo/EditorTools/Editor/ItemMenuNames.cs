@@ -1,4 +1,4 @@
-namespace Goo.EditorTools
+namespace Assets.Goo.EditorTools.Editor
 {
     public static class ItemMenuNames
     {

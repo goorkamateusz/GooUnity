@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Goo.EditorTools
+namespace Assets.Goo.EditorTools.Editor
 {
     public class EditorWindowRelatedToManager<T> : EditorWindow where T : MonoBehaviour
     {
