@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     [SerializeField] private string _identifier;
-    [SerializeField] private GameObject[] _compontentNodes;
+    [SerializeField] private CharacterComponentsManager _components = new CharacterComponentsManager();
     [SerializeField] private CharacterMovement _movement;
     [SerializeField] private AnimatorHandler _animatorHandler;
     [SerializeField] private CharacterColliderInteractions _colliderInteractions;
@@ -29,18 +28,14 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         _movement?.InjectCharacter(this);
-        InitializeComponents();
+        _components.InitializeComponents(this);
     }
 
-    private void InitializeComponents()
+    [ContextMenu("Find components")]
+    protected virtual void FindComponents() => _components.FindComponents(transform);
+
+    protected virtual void Reset()
     {
-        foreach (var node in _compontentNodes)
-        {
-            var abilities = node.GetComponents<ICharacterComponent>();
-            foreach (var ability in abilities)
-            {
-                ability.InjectCharacter(this);
-            }
-        }
+        FindComponents();
     }
 }
