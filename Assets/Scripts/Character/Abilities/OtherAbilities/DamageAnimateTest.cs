@@ -1,3 +1,5 @@
+using Assets.Goo.Characters.Ability;
+
 public class DamageAnimateTest : KeyInputOrientedAbility
 {
     private int _damageId;

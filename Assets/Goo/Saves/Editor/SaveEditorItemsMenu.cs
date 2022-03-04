@@ -1,8 +1,9 @@
 using UnityEditor;
-using Assets.Goo.EditorTools.Editor;
+using Assets.Goo.EditorTools;
 
 namespace Goo.Saves.Editor
 {
+#if UNITY_EDITOR
     public class SaveEditorItemsMenu : EditorWindowRelatedToManager<SaveManager>
     {
         private const string SAVES_MENU = ItemMenuNames.ROOT_MENU;
@@ -21,4 +22,5 @@ namespace Goo.Saves.Editor
         [MenuItem(CLEAR_SAVE, true)]
         private static bool ValidateClearSave() => ManagerExist && Manager.GetFileProvider().Exist();
     }
+#endif
 }

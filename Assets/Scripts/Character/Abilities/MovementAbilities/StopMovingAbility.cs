@@ -1,3 +1,5 @@
+using Assets.Goo.Characters.Ability;
+
 public class StopMovingAbility : KeyInputOrientedAbility
 {
     protected override void OnKeyDown()

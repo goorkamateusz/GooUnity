@@ -1,4 +1,5 @@
 using Assets.Goo.Characters;
+using Assets.Goo.Characters.Interactions;
 using UnityEngine;
 
 public class CharacterMouseClickMovement : PlayerMovement

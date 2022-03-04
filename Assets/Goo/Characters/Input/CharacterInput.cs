@@ -1,4 +1,5 @@
 using UnityEngine;
+using Assets.Goo.Characters.Interactions;
 
 public class CharacterInput : MonoBehaviour
 {

@@ -2,10 +2,11 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Goo.EditorTools.Editor.Attributes
+namespace Assets.Goo.EditorTools
 {
+#if UNITY_EDITOR
     [CustomPropertyDrawer(typeof(LabledListAttribute))]
-    public class NamedArrayDrawer : PropertyDrawer
+    public class LabledListAttributeDrawer : PropertyDrawer
     {
         public override void OnGUI(Rect rect, SerializedProperty property, GUIContent label)
         {
@@ -25,4 +26,5 @@ namespace Assets.Goo.EditorTools.Editor.Attributes
             EditorGUI.PropertyField(rect, property, label);
         }
     }
+#endif
 }

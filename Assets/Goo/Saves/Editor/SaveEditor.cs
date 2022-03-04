@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Assets.Goo.EditorTools.Editor;
+using Assets.Goo.EditorTools;
 
 namespace Goo.Saves.Editor
 {
+#if UNITY_EDITOR
     public class SaveEditor : EditorWindowRelatedToManager<SaveManager>
     {
         private Save _saves;
@@ -66,4 +67,5 @@ namespace Goo.Saves.Editor
             UpdateKeys();
         }
     }
+#endif
 }

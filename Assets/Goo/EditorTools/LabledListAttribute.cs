@@ -1,12 +1,14 @@
 using System;
-using UnityEngine;
 
 namespace Assets.Goo.EditorTools
 {
-    public class LabledListAttribute : PropertyAttribute
+    public class LabledListAttribute : UnityEngine.PropertyAttribute
     {
-        public readonly Type Type;
+        public Type Type { get; }
 
-        public LabledListAttribute(Type type) { Type = type; }
+        public LabledListAttribute(Type type)
+        {
+            Type = type;
+        }
     }
 }

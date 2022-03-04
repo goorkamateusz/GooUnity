@@ -1,4 +1,6 @@
 using Assets.Goo.Characters;
+using Assets.Goo.Characters.Ability;
+using Assets.Goo.Characters.Interactions;
 using UnityEngine;
 
 namespace Assets.Goo.SceneObjects.Characters

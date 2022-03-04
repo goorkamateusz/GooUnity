@@ -1,8 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Goo.EditorTools.Editor
+namespace Assets.Goo.EditorTools
 {
+#if UNITY_EDITOR
     public class EditorWindowRelatedToManager<T> : EditorWindow where T : MonoBehaviour
     {
         private static T manager;
@@ -19,4 +20,5 @@ namespace Assets.Goo.EditorTools.Editor
 
         protected static bool ManagerExist => Manager;
     }
+#endif
 }

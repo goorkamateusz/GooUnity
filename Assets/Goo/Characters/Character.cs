@@ -1,3 +1,4 @@
+using Assets.Goo.Characters.Interactions;
 using UnityEngine;
 
 namespace Assets.Goo.Characters

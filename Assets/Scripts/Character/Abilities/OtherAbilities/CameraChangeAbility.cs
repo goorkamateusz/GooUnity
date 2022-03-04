@@ -1,3 +1,4 @@
+using Assets.Goo.Characters.Ability;
 using UnityEngine;
 
 public class CameraChangeAbility : KeyInputOrientedAbility
