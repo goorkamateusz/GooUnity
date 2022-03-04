@@ -84,6 +84,8 @@ public class Character3rdPersonMovement : PlayerMovement
 
     public Vector3 LastPositionChange { get; protected set; }
 
+    private MovementState state = MovementState.Stand;
+
     public override float CurrentSpeed => _controller.velocity.magnitude;
 
     protected override void OnStart()
@@ -100,8 +102,15 @@ public class Character3rdPersonMovement : PlayerMovement
     {
         if (_movement.Direction != Vector3.zero)
         {
+            // todo desing state machine pattern
+            if (state == MovementState.Stand)
+            {
+                Character.AnimatorHandler.Animator.Play("Locomotion", 0.75f);
+                state = MovementState.Moving;
+            }
+
             DisablePathfinding();
-            
+
             Vector3 forward = transform.rotation * _movement.Direction;
             LastPositionChange = forward * Speed * Time.deltaTime;
 
@@ -110,6 +119,14 @@ public class Character3rdPersonMovement : PlayerMovement
             if (!_controller.isGrounded)
             {
                 _controller.Move(Vector3.down * 0.2f);
+            }
+        }
+        else
+        {
+            if (state == MovementState.Moving)
+            {
+                Character.AnimatorHandler.Animator.Play("Idle", 0.3f);
+                state = MovementState.Stand;
             }
         }
     }

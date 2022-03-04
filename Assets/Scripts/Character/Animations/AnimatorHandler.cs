@@ -2,9 +2,10 @@ using System;
 using Assets.Goo.Characters;
 using UnityEngine;
 
-/// idea No editor state machine animation management
 public class AnimatorHandler : CharacterComponent
 {
+    /// idea No editor state machine animation management
+    /// idea translate enum to string state names
     [SerializeField] protected AnimatorAsyncController _animator;
 
     // todo good practice?
@@ -26,16 +27,5 @@ public class AnimatorHandler : CharacterComponent
     public void SetBool(string name, bool value = true)
     {
         _animator.Animator.SetBool(name, value);
-    }
-
-    protected virtual void Update()
-    {
-        // todo temporary
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            const string StateName = "Locomotion";
-            const float FixedTransitionDuration = 0.75f;
-            _animator.Play(StateName, FixedTransitionDuration);
-        }
     }
 }

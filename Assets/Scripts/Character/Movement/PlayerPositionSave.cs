@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
-using Goo.Saves;
 using UnityEngine;
+using Assets.Goo.Characters;
+using Goo.Saves;
 
 [Serializable]
 public class Vector3Serializable
@@ -10,7 +10,7 @@ public class Vector3Serializable
 
     public Vector3Serializable(Vector3 vector)
     {
-        Array = new float[]{vector.x, vector.y, vector.z};
+        Array = new float[] { vector.x, vector.y, vector.z };
     }
 
     public Vector3 GetVector()
@@ -22,7 +22,7 @@ public class Vector3Serializable
     public static implicit operator Vector3Serializable(Vector3 v) => new Vector3Serializable(v);
 }
 
-public class PlayerPositionSave : Ability
+public class PlayerPositionSave : CharacterComponent
 {
     public class PlayerPositionSerializable : AttributedSaveSerializable
     {

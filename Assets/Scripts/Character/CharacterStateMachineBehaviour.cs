@@ -40,7 +40,7 @@ public class CharacterStateMachineBehaviour : StateMachineBehaviour
 #if UNITY_EDITOR
         else
         {
-            this.LogWarning("StateMachineBehaviour need CharacterAnimatorReference script");
+            this.LogError($"StateMachineBehaviour need {typeof(CharacterAnimatorReference)} script");
         }
 #endif
     }
