@@ -1,4 +1,3 @@
-using Assets.Goo.Tools.UnityHelpers;
 using UnityEngine;
 
 namespace Assets.Goo.SceneObjects
@@ -13,8 +12,9 @@ namespace Assets.Goo.SceneObjects
 
         public override void ColiderEnter(ICharacterInteraction character)
         {
-            if (character.DisplayUI && UiReferenceManager.Initialized)
-                UiReferenceManager.Instance.MessagePopup.Null()?.Open(_message, character);
+            // todo desing UI on messages system
+            // if (character.DisplayUI && UiReferenceManager.Initialized)
+            //     UiReferenceManager.Instance.MessagePopup.Null()?.Open(_message, character);
         }
 
         public override void ColiderExit(ICharacterInteraction character)

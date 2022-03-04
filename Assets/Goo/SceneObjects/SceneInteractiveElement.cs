@@ -29,14 +29,15 @@ namespace Assets.Goo.SceneObjects
 
         protected virtual void DisplayTip(ICharacterInteraction character, string msg)
         {
-            if (character.DisplayUI && UiReferenceManager.Initialized)
-                UiReferenceManager.Instance.KeyActionView.Null()?.DisplayTip(character.Key, msg);
+            // todo desing UI on events
+            // if (character.DisplayUI && UiReferenceManager.Initialized)
+            //     UiReferenceManager.Instance.KeyActionView.Null()?.DisplayTip(character.Key, msg);
         }
 
         protected virtual void HideTip(ICharacterInteraction character)
         {
-            if (character.DisplayUI && UiReferenceManager.Initialized)
-                UiReferenceManager.Instance.KeyActionView.Null()?.HideTip(character.Key);
+            // if (character.DisplayUI && UiReferenceManager.Initialized)
+            //     UiReferenceManager.Instance.KeyActionView.Null()?.HideTip(character.Key);
         }
     }
 }

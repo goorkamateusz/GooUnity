@@ -11,6 +11,7 @@ public class MovementTaskProvider
 
     public bool CheckAll()
     {
+        // fixme strange bool return
         bool anyDone = false;
         
         for (int i = _tasks.Count - 1; i > -1; --i)

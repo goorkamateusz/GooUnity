@@ -2,6 +2,7 @@ using System;
 
 public class MovementTask
 {
+    // todo separate more efficient abstract
     public Action Do;
     public Action Otherwise;
     public Func<bool> Condition;

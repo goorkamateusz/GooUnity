@@ -23,7 +23,7 @@ public class CharacterPathfinding : ICharacterComponent
         _path = new NavMeshPath();
     }
 
-    internal void ResetPath()
+    public void ResetPath()
     {
         _path.ClearCorners();
     }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CharacterInput : MonoBehaviour
 {
+    // fixme it's... not as nice as can be...
     [SerializeField] private int _mouseButtonNumber = 0;
 
     private KeyInteractions _keys = new KeyInteractions();
