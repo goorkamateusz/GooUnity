@@ -1,6 +1,6 @@
 using UnityEngine;
-using Assets.Goo.Tools.UnityHelpers;
 using Assets.Goo.Characters;
+using Assets.Goo.Tools.EventSystem;
 
 namespace Assets.Goo.SceneObjects
 {
@@ -16,6 +16,13 @@ namespace Assets.Goo.SceneObjects
     [RequireComponent(typeof(Collider))]
     public abstract class SceneInteractiveElement : MonoBehaviour
     {
+        public struct Event
+        {
+            public bool Hide;
+            public KeyCode Key;
+            public string Messsage;
+        }
+
         public abstract void ColiderEnter(ICharacterInteraction character);
         public abstract void ColiderExit(ICharacterInteraction character);
 
@@ -29,15 +36,14 @@ namespace Assets.Goo.SceneObjects
 
         protected virtual void DisplayTip(ICharacterInteraction character, string msg)
         {
-            // todo desing UI on events
-            // if (character.DisplayUI && UiReferenceManager.Initialized)
-            //     UiReferenceManager.Instance.KeyActionView.Null()?.DisplayTip(character.Key, msg);
+            if (character.DisplayUI)
+                EventManager.Instance.Trigger(new Event { Key = character.Key, Messsage = msg });
         }
 
         protected virtual void HideTip(ICharacterInteraction character)
         {
-            // if (character.DisplayUI && UiReferenceManager.Initialized)
-            //     UiReferenceManager.Instance.KeyActionView.Null()?.HideTip(character.Key);
+            if (character.DisplayUI)
+                EventManager.Instance.Trigger(new Event { Key = character.Key, Hide = true });
         }
     }
 }

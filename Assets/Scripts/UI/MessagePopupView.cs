@@ -1,16 +1,27 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Assets.Goo.SceneObjects;
-using Assets.Goo.Tools.UnityHelpers;
 using Assets.Goo.Characters;
+using Assets.Goo.SceneObjects;
+using Assets.Goo.Tools.EventSystem;
+using Assets.Goo.Tools.UnityHelpers;
+using TMPro;
 
-public class MessagePopupView : UIWindowView
+public class MessagePopupView : UIWindowView, IEventListener<MessageBox.EventMessageBox>
 {
     [SerializeField] private TMP_Text _message;
     [SerializeField] private Button _button;
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private GameObject _blend;
+
+    public void OnTrigger(MessageBox.EventMessageBox e)
+    {
+        Open(e.Message, e.Interaction);
+    }
+
+    public void OnTrigger(string e)
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void Open(string message)
     {
@@ -33,6 +44,13 @@ public class MessagePopupView : UIWindowView
     protected void Awake()
     {
         _button.onClick.AddListener(Close);
+        this.SubscribeEvent();
+        gameObject.SetActive(false);
+    }
+
+    protected void OnDestroy()
+    {
+        this.UnsubscribeEvent();
     }
 
     private void Close()

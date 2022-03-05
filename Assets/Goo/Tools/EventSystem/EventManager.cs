@@ -17,7 +17,7 @@ namespace Assets.Goo.Tools.EventSystem
     {
         private Dictionary<Type, List<IEventListener>> subscribers = new Dictionary<Type, List<IEventListener>>();
 
-        public void Subscribe<T>(IEventListener<T> listener)
+        internal void Subscribe<T>(IEventListener<T> listener)
         {
             Type eventType = typeof(T);
             List<IEventListener> list;
@@ -32,7 +32,7 @@ namespace Assets.Goo.Tools.EventSystem
             list.Add(listener);
         }
 
-        public void Unsubscribe<T>(IEventListener<T> listener)
+        internal void Unsubscribe<T>(IEventListener<T> listener)
         {
             Type eventType = typeof(T);
 

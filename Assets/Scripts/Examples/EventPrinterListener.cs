@@ -10,12 +10,12 @@ public class EventPrinterListener : MonoBehaviour, IEventListener<PrinterEvent>
 {
     protected void Awake()
     {
-        EventManager.Instance.Subscribe(this);
+        this.SubscribeEvent();
     }
 
     protected void OnDestory()
     {
-        EventManager.Instance.Unsubscribe(this);
+        this.UnsubscribeEvent();
     }
 
     public void OnTrigger(PrinterEvent e)

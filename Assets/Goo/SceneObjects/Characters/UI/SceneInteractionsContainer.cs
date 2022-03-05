@@ -1,13 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Goo.Tools.UnityHelpers;
 using UnityEngine;
+using Assets.Goo.Tools.EventSystem;
+using Assets.Goo.Tools.UnityHelpers;
 
 namespace Assets.Goo.SceneObjects.Characters.UI
 {
-    public class SceneInteractionsContainer : MonoBehaviour
+    public class SceneInteractionsContainer : MonoBehaviour, IEventListener<SceneInteractiveElement.Event>
     {
         [SerializeField] private List<SceneInteractionView> _views;
+
+        public void OnTrigger(SceneInteractiveElement.Event e)
+        {
+            if (e.Hide) HideTip(e.Key);
+            else DisplayTip(e.Key, e.Messsage);
+        }
 
         public void DisplayTip(KeyCode key, string desc)
         {
@@ -50,6 +57,16 @@ namespace Assets.Goo.SceneObjects.Characters.UI
         private SceneInteractionView GetView(KeyCode key)
         {
             return _views.FirstOrDefault((view) => view.Key == key);
+        }
+
+        protected void Awake()
+        {
+            this.SubscribeEvent();
+        }
+
+        protected void OnDestroy()
+        {
+            this.UnsubscribeEvent();
         }
     }
 }
