@@ -4,16 +4,7 @@ using Assets.Goo.Tools.Patterns;
 
 namespace Assets.Goo.Tools.EventSystem
 {
-    public interface IEventListener
-    {
-    }
-
-    public interface IEventListener<T> : IEventListener
-    {
-        void OnTrigger(T e);
-    }
-
-    public class EventManager : Singleton<EventManager>
+    internal class EventManager : Singleton<EventManager>
     {
         private Dictionary<Type, List<IEventListener>> subscribers = new Dictionary<Type, List<IEventListener>>();
 
@@ -34,19 +25,20 @@ namespace Assets.Goo.Tools.EventSystem
 
         internal void Unsubscribe<T>(IEventListener<T> listener)
         {
-            Type eventType = typeof(T);
-
-            if (subscribers.TryGetValue(eventType, out var list))
-            {
+            if (subscribers.TryGetValue(typeof(T), out var list))
                 list?.Remove(listener);
-            }
         }
 
-        public void Trigger<T>(T e)
+        internal bool IsSubscriber<T>(IEventListener<T> listener)
         {
-            Type eventType = typeof(T);
+            if (subscribers.TryGetValue(typeof(T), out var list))
+                return list.Contains(listener);
+            return false;
+        }
 
-            if (subscribers.TryGetValue(eventType, out var list))
+        internal void Trigger<T>(T e)
+        {
+            if (subscribers.TryGetValue(typeof(T), out var list))
             {
                 foreach (var listener in list)
                 {

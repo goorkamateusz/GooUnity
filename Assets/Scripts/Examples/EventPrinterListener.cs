@@ -1,7 +1,7 @@
 using UnityEngine;
 using Assets.Goo.Tools.EventSystem;
 
-public class PrinterEvent
+public class PrinterEvent : IEvent<PrinterEvent>
 {
     public string Text;
 }

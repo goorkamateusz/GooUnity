@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class EventSender : MonoBehaviour
 {
+    private PrinterEvent printerEvent = new PrinterEvent
+    {
+        Text = $"Pressed {KeyCode.P}"
+    };
+
     protected void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            EventManager.Instance.Trigger(new PrinterEvent
-            {
-                Text = $"Pressed {KeyCode.P}"
-            });
+            printerEvent.Send();
         }
     }
 }
