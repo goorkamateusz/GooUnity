@@ -6,7 +6,8 @@ public class DegreesText : MonoBehaviour
 {
     [SerializeField] TMP_Text _txt;
 
-    protected void Update()
+    [ContextMenu("UpdateText")]
+    protected void UpdateText()
     {
         SetText();
     }

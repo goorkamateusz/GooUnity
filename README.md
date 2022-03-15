@@ -36,6 +36,7 @@ One of the most important part of this initiative.
 
 - My YouTube recommendation playlist [Unity Tips & Tricks](https://youtube.com/playlist?list=PLcGcTWv6KerEVKerBMOxhI3ZeTkRvRagI).
 (More content will be appear in future....)
+- [Tips & Tricks notes](Documentation/TipsAndTricks.md)
 
 ## Author
 

@@ -13,7 +13,7 @@ public class EventPrinterListener : MonoBehaviour, IEventListener<PrinterEvent>
         this.SubscribeEvent();
     }
 
-    protected void OnDestory()
+    protected void OnDestroy()
     {
         this.UnsubscribeEvent();
     }

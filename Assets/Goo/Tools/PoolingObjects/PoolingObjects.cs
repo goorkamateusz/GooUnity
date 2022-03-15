@@ -42,7 +42,7 @@ namespace Assets.Goo.Tools.PoolingObjects
                 item.SetActive(false);
         }
 
-        public void DestoryAll()
+        public void DestroyAll()
         {
             foreach (var item in _list)
                 Destroy(item);
