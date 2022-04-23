@@ -1,5 +1,5 @@
-using Assets.Goo.Characters.Interactions;
 using UnityEngine;
+using Assets.Goo.Characters.Interactions;
 
 namespace Assets.Goo.Characters
 {
@@ -15,6 +15,7 @@ namespace Assets.Goo.Characters
         public AnimatorHandler AnimatorHandler => _animatorHandler;
         public CharacterMovement Movement => _movement;
         public CharacterColliderInteractions ColliderInteractions => _colliderInteractions;
+        public CharacterComponentsManager Components => _components;
 
         public Vector3 Position
         {
@@ -34,12 +35,14 @@ namespace Assets.Goo.Characters
             _components.InitializeComponents(this);
         }
 
+#if UNITY_EDITOR
         [ContextMenu("Find components")]
-        protected virtual void FindComponents() => _components.FindComponents(transform);
+        protected virtual void __FindComponents() => _components.__FindComponents(transform);
 
         protected virtual void Reset()
         {
-            FindComponents();
+            __FindComponents();
         }
+#endif
     }
 }

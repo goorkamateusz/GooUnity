@@ -4,7 +4,6 @@ using Goo.Saves;
 using Assets.Goo.Characters.Interactions;
 using Assets.Goo.Characters.Ability;
 
-[RequireComponent(typeof(Collider))]
 public class CharacterInventory : Ability
 {
     [SerializeField] private float _pickableDistance = 1f;
