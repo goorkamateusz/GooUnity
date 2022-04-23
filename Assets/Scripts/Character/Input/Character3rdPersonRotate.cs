@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using Assets.Goo.Characters;
 using UnityEngine;
+using Assets.Goo.Characters;
 
 public class Character3rdPersonRotate : PlayerComponent
 {
@@ -11,11 +11,14 @@ public class Character3rdPersonRotate : PlayerComponent
     [SerializeField] private KeyCode _cameraModeKey = KeyCode.LeftShift;
     [SerializeField] private Vector3 _cameraPositionScale = new Vector3(1, 1.5f, 3);
     [SerializeField] private float _modeChangeDuration = 1.5f;
+    [SerializeField] private float _histereza = 0.1f;
 
     private PersistantKeyHandler _rotateToggle;
     private bool _lock = false;
     private Vector2 _referencePoint;
     private Vector2 _centerDistance;
+
+    public float HorizontalAngleChange { get; protected set; }
 
     protected override void OnStart()
     {
@@ -40,9 +43,19 @@ public class Character3rdPersonRotate : PlayerComponent
         }
         else
         {
-            float angle = _centerDistance.x * _centerDistance.x * _centerDistance.x * Time.deltaTime;
             _cameraParent.localRotation = Quaternion.Euler(_centerDistance.y * _cameraTopDownMaximumAmplitude, 0, 0);
-            Character.transform.Rotate(Vector3.up, -angle * _characterAngelVelocity);
+
+            float angle = _centerDistance.x * _centerDistance.x * _centerDistance.x;
+
+            if (Mathf.Abs(angle) > _histereza)
+            {
+                HorizontalAngleChange = -angle * _characterAngelVelocity * Time.deltaTime;
+                Character.transform.Rotate(Vector3.up, HorizontalAngleChange);
+            }
+            else
+            {
+                HorizontalAngleChange = 0;
+            }
         }
     }
 
