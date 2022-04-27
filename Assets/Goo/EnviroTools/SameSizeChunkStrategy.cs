@@ -14,17 +14,15 @@ namespace Assets.Goo.EnviroTools
             Vector2 border = Vector2.zero;
             List<Transform> chunks = new List<Transform>();
 
-            (Vector3 min, Vector3 max) = GetBox(transform);
+            (Vector3 min, Vector3 max) = ChildAnalyser.GetBox(transform);
             (float horizontal, float vertical) = Step(min, max);
 
             for (int x = 0; x < _number.x; x++)
             {
                 border.x = min.x + horizontal * (x + 1);
-
                 for (int y = 0; y < _number.y; y++)
                 {
                     border.y = min.z + vertical * (y + 1);
-
                     var chunk = new GameObject($"Chunk({x},{y})");
                     chunks.Add(chunk.transform);
 
@@ -41,25 +39,19 @@ namespace Assets.Goo.EnviroTools
                 chunk.parent = transform;
         }
 
-        private (float, float) Step(Vector3 min, Vector3 max)
-        {
-            float horizontal = (max.x - min.x) / ((float)_number.x);
-            float vertical = (max.z - min.z) / ((float)_number.y);
-            return (horizontal, vertical);
-        }
-
         internal override void DrawGizmos(Transform transform)
         {
             Gizmos.color = Color.red;
+            Vector3 start, finish;
 
-            (Vector3 min, Vector3 max) = GetBox(transform);
-            float horizontal = (max.x - min.x) / ((float)_number.x);
-            float vertical = (max.z - min.z) / ((float)_number.y);
+            (Vector3 min, Vector3 max) = ChildAnalyser.GetBox(transform);
+            (float horizontal, float vertical) = Step(min, max);
 
-            Vector3 start = min;
-            start.y = 0;
-            Vector3 finish = min;
-            finish.y = 0;
+            min.y = 0f;
+            max.y = 0f;
+
+            start = min;
+            finish = min;
             finish.z = max.z;
 
             for (int i = 0; i < _number.x + 1; i++)
@@ -70,12 +62,10 @@ namespace Assets.Goo.EnviroTools
             }
 
             start = min;
-            start.y = 0;
             finish = min;
-            finish.y = 0;
             finish.x = max.x;
 
-            for (int i = 0; i < _number.y + 180f; i++)
+            for (int i = 0; i < _number.y + 1; i++)
             {
                 Gizmos.DrawLine(start, finish);
                 start.z += vertical;
@@ -83,26 +73,18 @@ namespace Assets.Goo.EnviroTools
             }
         }
 
-        private static (Vector3, Vector3) GetBox(Transform transform)
+        private (float, float) Step(Vector3 min, Vector3 max)
         {
-            Vector3 min = Vector3.positiveInfinity;
-            Vector3 max = Vector3.negativeInfinity;
+            float horizontal = (max.x - min.x) / ((float)_number.x);
+            float vertical = (max.z - min.z) / ((float)_number.y);
+            return (horizontal, vertical);
+        }
 
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                Transform child = transform.GetChild(i);
-                Vector3 position = child.position;
-
-                if (min.x > position.x) min.x = position.x;
-                if (min.y > position.y) min.y = position.y;
-                if (min.z > position.z) min.z = position.z;
-
-                if (max.x < position.x) max.x = position.x;
-                if (max.y < position.y) max.y = position.y;
-                if (max.z < position.z) max.z = position.z;
-            }
-
-            return (min, max);
+        private (float, float) Step(Vector2 min, Vector2 max)
+        {
+            float horizontal = (max.x - min.x) / ((float)_number.x);
+            float vertical = (max.y - min.y) / ((float)_number.y);
+            return (horizontal, vertical);
         }
     }
 }
