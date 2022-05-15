@@ -1,8 +1,9 @@
 # Playground Engine
 
-It is a experimental code base for RPG 3D games. The aim of this is a implement the most common and useful games systems, objects and logics with the full care about architecture, good patterns and code smells.
-
+It is a experimental code base for RPG 3D games. The idea for this project is implement the most common and useful games systems, objects and logics with the full care about architecture, good patterns and code smells.
 I hope it will systematically grow and develop this will be instructive.
+
+Code is totally **work in progress** so... You can join to creating this!
 
 ## Notes
 
@@ -11,9 +12,9 @@ I hope it will systematically grow and develop this will be instructive.
 ## Collaborate
 
 I would like to get ideas, tips & opinion about code, architecture and features from You!
-Create issue of Your ideas, comments, request and bugs report!
+Create issue of Your ideas, comments, request and bugs report or send private message on my social medias.
 
-Before first pull request read [CONTRIBUTING.md](Docs/CONTRIBUTING.md).
+Before first pull request read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Tools
 
