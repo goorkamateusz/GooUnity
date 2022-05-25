@@ -5,7 +5,7 @@ using Assets.Goo.Tools.Pooling;
 using Assets.Goo.UnitTests;
 using NUnit.Framework;
 
-namespace Assets.GooTests.Tests.Pooling
+namespace Assets.GooTests.EditorMode.Pooling
 {
     public class PoolingObjectsTests
     {

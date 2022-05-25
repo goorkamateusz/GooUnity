@@ -1,7 +1,7 @@
 using Assets.Goo.Tools.EventSystem;
 using NUnit.Framework;
 
-namespace Assets.GooTests.Tests.EventSystem
+namespace Assets.GooTests.EditorMode.EventSystem
 {
     public class MultipleEventListenerTests
     {
