@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
-    internal class TestablePooler : PoolingObjects, IMonoBehaviourTest
+    internal class TestablePooler : ObjectPooler, IMonoBehaviourTest
     {
         public bool IsTestFinished { get; set; }
     }

@@ -3,7 +3,7 @@ using Assets.Goo.Tools.Pooling;
 
 public class FloatingTextGenerator : MonoBehaviour
 {
-    [SerializeField] private PoolingObjects _pooling;
+    [SerializeField] private ObjectPooler _pooling;
 
     public void ShowText(string msg)
     {

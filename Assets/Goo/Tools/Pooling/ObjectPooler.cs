@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Goo.Tools.Pooling
 {
-    public class PoolingObjects : MonoBehaviour
+    public class ObjectPooler : MonoBehaviour, IObjectPooler
     {
         public const string PREFIX_NAME = "[Pooling] ";
 
@@ -14,19 +14,16 @@ namespace Assets.Goo.Tools.Pooling
 
         private List<GameObject> _list = new List<GameObject>();
 
-        public T GetObject<T>()
-        {
-            GameObject obj = GetObject();
-            return obj.GetComponent<T>();
-        }
-
-        public GameObject GetObject()
+        public virtual GameObject GetObject()
         {
             GameObject obj = null;
             foreach (var o in _list)
             {
                 if (!o.activeSelf)
+                {
                     obj = o;
+                    break;
+                }
             }
 
             if (obj == null)
@@ -39,19 +36,7 @@ namespace Assets.Goo.Tools.Pooling
             return obj;
         }
 
-        public void DisableAll()
-        {
-            foreach (var item in _list)
-                item.SetActive(false);
-        }
-
-        public void DestroyAll()
-        {
-            foreach (var item in _list)
-                Destroy(item);
-        }
-
-        public GameObject GetObject(Vector3 position, Quaternion rotation)
+        public virtual GameObject GetObject(Vector3 position, Quaternion rotation)
         {
             var obj = GetObject();
             obj.transform.position = position;
@@ -59,7 +44,25 @@ namespace Assets.Goo.Tools.Pooling
             return obj;
         }
 
-        protected void Awake()
+        public virtual T GetObject<T>()
+        {
+            GameObject obj = GetObject();
+            return obj.GetComponent<T>();
+        }
+
+        public virtual void DisableAll()
+        {
+            foreach (var item in _list)
+                item.SetActive(false);
+        }
+
+        public virtual void DestroyAll()
+        {
+            foreach (var item in _list)
+                Destroy(item);
+        }
+
+        protected virtual void Awake()
         {
             if (_prefab == null)
                 throw new NullReferenceException("Prefab to pool is null");
