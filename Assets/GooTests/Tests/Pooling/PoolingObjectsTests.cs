@@ -1,7 +1,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.TestTools;
 using Assets.Goo.Tools.Pooling;
 using NUnit.Framework;
 
@@ -9,18 +8,13 @@ namespace Assets.GooTests.Tests.Pooling
 {
     public class PoolingObjectsTests
     {
-        public class TestablePoolingObjects : PoolingObjects, IMonoBehaviourTest
-        {
-            public bool IsTestFinished { get; set; }
-        }
-
         //! 1 ----------
         [Test]
         public void GetObjectTests_Manual()
         {
             var objectToPool = new GameObject("test name");
             var gameObject = new GameObject();
-            var pooler = gameObject.AddComponent<TestablePoolingObjects>();
+            var pooler = gameObject.AddComponent<PoolingObjects>();
             var so = new SerializedObject(pooler);
             so.FindProperty("_prefab").objectReferenceValue = objectToPool;
             so.ApplyModifiedProperties();
@@ -33,7 +27,7 @@ namespace Assets.GooTests.Tests.Pooling
         public void GetObjectTests_TupleArray()
         {
             var objectToPool = new GameObject("test name");
-            (var gameObject, var pooler) = MonoBehaviourTests.Initialize<PoolingObjects>(new (string, Action<SerializedProperty>)[]
+            var pooler = MonoBehaviourTests.Initialize<PoolingObjects>(new (string, Action<SerializedProperty>)[]
             {
                 ("_prefab", p => p.objectReferenceValue = objectToPool)
             });
@@ -46,7 +40,7 @@ namespace Assets.GooTests.Tests.Pooling
         public void GetObjectTests_StructArray()
         {
             var objectToPool = new GameObject("test name");
-            (var gameObject, var pooler) = MonoBehaviourTests.Initialize<PoolingObjects>(new MonoBehaviourTests.Initializer[]
+            var pooler = MonoBehaviourTests.Initialize<PoolingObjects>(new MonoBehaviourTests.Initializer[]
             {
                 new MonoBehaviourTests.Initializer
                 {
@@ -63,7 +57,7 @@ namespace Assets.GooTests.Tests.Pooling
         public void GetObjectTests_Chain()
         {
             var objectToPool = new GameObject("test name");
-            (var gameObject, var pooler) = MonoBehaviourTests.InitializeChain<PoolingObjects>()
+            var pooler = MonoBehaviourInitializer<PoolingObjects>.Instantiate()
                 .Set("_prefab", p => p.objectReferenceValue = objectToPool)
                 .Final();
             var actual = pooler.GetObject();
@@ -73,15 +67,15 @@ namespace Assets.GooTests.Tests.Pooling
 
     public static class MonoBehaviourTests
     {
-        public static (GameObject, T) Initialize<T>() where T : Component
+        public static T Initialize<T>() where T : Component
         {
             var go = new GameObject();
-            return (go, go.AddComponent<T>());
+            return go.AddComponent<T>();
         }
 
-        public static (GameObject, T) Initialize<T>((string, Action<SerializedProperty>)[] properties) where T : Component
+        public static T Initialize<T>((string, Action<SerializedProperty>)[] properties) where T : Component
         {
-            (GameObject go, T o) = Initialize<T>();
+            T o = Initialize<T>();
             var so = new SerializedObject(o);
 
             foreach ((string name, var action) in properties)
@@ -90,7 +84,7 @@ namespace Assets.GooTests.Tests.Pooling
             }
 
             so.ApplyModifiedProperties();
-            return (go, o);
+            return o;
         }
 
         public struct Initializer
@@ -99,9 +93,9 @@ namespace Assets.GooTests.Tests.Pooling
             public Action<SerializedProperty> Action;
         }
 
-        public static (GameObject, T) Initialize<T>(Initializer[] properties) where T : Component
+        public static T Initialize<T>(Initializer[] properties) where T : Component
         {
-            (GameObject go, T o) = Initialize<T>();
+            T o = Initialize<T>();
             var so = new SerializedObject(o);
 
             foreach (var p in properties)
@@ -110,38 +104,39 @@ namespace Assets.GooTests.Tests.Pooling
             }
 
             so.ApplyModifiedProperties();
-            return (go, o);
+            return o;
         }
 
-        public class InitializerChain<T> where T : Component
+    }
+
+    public class MonoBehaviourInitializer<T> where T : Component
+    {
+        private T _component;
+        private SerializedObject _serialized;
+
+        private MonoBehaviourInitializer(T component)
         {
-            public (GameObject go, T o) _o;
-            public SerializedObject _s;
-
-            public InitializerChain((GameObject, T) obj)
-            {
-                _o = obj;
-                (_, T o) = obj;
-                _s = new SerializedObject(o);
-            }
-
-            public InitializerChain<T> Set(string name, Action<SerializedProperty> action)
-            {
-                action(_s.FindProperty(name));
-                return this;
-            }
-
-            public (GameObject, T) Final()
-            {
-                _s.ApplyModifiedProperties();
-                return _o;
-            }
+            _component = component;
+            _serialized = new SerializedObject(component);
         }
 
-        public static InitializerChain<T> InitializeChain<T>() where T : Component
+        public MonoBehaviourInitializer<T> Set(string name, Action<SerializedProperty> action)
         {
-            var t = Initialize<T>();
-            return new InitializerChain<T>(t);
+            action(_serialized.FindProperty(name));
+            return this;
+        }
+
+        public T Final()
+        {
+            _serialized.ApplyModifiedProperties();
+            return _component;
+        }
+
+        public static MonoBehaviourInitializer<T> Instantiate()
+        {
+            var go = new GameObject();
+            var t = go.AddComponent<T>();
+            return new MonoBehaviourInitializer<T>(t);
         }
     }
 }
