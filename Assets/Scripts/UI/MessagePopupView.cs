@@ -13,7 +13,7 @@ public class MessagePopupView : UIWindowView, IEventListener<MessageBox.EventMes
     [SerializeField] private TMP_Text _buttonText;
     [SerializeField] private GameObject _blend;
 
-    public void OnTrigger(MessageBox.EventMessageBox e)
+    public void OnEvent(MessageBox.EventMessageBox e)
     {
         Open(e.Message, e.Interaction);
     }

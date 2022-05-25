@@ -15,6 +15,11 @@ namespace Assets.Goo.Tools.Patterns
         }
 
         public static bool Initialized => _instance != null;
-        public static bool NotInitialized => _instance == null;
+
+        protected static void __NullSingleton()
+        {
+            /// Yea... It's a little hack... but it's needed for unit tests
+            _instance = null;
+        }
     }
 }

@@ -18,7 +18,7 @@ public class EventPrinterListener : MonoBehaviour, IEventListener<PrinterEvent>
         this.UnsubscribeEvent();
     }
 
-    public void OnTrigger(PrinterEvent e)
+    public void OnEvent(PrinterEvent e)
     {
         Debug.Log(e.Text);
     }

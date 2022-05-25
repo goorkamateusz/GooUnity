@@ -13,8 +13,14 @@ namespace Assets.GooTests.Tests.EventSystem
             public EventA ReceivedA { get; private set; }
             public EventB ReceivedB { get; private set; }
 
-            public void OnTrigger(EventA e) => ReceivedA = e;
-            public void OnTrigger(EventB e) => ReceivedB = e;
+            public void OnEvent(EventA e) => ReceivedA = e;
+            public void OnEvent(EventB e) => ReceivedB = e;
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            Events.ResetEventManager();
         }
 
         [Test]

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Goo.Tools.PoolingObjects
+namespace Assets.Goo.Tools.Pooling
 {
     public class PoolingObjects : MonoBehaviour
     {

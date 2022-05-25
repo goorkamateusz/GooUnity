@@ -10,7 +10,7 @@ namespace Assets.Goo.SceneObjects.Characters.UI
     {
         [SerializeField] private List<SceneInteractionView> _views;
 
-        public void OnTrigger(SceneInteractiveElement.Event e)
+        public void OnEvent(SceneInteractiveElement.Event e)
         {
             if (e.Hide) HideTip(e.Key);
             else DisplayTip(e.Key, e.Messsage);

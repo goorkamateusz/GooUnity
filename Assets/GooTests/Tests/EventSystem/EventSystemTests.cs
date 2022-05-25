@@ -11,11 +11,17 @@ namespace Assets.GooTests.Tests.EventSystem
         {
             public Event Received { get; private set; }
 
-            public void OnTrigger(Event e) => Received = e;
+            public void OnEvent(Event e) => Received = e;
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            Events.ResetEventManager();
         }
 
         [Test]
-        public void ListenerInitalState()
+        public void ListenerInitialState()
         {
             var listener = new Listener();
             Assert.IsFalse(listener.IsEventSubscribed());
@@ -30,7 +36,7 @@ namespace Assets.GooTests.Tests.EventSystem
         }
 
         [Test]
-        public void ListenerUnSubsribed()
+        public void ListenerUnSubscribed()
         {
             var listener = new Listener();
             listener.SubscribeEvent();
@@ -39,7 +45,7 @@ namespace Assets.GooTests.Tests.EventSystem
         }
 
         [Test]
-        public void ListenerGetSubsribed()
+        public void ListenerGetSubscribed()
         {
             var listener = new Listener();
             listener.SubscribeEvent();

@@ -1,4 +1,4 @@
-using Assets.Goo.Tools.PoolingObjects;
+using Assets.Goo.Tools.Pooling;
 using UnityEngine;
 
 public class InventoryView : MonoBehaviour

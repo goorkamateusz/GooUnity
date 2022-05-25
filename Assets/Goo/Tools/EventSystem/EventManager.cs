@@ -19,8 +19,8 @@ namespace Assets.Goo.Tools.EventSystem
                 subscribers[eventType] = list;
             }
 
-            /// idae validation of duplications
-            list.Add(listener);
+            if (!list.Contains(listener))
+                list.Add(listener);
         }
 
         internal void Unsubscribe<T>(IEventListener<T> listener)
@@ -42,9 +42,23 @@ namespace Assets.Goo.Tools.EventSystem
             {
                 foreach (var listener in list)
                 {
-                    (listener as IEventListener<T>).OnTrigger(e);
+                    (listener as IEventListener<T>).OnEvent(e);
                 }
             }
+        }
+
+        internal void NullSingleton()
+        {
+            __NullSingleton();
+        }
+    }
+
+    public static class Events
+    {
+        public static void ResetEventManager()
+        {
+            if (EventManager.Initialized)
+                EventManager.Instance.NullSingleton();
         }
     }
 }

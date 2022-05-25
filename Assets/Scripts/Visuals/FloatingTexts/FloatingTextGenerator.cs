@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Goo.Tools.PoolingObjects;
+using Assets.Goo.Tools.Pooling;
 
 public class FloatingTextGenerator : MonoBehaviour
 {
