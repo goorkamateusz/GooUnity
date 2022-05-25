@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,6 +61,9 @@ namespace Assets.Goo.Tools.Pooling
 
         protected void Awake()
         {
+            if (_prefab == null)
+                throw new NullReferenceException("Prefab to pool is null");
+
             if (_parent == null)
             {
                 var parent = new GameObject($"{PREFIX_NAME}{_prefab.name}");

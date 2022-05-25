@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Assets.Goo.Tools.Pooling;
-using Assets.Goo.UnitTests;
 using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
@@ -14,26 +13,18 @@ namespace Assets.GooTests.EditorMode.Pooling
 
     internal class ExampleComponent : MonoBehaviour { }
 
-    public class PoolingObjectsTests
+    public abstract class PoolingObjectsTests
     {
-        private const string Name = "TestName";
+        protected const string Name = "TestName";
 
-        private TestablePooler _pooler;
-        private GameObject _prefab;
+        internal TestablePooler _pooler;
+        protected GameObject _prefab;
 
         [SetUp]
-        public void SetUp()
-        {
-            _prefab = new GameObject(Name);
-            _pooler = MonoBehaviourInitializer<TestablePooler>.Instantiate()
-                .Set("_prefab", p => p.objectReferenceValue = _prefab)
-                .Apply()
-                .RunInEditor()
-                .Get();
-        }
+        public abstract void SetUp();
 
         [TearDown]
-        public void TearDown()
+        public virtual void TearDown()
         {
             _pooler.IsTestFinished = true;
         }
@@ -67,13 +58,6 @@ namespace Assets.GooTests.EditorMode.Pooling
         {
             var actual = _pooler.GetObject();
             Assert.NotNull(actual.transform.parent);
-        }
-
-        [Test]
-        public void GetObject_RootNameConvention()
-        {
-            var actual = _pooler.GetObject();
-            Assert.IsTrue(actual.transform.parent?.name.StartsWith(TestablePooler.PREFIX_NAME));
         }
 
         [Test]
