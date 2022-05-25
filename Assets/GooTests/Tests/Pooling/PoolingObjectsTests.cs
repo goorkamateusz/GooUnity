@@ -1,142 +1,79 @@
-using System;
-using UnityEditor;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.TestTools;
 using Assets.Goo.Tools.Pooling;
+using Assets.Goo.UnitTests;
 using NUnit.Framework;
 
 namespace Assets.GooTests.Tests.Pooling
 {
     public class PoolingObjectsTests
     {
-        //! 1 ----------
-        [Test]
-        public void GetObjectTests_Manual()
-        {
-            var objectToPool = new GameObject("test name");
-            var gameObject = new GameObject();
-            var pooler = gameObject.AddComponent<PoolingObjects>();
-            var so = new SerializedObject(pooler);
-            so.FindProperty("_prefab").objectReferenceValue = objectToPool;
-            so.ApplyModifiedProperties();
-            var actual = pooler.GetObject();
-            Assert.AreEqual("test name(Clone)", actual.name);
-        }
+        private class ExampleComponent : MonoBehaviour { }
 
-        //! 2 ----------
-        [Test]
-        public void GetObjectTests_TupleArray()
-        {
-            var objectToPool = new GameObject("test name");
-            var pooler = MonoBehaviourTests.Initialize<PoolingObjects>(new (string, Action<SerializedProperty>)[]
-            {
-                ("_prefab", p => p.objectReferenceValue = objectToPool)
-            });
-            var actual = pooler.GetObject();
-            Assert.AreEqual("test name(Clone)", actual.name);
-        }
+        private const string Name = "TestName";
 
-        //! 3 ----------
-        [Test]
-        public void GetObjectTests_StructArray()
-        {
-            var objectToPool = new GameObject("test name");
-            var pooler = MonoBehaviourTests.Initialize<PoolingObjects>(new MonoBehaviourTests.Initializer[]
-            {
-                new MonoBehaviourTests.Initializer
-                {
-                    Name = "_prefab",
-                    Action = p => p.objectReferenceValue = objectToPool
-                }
-            });
-            var actual = pooler.GetObject();
-            Assert.AreEqual("test name(Clone)", actual.name);
-        }
+        private PoolingObjects _pooler;
+        private GameObject _prefab;
 
-        //! 4 ----------
-        [Test]
-        public void GetObjectTests_Chain()
+        [SetUp]
+        public void SetUp()
         {
-            var objectToPool = new GameObject("test name");
-            var pooler = MonoBehaviourInitializer<PoolingObjects>.Instantiate()
-                .Set("_prefab", p => p.objectReferenceValue = objectToPool)
+            _prefab = new GameObject(Name);
+            _pooler = MonoBehaviourInitializer<PoolingObjects>.Instantiate()
+                .Set("_prefab", p => p.objectReferenceValue = _prefab)
                 .Final();
-            var actual = pooler.GetObject();
-            Assert.AreEqual("test name(Clone)", actual.name);
-        }
-    }
-
-    public static class MonoBehaviourTests
-    {
-        public static T Initialize<T>() where T : Component
-        {
-            var go = new GameObject();
-            return go.AddComponent<T>();
         }
 
-        public static T Initialize<T>((string, Action<SerializedProperty>)[] properties) where T : Component
+        [Test]
+        public void GetObject_Base()
         {
-            T o = Initialize<T>();
-            var so = new SerializedObject(o);
-
-            foreach ((string name, var action) in properties)
-            {
-                action.Invoke(so.FindProperty(name));
-            }
-
-            so.ApplyModifiedProperties();
-            return o;
+            var actual = _pooler.GetObject();
+            Assert.AreEqual("TestName(Clone)", actual.name);
         }
 
-        public struct Initializer
+        [Test]
+        public void GetObject_PrefabWithComponents()
         {
-            public string Name;
-            public Action<SerializedProperty> Action;
+            _prefab.AddComponent<ExampleComponent>();
+            var actual = _pooler.GetObject();
+            Assert.IsNotNull(actual.transform.GetComponent<ExampleComponent>());
         }
 
-        public static T Initialize<T>(Initializer[] properties) where T : Component
+        [Test]
+        public void GetObject_Reusability()
         {
-            T o = Initialize<T>();
-            var so = new SerializedObject(o);
-
-            foreach (var p in properties)
-            {
-                p.Action.Invoke(so.FindProperty(p.Name));
-            }
-
-            so.ApplyModifiedProperties();
-            return o;
+            var first = _pooler.GetObject();
+            first.SetActive(false);
+            var second = _pooler.GetObject();
+            Assert.AreSame(first, second);
         }
 
-    }
-
-    public class MonoBehaviourInitializer<T> where T : Component
-    {
-        private T _component;
-        private SerializedObject _serialized;
-
-        private MonoBehaviourInitializer(T component)
+        [UnityTest]
+        public IEnumerator GetObject_NotInRoot()
         {
-            _component = component;
-            _serialized = new SerializedObject(component);
+            // todo do play mode test (Awake problems)
+            var actual = _pooler.GetObject();
+            yield return null;
+            Assert.NotNull(actual.transform.parent);
         }
 
-        public MonoBehaviourInitializer<T> Set(string name, Action<SerializedProperty> action)
+        [Test]
+        public void GetObject_SameParent()
         {
-            action(_serialized.FindProperty(name));
-            return this;
+            var first = _pooler.GetObject();
+            var second = _pooler.GetObject();
+            Assert.AreSame(first.transform.parent, second.transform.parent);
         }
 
-        public T Final()
+        [Test]
+        public void GetObject_DefaultPosition()
         {
-            _serialized.ApplyModifiedProperties();
-            return _component;
-        }
-
-        public static MonoBehaviourInitializer<T> Instantiate()
-        {
-            var go = new GameObject();
-            var t = go.AddComponent<T>();
-            return new MonoBehaviourInitializer<T>(t);
+            Vector3 position = new Vector3(1, 2, 3);
+            Quaternion rotation = Quaternion.Euler(4, 5, 6);
+            var actual = _pooler.GetObject(position, rotation);
+            Assert.AreEqual(position, actual.transform.position);
+            Assert.AreEqual(rotation, actual.transform.rotation);
         }
     }
 }
