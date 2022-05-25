@@ -6,18 +6,23 @@ using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
-    internal class TestablePooler : ObjectPooler, IMonoBehaviourTest
+    public interface IMyMonoBehaviourTest : IMonoBehaviourTest
     {
-        public bool IsTestFinished { get; set; }
+        new bool IsTestFinished { set; get; }
+    }
+
+    public class TestablePooler : ObjectPooler, IMyMonoBehaviourTest
+    {
+        public bool IsTestFinished { set; get; }
     }
 
     internal class ExampleComponent : MonoBehaviour { }
 
-    public abstract class PoolingObjectsTests
+    public abstract class PoolingObjectsTests<TPooler> where TPooler : IObjectPooler, IMyMonoBehaviourTest
     {
         protected const string Name = "TestName";
 
-        internal TestablePooler _pooler;
+        internal TPooler _pooler;
         protected GameObject _prefab;
 
         [SetUp]
@@ -33,6 +38,7 @@ namespace Assets.GooTests.EditorMode.Pooling
         public void GetObject_Base()
         {
             var actual = _pooler.GetObject();
+            Assert.IsTrue(actual.activeSelf);
             Assert.AreEqual($"{Name}(Clone)", actual.name);
         }
 
@@ -48,7 +54,7 @@ namespace Assets.GooTests.EditorMode.Pooling
         public void GetObject_Reusability()
         {
             var first = _pooler.GetObject();
-            first.SetActive(false);
+            FreeObject(first);
             var second = _pooler.GetObject();
             Assert.AreSame(first, second);
         }
@@ -104,7 +110,7 @@ namespace Assets.GooTests.EditorMode.Pooling
 
             foreach (var item in objects)
             {
-                item.SetActive(false);
+                FreeObject(item);
             }
 
             for (int i = 0; i < Length; i++)
@@ -112,6 +118,11 @@ namespace Assets.GooTests.EditorMode.Pooling
                 var actual = _pooler.GetObject();
                 Assert.IsTrue(objects.Contains(actual), $"Id: {i}");
             }
+        }
+
+        protected virtual void FreeObject(GameObject item)
+        {
+            item.SetActive(false);
         }
     }
 }

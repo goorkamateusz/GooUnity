@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
-    public class PoolingObjectsWithDefaultParentTests : PoolingObjectsTests
+    public class PoolingObjectsWithDefaultParentTests : PoolingObjectsTests<TestablePooler>
     {
         public override void SetUp()
         {

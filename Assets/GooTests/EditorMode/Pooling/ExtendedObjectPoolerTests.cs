@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.TestTools;
 using Assets.Goo.Tools.Pooling;
 using Assets.Goo.UnitTests;
 using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
-    internal class ExtendedTestablePooler : ExtendedObjectPooler, IMonoBehaviourTest
+    public class ExtendedTestablePooler : ExtendedObjectPooler, IMyMonoBehaviourTest
     {
         public bool IsTestFinished { get; set; }
     }
@@ -16,13 +15,10 @@ namespace Assets.GooTests.EditorMode.Pooling
         public bool IsDisabled { get; set; }
     }
 
-    public class ExtendedObjectPoolerTests
+    public class ExtendedObjectPoolerTests : PoolingObjectsTests<ExtendedTestablePooler>
     {
-        private ExtendedTestablePooler _pooler;
-        private GameObject _prefab;
-
         [SetUp]
-        public virtual void SetUp()
+        public override void SetUp()
         {
             _prefab = new GameObject("TestName");
             _pooler = MonoBehaviourInitializer<ExtendedTestablePooler>.Instantiate()
@@ -30,12 +26,6 @@ namespace Assets.GooTests.EditorMode.Pooling
                 .Apply()
                 .RunInEditor()
                 .Get();
-        }
-
-        [TearDown]
-        public virtual void TearDown()
-        {
-            _pooler.IsTestFinished = true;
         }
 
         [Test]
@@ -71,11 +61,12 @@ namespace Assets.GooTests.EditorMode.Pooling
         }
 
         [Test]
-        public void GetObject_Reusability()
+        public void GetObject_ReusabilityOfIPooledBehaviour()
         {
+            _prefab.AddComponent<CustomPooled>();
             var first = _pooler.GetObject();
-            IPooled pooled1 = first.GetComponent<IPooled>();
-            pooled1.IsDisabled = true;
+            CustomPooled pooled1 = first.GetComponent<CustomPooled>();
+            pooled1.DeactivateAndFree();
             var second = _pooler.GetObject();
             IPooled pooled2 = second.GetComponent<IPooled>();
             Assert.AreSame(first, second);
@@ -83,18 +74,9 @@ namespace Assets.GooTests.EditorMode.Pooling
             Assert.IsFalse(pooled2.IsDisabled);
         }
 
-        [Test]
-        public void GetObject_ReusabilityOfIPooledBehaviour()
+        protected override void FreeObject(GameObject item)
         {
-            _prefab.AddComponent<CustomPooled>();
-            var first = _pooler.GetObject();
-            CustomPooled pooled1 = first.GetComponent<CustomPooled>();
-            pooled1.SetDisabled();
-            var second = _pooler.GetObject();
-            IPooled pooled2 = second.GetComponent<IPooled>();
-            Assert.AreSame(first, second);
-            Assert.AreSame(pooled1, pooled2);
-            Assert.IsFalse(pooled2.IsDisabled);
+            item.GetComponent<IPooled>().IsDisabled = true;
         }
     }
 }

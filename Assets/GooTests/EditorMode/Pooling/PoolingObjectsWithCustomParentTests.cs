@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
-    public class PoolingObjectsWithCustomParentTests : PoolingObjectsTests
+    public class PoolingObjectsWithCustomParentTests : PoolingObjectsTests<TestablePooler>
     {
         private const string ParentName = "ParentName";
         private Transform _parent;
