@@ -1,10 +1,11 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Assets.Goo.UnitTests
 {
-    public class MonoBehaviourInitializer<T> where T : Component
+    public class MonoBehaviourInitializer<T> where T : MonoBehaviour, IMonoBehaviourTest
     {
         private T _component;
         private SerializedObject _serialized;
@@ -21,15 +22,28 @@ namespace Assets.Goo.UnitTests
             return this;
         }
 
-        public T Final()
+        public MonoBehaviourInitializer<T> RunInEditor()
         {
-            _serialized.ApplyModifiedProperties();
+            _component.runInEditMode = true;
+            return this;
+        }
+
+        public MonoBehaviourInitializer<T> Apply()
+        {
+            if (_serialized.hasModifiedProperties)
+                _serialized.ApplyModifiedProperties();
+            return this;
+        }
+
+        public T Get()
+        {
+            Apply();
             return _component;
         }
 
-        public static MonoBehaviourInitializer<T> Instantiate()
+        public static MonoBehaviourInitializer<T> Instantiate(string name = null)
         {
-            var go = new GameObject();
+            var go = new GameObject(name);
             var t = go.AddComponent<T>();
             return new MonoBehaviourInitializer<T>(t);
         }

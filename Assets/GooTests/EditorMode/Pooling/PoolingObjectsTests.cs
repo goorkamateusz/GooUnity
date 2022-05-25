@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
 using Assets.Goo.Tools.Pooling;
@@ -7,29 +7,42 @@ using NUnit.Framework;
 
 namespace Assets.GooTests.EditorMode.Pooling
 {
+    internal class TestablePooler : PoolingObjects, IMonoBehaviourTest
+    {
+        public bool IsTestFinished { get; set; }
+    }
+
+    internal class ExampleComponent : MonoBehaviour { }
+
     public class PoolingObjectsTests
     {
-        private class ExampleComponent : MonoBehaviour { }
-
         private const string Name = "TestName";
 
-        private PoolingObjects _pooler;
+        private TestablePooler _pooler;
         private GameObject _prefab;
 
         [SetUp]
         public void SetUp()
         {
             _prefab = new GameObject(Name);
-            _pooler = MonoBehaviourInitializer<PoolingObjects>.Instantiate()
+            _pooler = MonoBehaviourInitializer<TestablePooler>.Instantiate()
                 .Set("_prefab", p => p.objectReferenceValue = _prefab)
-                .Final();
+                .Apply()
+                .RunInEditor()
+                .Get();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _pooler.IsTestFinished = true;
         }
 
         [Test]
         public void GetObject_Base()
         {
             var actual = _pooler.GetObject();
-            Assert.AreEqual("TestName(Clone)", actual.name);
+            Assert.AreEqual($"{Name}(Clone)", actual.name);
         }
 
         [Test]
@@ -49,13 +62,18 @@ namespace Assets.GooTests.EditorMode.Pooling
             Assert.AreSame(first, second);
         }
 
-        [UnityTest]
-        public IEnumerator GetObject_NotInRoot()
+        [Test]
+        public void GetObject_NotInRoot()
         {
-            // todo do play mode test (Awake problems)
             var actual = _pooler.GetObject();
-            yield return null;
             Assert.NotNull(actual.transform.parent);
+        }
+
+        [Test]
+        public void GetObject_RootNameConvention()
+        {
+            var actual = _pooler.GetObject();
+            Assert.IsTrue(actual.transform.parent?.name.StartsWith(TestablePooler.PREFIX_NAME));
         }
 
         [Test]
@@ -74,6 +92,42 @@ namespace Assets.GooTests.EditorMode.Pooling
             var actual = _pooler.GetObject(position, rotation);
             Assert.AreEqual(position, actual.transform.position);
             Assert.AreEqual(rotation, actual.transform.rotation);
+        }
+
+        [Test]
+        public void GetObject_MultipleGetsNewElements()
+        {
+            var history = new List<GameObject>();
+            for (int i = 0; i < 5; i++)
+            {
+                var actual = _pooler.GetObject();
+                Assert.IsFalse(history.Contains(actual), $"Id: {i}");
+                history.Add(actual);
+            }
+        }
+
+        [Test]
+        public void GetObject_MultipleGetExistingElements()
+        {
+            const int Length = 5;
+            var objects = new List<GameObject>(Length);
+
+            for (int i = 0; i < Length; i++)
+            {
+                var actual = _pooler.GetObject();
+                objects.Add(actual);
+            }
+
+            foreach (var item in objects)
+            {
+                item.SetActive(false);
+            }
+
+            for (int i = 0; i < Length; i++)
+            {
+                var actual = _pooler.GetObject();
+                Assert.IsTrue(objects.Contains(actual), $"Id: {i}");
+            }
         }
     }
 }

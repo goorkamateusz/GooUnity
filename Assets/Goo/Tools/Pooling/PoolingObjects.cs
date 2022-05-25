@@ -5,6 +5,8 @@ namespace Assets.Goo.Tools.Pooling
 {
     public class PoolingObjects : MonoBehaviour
     {
+        public const string PREFIX_NAME = "[Pooling] ";
+
         [SerializeField] private GameObject _prefab;
         [Tooltip("If null parent will be created automatically")]
         [SerializeField] private Transform _parent;
@@ -60,7 +62,7 @@ namespace Assets.Goo.Tools.Pooling
         {
             if (_parent == null)
             {
-                var parent = new GameObject($"[Pooling] {_prefab.name}");
+                var parent = new GameObject($"{PREFIX_NAME}{_prefab.name}");
                 _parent = parent.transform;
             }
         }
