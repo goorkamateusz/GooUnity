@@ -5,18 +5,13 @@ namespace Goo.Characters
 {
     public class Character : MonoBehaviour
     {
-        [SerializeField] private string _identifier;
-        [SerializeField] private CharacterComponentsManager _components = new CharacterComponentsManager();
-        [SerializeField] private CharacterMovement _movement;
-        [SerializeField] private AnimatorHandler _animatorHandler;
-        [SerializeField] private CharacterColliderInteractions _colliderInteractions;
+        [field: SerializeField] public string Id { get; private set; }
+        [field: SerializeField] public CharacterComponentsManager Components { get; private set; } = new CharacterComponentsManager();
+        [field: SerializeField] public CharacterMovement Movement { get; private set; }
+        [field: SerializeField] public AnimatorHandler AnimatorHandler { get; private set; }
+        [field: SerializeField] public CharacterColliderInteractions ColliderInteractions { get; private set; }
 
-        public string Id => _identifier;
-        public AnimatorHandler AnimatorHandler => _animatorHandler;
-        public CharacterMovement Movement => _movement;
-        public CharacterColliderInteractions ColliderInteractions => _colliderInteractions;
-        public CharacterComponentsManager Components => _components;
-
+        // todo create sth like ITransform to manage all character transform in one replaceable object
         public Vector3 Position
         {
             get => transform.position;
@@ -31,13 +26,13 @@ namespace Goo.Characters
 
         private void Awake()
         {
-            _movement?.InjectCharacter(this);
-            _components.InitializeComponents(this);
+            Movement?.InjectCharacter(this);
+            Components.InitializeComponents(this);
         }
 
 #if UNITY_EDITOR
         [ContextMenu("Find components")]
-        protected virtual void __FindComponents() => _components.__FindComponents(transform);
+        protected virtual void __FindComponents() => Components.__FindComponents(transform);
 
         protected virtual void Reset()
         {

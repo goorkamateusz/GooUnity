@@ -16,9 +16,9 @@ namespace Goo.Characters
         {
             OnStart();
             enabled = false;
-            yield return LoadingManager.Instance.WaitUntilGameLoaded();
             AfterGameLoaded();
             enabled = true;
+            yield break;
         }
 
         protected virtual void OnStart() { }

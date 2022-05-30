@@ -22,16 +22,17 @@ namespace Goo.Characters
                     SaveReference(ability);
                 }
             }
+
+            void SaveReference(ICharacterComponent ability)
+            {
+                Type key = ability.GetType();
+                if (!_cache.ContainsKey(key))
+                    _cache.Add(key, ability);
+                else
+                    Debug.LogError($"Multiple components of same type {key}");
+            }
         }
 
-        private void SaveReference(ICharacterComponent ability)
-        {
-            Type key = ability.GetType();
-            if (!_cache.ContainsKey(key))
-                _cache.Add(key, ability);
-            else
-                Debug.LogError($"Multiple components of same type {key}");
-        }
 
         public T GetComponent<T>() where T : class, ICharacterComponent
         {
