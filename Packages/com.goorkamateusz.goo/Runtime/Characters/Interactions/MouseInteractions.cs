@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public class MouseInteractions : InteractionsProvider<MovementMouseListener>
     {

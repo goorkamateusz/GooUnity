@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Tools.UnityHelpers;
 
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public abstract class MovementMouseListener
     {

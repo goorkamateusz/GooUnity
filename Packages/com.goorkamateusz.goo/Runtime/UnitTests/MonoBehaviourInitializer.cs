@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace Assets.Goo.UnitTests
+namespace Goo.UnitTests
 {
     public class MonoBehaviourInitializer<T> where T : MonoBehaviour, IMonoBehaviourTest
     {

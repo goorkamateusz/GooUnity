@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Tools.Pooling
+namespace Goo.Tools.Pooling
 {
     public interface IObjectPooler
     {

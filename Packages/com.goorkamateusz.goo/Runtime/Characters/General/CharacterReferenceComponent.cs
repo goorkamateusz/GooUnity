@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters.General
+namespace Goo.Characters.General
 {
     public class CharacterReferenceComponent : MonoBehaviour, ICharacterComponent
     {

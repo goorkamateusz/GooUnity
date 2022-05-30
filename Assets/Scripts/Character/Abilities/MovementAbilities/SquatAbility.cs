@@ -1,4 +1,4 @@
-using Assets.Goo.Characters.Ability;
+using Goo.Characters.Ability;
 using UnityEngine;
 
 public class SquatAbility : KeyInputOrientedAbility

@@ -1,8 +1,8 @@
 using UnityEngine;
-using Assets.Goo.Characters.General;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Characters.General;
+using Goo.Tools.UnityHelpers;
 
-namespace Assets.Goo.Characters.Animations.StateMachine
+namespace Goo.Characters.Animations.StateMachine
 {
     public class CharacterStateMachineBehaviour : StateMachineBehaviour
     {

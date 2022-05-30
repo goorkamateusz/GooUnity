@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Ability
+namespace Goo.Characters.Ability
 {
     public abstract class KeyInputOrientedAbility : Ability
     {

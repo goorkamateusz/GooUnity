@@ -1,5 +1,5 @@
 using UnityEditor;
-using Assets.Goo.EditorTools;
+using Goo.EditorTools;
 
 namespace Goo.Saves.Editor
 {

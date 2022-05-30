@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Goo.SceneObjects.OpenMechanism.Objects
+namespace Goo.SceneObjects.OpenMechanism.Objects
 {
     public class DoorBase : OpenMechanismInteractive
     {

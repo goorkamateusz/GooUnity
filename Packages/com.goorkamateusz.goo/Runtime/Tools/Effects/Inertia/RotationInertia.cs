@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Tools.Effects.Inertia
+namespace Goo.Tools.Effects.Inertia
 {
     public class RotationInertia : InertiaTemplate<Quaternion>
     {

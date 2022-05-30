@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters
+namespace Goo.Characters
 {
     public class Player : Character
     {

@@ -1,4 +1,4 @@
-using Assets.Goo.Tools.EventSystem;
+using Goo.Tools.EventSystem;
 using UnityEngine;
 
 public class EventSender : MonoBehaviour

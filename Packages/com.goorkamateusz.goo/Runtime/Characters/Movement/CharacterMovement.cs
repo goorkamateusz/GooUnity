@@ -1,5 +1,5 @@
 using System;
-using Assets.Goo.Characters;
+using Goo.Characters;
 using UnityEngine;
 
 // [RequireComponent(typeof(Rigidbody))]

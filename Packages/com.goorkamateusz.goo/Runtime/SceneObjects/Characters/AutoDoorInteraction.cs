@@ -1,7 +1,7 @@
 using UnityEngine;
-using Assets.Goo.SceneObjects.OpenMechanism.Objects;
+using Goo.SceneObjects.OpenMechanism.Objects;
 
-namespace Assets.Goo.SceneObjects.Characters
+namespace Goo.SceneObjects.Characters
 {
     public class AutoDoorInteraction : AutoSceneInteractionDefinitions<DoorBase>
     {

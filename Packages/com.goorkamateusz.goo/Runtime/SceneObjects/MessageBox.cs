@@ -1,7 +1,7 @@
-using Assets.Goo.Tools.EventSystem;
+using Goo.Tools.EventSystem;
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects
+namespace Goo.SceneObjects
 {
     public class MessageBox : SceneInteractiveElement
     {

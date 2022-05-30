@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Goo.Characters.Animations.StateMachine;
+using Goo.Characters.Animations.StateMachine;
 
 public class RotationPose : CharacterStateMachineBehaviour
 {

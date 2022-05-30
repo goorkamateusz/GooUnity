@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects.Characters
+namespace Goo.SceneObjects.Characters
 {
     public abstract class AutoSceneInteractionDefinitions : MonoBehaviour
     {

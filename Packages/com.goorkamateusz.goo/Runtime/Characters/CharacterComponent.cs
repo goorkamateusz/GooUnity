@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Goo.Characters
+namespace Goo.Characters
 {
     public class CharacterComponent<T> : MonoBehaviour, ICharacterComponent where T : Character
     {

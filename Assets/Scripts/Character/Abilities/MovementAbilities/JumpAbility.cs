@@ -1,4 +1,4 @@
-using Assets.Goo.Characters.Ability;
+using Goo.Characters.Ability;
 /// It's only animations...
 public class JumpAbility : KeyInputOrientedAbility
 {

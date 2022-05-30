@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Assets.Goo.Characters;
+using Goo.Characters;
 using Goo.Saves;
 
 [Serializable]

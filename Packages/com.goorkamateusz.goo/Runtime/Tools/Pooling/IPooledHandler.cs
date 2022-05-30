@@ -1,4 +1,4 @@
-namespace Assets.Goo.Tools.Pooling
+namespace Goo.Tools.Pooling
 {
     public static class IPooledHandler
     {

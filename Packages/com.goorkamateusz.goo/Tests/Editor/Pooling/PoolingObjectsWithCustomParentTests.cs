@@ -1,8 +1,8 @@
 using UnityEngine;
-using Assets.Goo.UnitTests;
+using Goo.UnitTests;
 using NUnit.Framework;
 
-namespace Assets.GooTests.EditorMode.Pooling
+namespace Goo.Tests.Editor.Pooling
 {
     public class PoolingObjectsWithCustomParentTests : PoolingObjectsTests<TestablePooler>
     {

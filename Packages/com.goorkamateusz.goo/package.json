@@ -2,23 +2,23 @@
     "name": "com.goorkamateusz.goo",
     "version": "0.0.0",
     "displayName": "Goo",
-    "description": "This is an example package",
-    "unity": "2019.1",
-    "unityRelease": "0b5",
-    "documentationUrl": "https://example.com/",
-    "changelogUrl": "https://example.com/changelog.html",
-    "licensesUrl": "https://example.com/licensing.html",
+    "description": "Experimental, educative package of programing patterns, tools and common reusable components.",
+    "unity": "2020.3",
+    "unityRelease": "13f1",
+    "documentationUrl": "https://goorkamateusz.github.io/Playground/",
+    "changelogUrl": "",
+    "licensesUrl": "",
     "dependencies": {
         "com.unity.nuget.newtonsoft-json": "2.0.0"
     },
     "keywords": [
-        "keyword1",
-        "keyword2",
-        "keyword3"
+        "goorkamateusz",
+        "Patterns",
+        "Code"
     ],
     "author": {
-        "name": "Unity",
-        "email": "unity@example.com",
-        "url": "https://www.unity3d.com"
+        "name": "Mateusz Górka",
+        "email": "goorkamateusz@gmail.com",
+        "url": "https://goorkamateusz.github.io"
     }
 }

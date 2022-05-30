@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Animations
+namespace Goo.Characters.Animations
 {
     [Serializable]
     public class AnimatorAsyncController

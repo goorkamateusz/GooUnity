@@ -1,5 +1,5 @@
-using Assets.Goo.Characters;
-using Assets.Goo.Characters.Interactions;
+using Goo.Characters;
+using Goo.Characters.Interactions;
 using UnityEngine;
 
 public class InteractWithPathfindingTarget : PlayerComponent

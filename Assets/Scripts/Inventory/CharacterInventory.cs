@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using Goo.Saves;
-using Assets.Goo.Characters.Interactions;
-using Assets.Goo.Characters.Ability;
+using Goo.Characters.Interactions;
+using Goo.Characters.Ability;
 
 public class CharacterInventory : Ability
 {

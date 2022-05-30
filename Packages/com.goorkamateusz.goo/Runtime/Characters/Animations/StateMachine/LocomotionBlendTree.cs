@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Animations.StateMachine
+namespace Goo.Characters.Animations.StateMachine
 {
     public class LocomotionBlendTree : CharacterStateMachineBehaviour
     {

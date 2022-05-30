@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Goo.Characters.NPC.Movement
+namespace Goo.Characters.NPC.Movement
 {
     public class NpcPath : MonoBehaviour
     {

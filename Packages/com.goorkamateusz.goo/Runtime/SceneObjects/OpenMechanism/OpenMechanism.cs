@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects.OpenMechanism
+namespace Goo.SceneObjects.OpenMechanism
 {
     public abstract class OpenMechanism : MonoBehaviour
     {

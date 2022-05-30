@@ -1,5 +1,5 @@
-using Assets.Goo.Characters;
-using Assets.Goo.Tools.Patterns;
+using Goo.Characters;
+using Goo.Tools.Patterns;
 using UnityEngine;
 
 public class PlayerManager : SceneSingleton<PlayerManager>

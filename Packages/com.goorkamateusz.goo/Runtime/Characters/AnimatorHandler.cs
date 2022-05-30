@@ -1,6 +1,6 @@
 using System;
-using Assets.Goo.Characters;
-using Assets.Goo.Characters.Animations;
+using Goo.Characters;
+using Goo.Characters.Animations;
 using UnityEngine;
 
 public class AnimatorHandler : CharacterComponent

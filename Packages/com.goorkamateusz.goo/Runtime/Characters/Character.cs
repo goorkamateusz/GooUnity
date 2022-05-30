@@ -1,7 +1,7 @@
 using UnityEngine;
-using Assets.Goo.Characters.Interactions;
+using Goo.Characters.Interactions;
 
-namespace Assets.Goo.Characters
+namespace Goo.Characters
 {
     public class Character : MonoBehaviour
     {

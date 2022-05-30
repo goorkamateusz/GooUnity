@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Assets.Goo.Tools.EventSystem;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Tools.EventSystem;
+using Goo.Tools.UnityHelpers;
 
-namespace Assets.Goo.SceneObjects.Characters.UI
+namespace Goo.SceneObjects.Characters.UI
 {
     public class SceneInteractionsContainer : MonoBehaviour, IEventListener<SceneInteractiveElement.Event>
     {

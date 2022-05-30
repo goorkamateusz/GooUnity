@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using Assets.Goo.Tools.Patterns;
+using Goo.Tools.Patterns;
 
 namespace Goo.Saves
 {

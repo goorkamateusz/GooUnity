@@ -1,5 +1,5 @@
-using Assets.Goo.Characters;
-using Assets.Goo.SceneObjects;
+using Goo.Characters;
+using Goo.SceneObjects;
 using UnityEngine;
 
 public abstract class Teleport : SceneInteractiveElement

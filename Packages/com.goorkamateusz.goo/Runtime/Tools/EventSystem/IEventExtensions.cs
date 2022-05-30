@@ -1,4 +1,4 @@
-namespace Assets.Goo.Tools.EventSystem
+namespace Goo.Tools.EventSystem
 {
     public static class IEventExtensions
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public class CharacterColliderInteractions : MonoBehaviour, IInteractionsProvider<ColliderListener>
     {

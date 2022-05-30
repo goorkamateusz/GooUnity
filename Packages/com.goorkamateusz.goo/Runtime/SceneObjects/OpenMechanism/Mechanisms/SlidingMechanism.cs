@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects.OpenMechanism.Mechanisms
+namespace Goo.SceneObjects.OpenMechanism.Mechanisms
 {
     public class SlidingMechanism : OpenMechanism
     {

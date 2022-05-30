@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Goo.Tools.Pooling
+namespace Goo.Tools.Pooling
 {
     public interface IPooled
     {

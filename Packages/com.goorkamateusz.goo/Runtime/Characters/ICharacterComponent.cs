@@ -1,4 +1,4 @@
-namespace Assets.Goo.Characters
+namespace Goo.Characters
 {
     public interface ICharacterComponent
     {

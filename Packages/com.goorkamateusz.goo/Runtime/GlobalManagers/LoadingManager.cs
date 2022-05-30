@@ -1,5 +1,5 @@
 using System.Collections;
-using Assets.Goo.Tools.Patterns;
+using Goo.Tools.Patterns;
 
 public class LoadingManager : Singleton<LoadingManager>
 {

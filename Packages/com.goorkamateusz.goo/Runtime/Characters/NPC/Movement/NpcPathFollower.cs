@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.Characters.NPC.Movement
+namespace Goo.Characters.NPC.Movement
 {
     public class NpcPathFollower : CharacterComponent
     {

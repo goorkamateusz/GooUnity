@@ -1,6 +1,6 @@
 using UnityEngine;
-using Assets.Goo.Characters;
-using Assets.Goo.Characters.Animations.StateMachine;
+using Goo.Characters;
+using Goo.Characters.Animations.StateMachine;
 
 public class LocomotionBlendTree3rdPresonRotate : CharacterStateMachineBehaviour
 {

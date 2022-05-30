@@ -1,9 +1,9 @@
 using UnityEngine;
-using Assets.Goo.Tools.Pooling;
-using Assets.Goo.UnitTests;
+using Goo.Tools.Pooling;
+using Goo.UnitTests;
 using NUnit.Framework;
 
-namespace Assets.GooTests.EditorMode.Pooling
+namespace Goo.Tests.Editor.Pooling
 {
     public class ExtendedTestablePooler : ExtendedObjectPooler, IMyMonoBehaviourTest
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects.OpenMechanism
+namespace Goo.SceneObjects.OpenMechanism
 {
     public class OpenMechanismInteractive : SceneInteractiveElement
     {

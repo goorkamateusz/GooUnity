@@ -1,4 +1,4 @@
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public class KeyInteractions : InteractionsProvider<InputKeyAction>
     {

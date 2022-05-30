@@ -1,8 +1,8 @@
 using UnityEngine;
-using Assets.Goo.Characters;
-using Assets.Goo.Tools.EventSystem;
+using Goo.Characters;
+using Goo.Tools.EventSystem;
 
-namespace Assets.Goo.SceneObjects
+namespace Goo.SceneObjects
 {
     public interface ICharacterInteraction
     {

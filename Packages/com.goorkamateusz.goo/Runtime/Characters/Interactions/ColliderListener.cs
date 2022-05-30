@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public abstract class ColliderListener
     {

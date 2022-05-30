@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Assets.Goo.Tools.Patterns;
+using Goo.Tools.Patterns;
 
-namespace Assets.Goo.Tools.EventSystem
+namespace Goo.Tools.EventSystem
 {
     internal class EventManager : Singleton<EventManager>
     {

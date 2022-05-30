@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Tools.UnityHelpers;
 
-namespace Assets.Goo.SceneObjects.OpenMechanism.Mechanisms
+namespace Goo.SceneObjects.OpenMechanism.Mechanisms
 {
     public class HingeRotationMechanism : OpenMechanism
     {

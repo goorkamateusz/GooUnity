@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Goo.EditorTools
+namespace Goo.EditorTools
 {
     public class LabledListAttribute : UnityEngine.PropertyAttribute
     {

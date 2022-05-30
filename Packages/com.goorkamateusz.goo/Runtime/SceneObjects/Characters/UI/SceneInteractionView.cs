@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-namespace Assets.Goo.SceneObjects.Characters.UI
+namespace Goo.SceneObjects.Characters.UI
 {
     public class SceneInteractionView : MonoBehaviour
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Assets.Goo.Tools.Pooling;
+using Goo.Tools.Pooling;
 using NUnit.Framework;
 
-namespace Assets.GooTests.EditorMode.Pooling
+namespace Goo.Tests.Editor.Pooling
 {
     public interface IMyMonoBehaviourTest : IMonoBehaviourTest
     {

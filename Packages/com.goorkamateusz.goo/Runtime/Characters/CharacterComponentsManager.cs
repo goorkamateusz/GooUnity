@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Goo.Characters
+namespace Goo.Characters
 {
     [Serializable]
     public class CharacterComponentsManager

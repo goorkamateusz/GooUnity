@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Tools.UnityHelpers;
 
 public class PickableContainer : ObjectStateSave
 {

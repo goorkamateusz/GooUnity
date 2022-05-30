@@ -1,8 +1,8 @@
-using Assets.Goo.Characters;
-using Assets.Goo.Characters.Interactions;
+using Goo.Characters;
+using Goo.Characters.Interactions;
 using UnityEngine;
 
-namespace Assets.Goo.SceneObjects.Characters
+namespace Goo.SceneObjects.Characters
 {
     public class AutoSceneInteractionAbility : CharacterComponent, ICharacterInteraction
     {

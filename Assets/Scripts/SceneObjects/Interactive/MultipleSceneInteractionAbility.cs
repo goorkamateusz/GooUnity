@@ -1,7 +1,7 @@
-using Assets.Goo.Characters;
-using Assets.Goo.Characters.Ability;
-using Assets.Goo.Characters.Interactions;
-using Assets.Goo.SceneObjects;
+using Goo.Characters;
+using Goo.Characters.Ability;
+using Goo.Characters.Interactions;
+using Goo.SceneObjects;
 using UnityEngine;
 
 public class MultipleSceneInteractionAbility : Ability

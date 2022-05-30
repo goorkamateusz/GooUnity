@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-using Assets.Goo.Characters;
-using Assets.Goo.SceneObjects;
-using Assets.Goo.Tools.EventSystem;
-using Assets.Goo.Tools.UnityHelpers;
+using Goo.Characters;
+using Goo.SceneObjects;
+using Goo.Tools.EventSystem;
+using Goo.Tools.UnityHelpers;
 using TMPro;
 
 public class MessagePopupView : UIWindowView, IEventListener<MessageBox.EventMessageBox>

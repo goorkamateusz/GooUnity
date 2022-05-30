@@ -1,6 +1,6 @@
 using UnityEngine;
-using Assets.Goo.SceneObjects;
-using Assets.Goo.Characters;
+using Goo.SceneObjects;
+using Goo.Characters;
 
 public class OneTargetTeleport : Teleport
 {

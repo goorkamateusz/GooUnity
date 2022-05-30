@@ -1,4 +1,4 @@
-namespace Assets.Goo.Tools.Patterns
+namespace Goo.Tools.Patterns
 {
     public class Singleton<T> where T : Singleton<T>, new()
     {

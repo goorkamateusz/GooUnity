@@ -1,5 +1,5 @@
 using UnityEngine;
-using Assets.Goo.Tools.EventSystem;
+using Goo.Tools.EventSystem;
 
 public class PrinterEvent : IEvent<PrinterEvent>
 {

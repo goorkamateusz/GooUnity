@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Assets.Goo.Characters.Interactions
+namespace Goo.Characters.Interactions
 {
     public interface IInteractionsProvider<T>
     {
