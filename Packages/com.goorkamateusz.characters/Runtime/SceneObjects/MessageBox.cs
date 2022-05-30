@@ -1,11 +1,11 @@
-using Goo.Tools.EventSystem;
 using UnityEngine;
+using Goo.Tools.EventSystem;
 
 namespace Goo.SceneObjects
 {
     public class MessageBox : SceneInteractiveElement
     {
-        public struct EventMessageBox
+        public struct EventMessageBox : IEvent<EventMessageBox>
         {
             public string Message;
             public ICharacterInteraction Interaction;
@@ -20,7 +20,10 @@ namespace Goo.SceneObjects
         public override void ColiderEnter(ICharacterInteraction character)
         {
             if (character.DisplayUI)
-                EventManager.Instance.Trigger(new EventMessageBox { Message = _message, Interaction = character });
+            {
+                var e = new EventMessageBox { Message = _message, Interaction = character };
+                e.Send();
+            }
         }
 
         public override void ColiderExit(ICharacterInteraction character)

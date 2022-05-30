@@ -16,7 +16,7 @@ namespace Goo.SceneObjects
     [RequireComponent(typeof(Collider))]
     public abstract class SceneInteractiveElement : MonoBehaviour
     {
-        public struct Event
+        public struct Event : IEvent<Event>
         {
             public bool Hide;
             public KeyCode Key;
@@ -37,13 +37,19 @@ namespace Goo.SceneObjects
         protected virtual void DisplayTip(ICharacterInteraction character, string msg)
         {
             if (character.DisplayUI)
-                EventManager.Instance.Trigger(new Event { Key = character.Key, Messsage = msg });
+            {
+                var e = new Event { Key = character.Key, Messsage = msg };
+                e.Send();
+            }
         }
 
         protected virtual void HideTip(ICharacterInteraction character)
         {
             if (character.DisplayUI)
-                EventManager.Instance.Trigger(new Event { Key = character.Key, Hide = true });
+            {
+                var e = new Event { Key = character.Key, Hide = true };
+                e.Send();
+            }
         }
     }
 }

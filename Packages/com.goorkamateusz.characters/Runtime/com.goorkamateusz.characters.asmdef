@@ -1,0 +1,17 @@
+{
+    "name": "com.goorkamateusz.characters",
+    "rootNamespace": "",
+    "references": [
+        "GUID:2cac159e5422ae740ba333496b9c59cc",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
