@@ -12,7 +12,7 @@ namespace Goo.Characters.Animations.StateMachine
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            normalizedVelocity = Character.Movement.NormalizedVelocity;
+            // normalizedVelocity = Character.Movement.NormalizedVelocity;
             animator.SetFloat(_xAxisName, normalizedVelocity.x);
             animator.SetFloat(_yAxisName, normalizedVelocity.z);
         }

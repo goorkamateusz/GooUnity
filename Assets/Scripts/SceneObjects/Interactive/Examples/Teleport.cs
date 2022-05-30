@@ -1,6 +1,7 @@
+using System;
+using UnityEngine;
 using Goo.Characters;
 using Goo.SceneObjects;
-using UnityEngine;
 
 public abstract class Teleport : SceneInteractiveElement
 {
@@ -23,14 +24,7 @@ public abstract class Teleport : SceneInteractiveElement
 
     protected static void Move(ICharacterInteraction character, Transform target)
     {
-        character.Character.Movement.Wrap(target);
-        if (character.Character is Player)
-            character.Character.Movement.Stop();
-
-
-        var targetTeleport = target.GetComponent<Teleport>();
-        if (targetTeleport != null)
-            targetTeleport._disabled = true;
+        throw new NotImplementedException();
     }
 
     protected virtual bool ValidateCharacter(ICharacterInteraction character)
