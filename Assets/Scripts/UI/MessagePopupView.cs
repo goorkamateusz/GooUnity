@@ -5,6 +5,7 @@ using Goo.SceneObjects;
 using Goo.Tools.EventSystem;
 using Goo.Tools.UnityHelpers;
 using TMPro;
+using Goo.Characters.Interactions;
 
 public class MessagePopupView : UIWindowView, IEventListener<MessageBox.EventMessageBox>
 {

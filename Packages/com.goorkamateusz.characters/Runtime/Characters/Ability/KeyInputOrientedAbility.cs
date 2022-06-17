@@ -1,3 +1,4 @@
+using Goo.Characters.Interactions;
 using UnityEngine;
 
 namespace Goo.Characters.Ability

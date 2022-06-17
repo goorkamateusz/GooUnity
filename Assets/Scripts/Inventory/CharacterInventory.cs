@@ -17,7 +17,7 @@ public class CharacterInventory : Ability
         _visuals = GetComponent<CharacterInventoryVisuals>();
     }
 
-    protected IEnumerator Start()
+    protected new IEnumerator Start()
     {
         Character.Input.KeyInteractions.Add(new PersistantKeyHandler
         {

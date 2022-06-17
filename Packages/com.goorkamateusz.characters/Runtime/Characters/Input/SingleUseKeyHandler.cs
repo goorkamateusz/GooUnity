@@ -1,4 +1,7 @@
-public class SingleUseKeyHandler : PersistantKeyHandler
+namespace Goo.Characters.Interactions
 {
-    protected override bool CancelAfterUp => false;
+    public class SingleUseKeyHandler : PersistantKeyHandler
+    {
+        internal override bool CancelAfterUp => false;
+    }
 }

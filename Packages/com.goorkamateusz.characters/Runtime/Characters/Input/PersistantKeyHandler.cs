@@ -1,20 +1,23 @@
-public class PersistantKeyHandler : InputKeyAction
+namespace Goo.Characters.Interactions
 {
-    public delegate void OnKeyDelegate();
-    public delegate void OnKeyUpDelegate();
-
-    public OnKeyDelegate OnKeyDown;
-    public OnKeyUpDelegate OnKeyUp;
-
-    protected override void KeyUp()
+    public class PersistantKeyHandler : InputKeyAction
     {
-        if (OnKeyUp != null)
-            OnKeyUp();
-    }
+        public delegate void OnKeyDelegate();
+        public delegate void OnKeyUpDelegate();
 
-    protected override void KeyDown()
-    {
-        if (OnKeyDown != null)
-            OnKeyDown();
+        public OnKeyDelegate OnKeyDown;
+        public OnKeyUpDelegate OnKeyUp;
+
+        internal override void KeyUp()
+        {
+            if (OnKeyUp != null)
+                OnKeyUp();
+        }
+
+        internal override void KeyDown()
+        {
+            if (OnKeyDown != null)
+                OnKeyDown();
+        }
     }
 }

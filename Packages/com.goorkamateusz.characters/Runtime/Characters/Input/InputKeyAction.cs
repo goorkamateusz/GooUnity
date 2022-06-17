@@ -1,37 +1,17 @@
 using UnityEngine;
 
-public abstract class InputKeyAction
+namespace Goo.Characters.Interactions
 {
-    public KeyCode Key;
-
-    protected virtual bool CancelAfterUp => false;
-    protected virtual bool CancelAfterDown => false;
-
-    public virtual bool ProcessAction()
+    public abstract class InputKeyAction
     {
-        if (Input.GetKeyDown(Key))
-        {
-            KeyDown();
-            return CancelAfterDown;
-        }
+        public KeyCode Key;
 
-        if (Input.GetKey(Key))
-        {
-            KeyHold();
-            return false;
-        }
+        internal virtual bool CancelAfterUp => false;
+        internal virtual bool CancelAfterDown => false;
 
-        if (Input.GetKeyUp(Key))
-        {
-            KeyUp();
-            return CancelAfterUp;
-        }
+        internal abstract void KeyUp();
+        internal abstract void KeyDown();
 
-        return false;
+        internal virtual void KeyHold() { }
     }
-
-    protected abstract void KeyUp();
-    protected abstract void KeyDown();
-
-    protected virtual void KeyHold() { }
 }
