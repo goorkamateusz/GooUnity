@@ -7,13 +7,13 @@ namespace Goo.Characters
     [Serializable]
     public class CharacterComponentsManager
     {
-        [SerializeField] private GameObject[] _compontentNodes;
+        [SerializeField] private GameObject[] _componentNodes;
 
         private readonly Dictionary<Type, ICharacterComponent> _cache = new Dictionary<Type, ICharacterComponent>();
 
         internal void InitializeComponents(Character character)
         {
-            foreach (var node in _compontentNodes)
+            foreach (var node in _componentNodes)
             {
                 var abilities = node.GetComponents<ICharacterComponent>();
                 foreach (var ability in abilities)
@@ -33,7 +33,6 @@ namespace Goo.Characters
             }
         }
 
-
         public T GetComponent<T>() where T : class, ICharacterComponent
         {
             return _cache[typeof(T)] as T;
@@ -43,17 +42,17 @@ namespace Goo.Characters
         internal void __FindComponents(Transform transform)
         {
             var nodes = new List<GameObject>();
-            __AgragateChildrenWithComponent<ICharacterComponent>(transform, ref nodes);
-            _compontentNodes = nodes.ToArray();
+            __AggregateChildrenWithComponent<ICharacterComponent>(transform, ref nodes);
+            _componentNodes = nodes.ToArray();
         }
 
-        private void __AgragateChildrenWithComponent<T>(Transform parent, ref List<GameObject> nodes)
+        private void __AggregateChildrenWithComponent<T>(Transform parent, ref List<GameObject> nodes)
         {
             if (parent.TryGetComponent<T>(out _))
                 nodes.Add(parent.gameObject);
 
             for (int i = 0; i < parent.childCount; ++i)
-                __AgragateChildrenWithComponent<T>(parent.GetChild(i), ref nodes);
+                __AggregateChildrenWithComponent<T>(parent.GetChild(i), ref nodes);
         }
 #endif
     }
