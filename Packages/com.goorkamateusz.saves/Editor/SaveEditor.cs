@@ -26,7 +26,7 @@ namespace Goo.Saves.Editor
 
         private void OnGUI()
         {
-            UpdateToggels();
+            UpdateToggles();
             UpdateButtons();
             UpdateSettings();
         }

@@ -13,7 +13,7 @@ namespace Goo.Characters.Interactions
             }
         }
 
-        private bool ProcessAction(InputKeyAction action)
+        protected virtual bool ProcessAction(InputKeyAction action)
         {
             if (Input.GetKeyDown(action.Key))
             {

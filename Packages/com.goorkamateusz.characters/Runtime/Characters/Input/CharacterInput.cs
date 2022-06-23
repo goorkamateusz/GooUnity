@@ -5,26 +5,34 @@ namespace Goo.Characters
 {
     public class CharacterInput : MonoBehaviour
     {
-        private readonly KeyInteractions _keys = new KeyInteractions();
-        private readonly MouseInteractions _mouse = new MouseInteractions();
+        public MouseInteractions MouseInteraction { get; protected set; }
+        public KeyInteractions KeyInteractions { get; protected set; }
 
-        public MouseInteractions MouseInteraction => _mouse;
-        public KeyInteractions KeyInteractions => _keys;
+        protected CharacterInput()
+        {
+            Initialize();
+        }
 
         protected void Awake()
         {
-            _mouse.SetCamera(Camera.main);
+            MouseInteraction.SetCamera(Camera.main);
         }
 
         protected void Update()
         {
-            _keys.CheckAll();
-            _mouse.HandleInput();
+            KeyInteractions.CheckAll();
+            MouseInteraction.HandleInput();
         }
 
         protected void LateUpdate()
         {
-            _mouse.HandleLateUpdate();
+            MouseInteraction.HandleLateUpdate();
+        }
+
+        protected virtual void Initialize()
+        {
+            KeyInteractions = new KeyInteractions();
+            MouseInteraction = new MouseInteractions();
         }
     }
 }
