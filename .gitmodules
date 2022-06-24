@@ -1,3 +1,6 @@
 [submodule "Documentation/doxygen-vscode-theme"]
 	path = Documentation/doxygen-vscode-theme
 	url = https://github.com/goorkamateusz/doxygen-vscode-theme
+[submodule "Packages/com.goorkamateusz.goo.saves"]
+	path = Packages/com.goorkamateusz.goo.saves
+	url = https://github.com/goorkamateusz/GooSaves
