@@ -1,3 +1,0 @@
-# Goo
-
-Tools, patterns

@@ -4,3 +4,6 @@
 [submodule "Packages/com.goorkamateusz.goo.saves"]
 	path = Packages/com.goorkamateusz.goo.saves
 	url = https://github.com/goorkamateusz/GooSaves
+[submodule "Packages/com.goorkamateusz.goo"]
+	path = Packages/com.goorkamateusz.goo
+	url = https://github.com/goorkamateusz/Goo.git
