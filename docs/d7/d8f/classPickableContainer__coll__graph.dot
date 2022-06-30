@@ -1,0 +1,18 @@
+digraph "PickableContainer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="PickableContainer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="ObjectStateSave",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/df3/classObjectStateSave.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _item" ,fontname="Calibrii"];
+  Node4 [label="InventoryItem",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d05/classInventoryItem.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="ScriptableObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _floatingText" ,fontname="Calibrii"];
+  Node6 [label="FloatingTextGenerator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d46/classFloatingTextGenerator.html",tooltip=" "];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+}

@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Goo.EditorTools.ItemMenu\lNames",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d3/d0b/classGoo_1_1EditorTools_1_1ItemMenuNames.html",tooltip=" "];
+}

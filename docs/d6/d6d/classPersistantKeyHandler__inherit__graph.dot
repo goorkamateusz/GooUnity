@@ -1,0 +1,11 @@
+digraph "PersistantKeyHandler"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="PersistantKeyHandler",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="InputKeyAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d63/classInputKeyAction.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="SingleUseKeyHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/dd5/classSingleUseKeyHandler.html",tooltip=" "];
+}

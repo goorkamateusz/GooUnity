@@ -1,0 +1,26 @@
+digraph "Character3rdPersonMovement"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Character3rdPersonMovement",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="PlayerMovement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _actions" ,fontname="Calibrii"];
+  Node3 [label="Character3rdPersonMovement.\lKeyboard",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d37/classCharacter3rdPersonMovement_1_1Keyboard.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Up" ,fontname="Calibrii"];
+  Node4 [label="Character3rdPersonMovement.\lForwardAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d89/classCharacter3rdPersonMovement_1_1ForwardAction.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="KeyAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d95/classCharacter3rdPersonMovement_1_1KeyAction.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node6 [label="InputKeyAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node7 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Down" ,fontname="Calibrii"];
+  Node7 [label="Character3rdPersonMovement.\lBackAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d4b/classCharacter3rdPersonMovement_1_1BackAction.html",tooltip=" "];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node8 -> Node3 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Left\nRight" ,fontname="Calibrii"];
+  Node8 [label="Character3rdPersonMovement.\lTurnAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d7c/classCharacter3rdPersonMovement_1_1TurnAction.html",tooltip=" "];
+  Node5 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node9 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _movement" ,fontname="Calibrii"];
+  Node9 [label="Character3rdPersonMovement.\lMovementData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/db5/classCharacter3rdPersonMovement_1_1MovementData.html",tooltip=" "];
+}

@@ -1,0 +1,11 @@
+digraph "Goo.Characters.Animations.StateMachine.CharacterStateMachineBehaviour"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.Characters.Animations.\lStateMachine.CharacterStateMachine\lBehaviour",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="StateMachineBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="Goo.Characters.Animations.\lStateMachine.LocomotionBlendTree",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d41/classGoo_1_1Characters_1_1Animations_1_1StateMachine_1_1LocomotionBlendTree.html",tooltip=" "];
+}

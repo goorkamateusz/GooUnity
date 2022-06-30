@@ -1,0 +1,11 @@
+digraph "FloatingTexts"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_0b341843a8bbc363ecffcdc880c78257 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Visuals", fontname="Calibrii", fontsize="10", URL="dir_0b341843a8bbc363ecffcdc880c78257.html"]
+  dir_a90348c06134f5e888d287c512a1904c [shape=box, label="FloatingTexts", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_a90348c06134f5e888d287c512a1904c.html"];
+  }
+}

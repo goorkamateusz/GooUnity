@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Goo.Tools.Pooling.AutoObject\lPooler.PoolingSet",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d6c/classGoo_1_1Tools_1_1Pooling_1_1AutoObjectPooler_1_1PoolingSet.html",tooltip=" "];
+}

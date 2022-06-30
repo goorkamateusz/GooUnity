@@ -1,0 +1,24 @@
+digraph "Scripts"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_84bbf7b3c7f28a5a18725745e1505219 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="Assets", fontname="Calibrii", fontsize="10", URL="dir_84bbf7b3c7f28a5a18725745e1505219.html"]
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_f13b41af88cf68434578284aaf699e39.html"]
+    dir_f13b41af88cf68434578284aaf699e39 [shape=plaintext, label="Scripts"];
+  dir_0bf270a3dff40e62f0f506b27c955a6e [shape=box, label="Camera", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_0bf270a3dff40e62f0f506b27c955a6e.html"];
+  dir_bf53d0db9048da6b5c95efa9fb059aa7 [shape=box, label="Character", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_bf53d0db9048da6b5c95efa9fb059aa7.html"];
+  dir_d59c7faab1e699307d3ff5d1b461c2a4 [shape=box, label="Demo", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_d59c7faab1e699307d3ff5d1b461c2a4.html"];
+  dir_5d4c2be3f63d67dbd0438e467d9f6974 [shape=box, label="Examples", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_5d4c2be3f63d67dbd0438e467d9f6974.html"];
+  dir_7ed88aacee639700c1de979c127343ab [shape=box, label="Inventory", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_7ed88aacee639700c1de979c127343ab.html"];
+  dir_54917bde386a5ef9e0c3f63ca6b256ef [shape=box, label="Managers", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_54917bde386a5ef9e0c3f63ca6b256ef.html"];
+  dir_918c3da45340852e0e9782af77d525f5 [shape=box, label="SceneObjects", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_918c3da45340852e0e9782af77d525f5.html"];
+  dir_b4c3e40aba673d3a922bac24475a921b [shape=box, label="SceneObjectsTools", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_b4c3e40aba673d3a922bac24475a921b.html"];
+  dir_4ae35e2d0d203079e26c83ccaec95743 [shape=box, label="UI", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_4ae35e2d0d203079e26c83ccaec95743.html"];
+  dir_0b341843a8bbc363ecffcdc880c78257 [shape=box, label="Visuals", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_0b341843a8bbc363ecffcdc880c78257.html"];
+  }
+  }
+}

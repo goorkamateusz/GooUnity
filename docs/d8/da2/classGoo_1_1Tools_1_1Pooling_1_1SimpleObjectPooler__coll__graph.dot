@@ -1,0 +1,21 @@
+digraph "Goo.Tools.Pooling.SimpleObjectPooler"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.Tools.Pooling.Simple\lObjectPooler",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Component-based object pooler running on GameObjects class."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="ObjectPoolerBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dd4/classGoo_1_1Tools_1_1Pooling_1_1ObjectPoolerBase.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="IObjectPooler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/dd6/interfaceGoo_1_1Tools_1_1Pooling_1_1IObjectPooler.html",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _list" ,fontname="Calibrii"];
+  Node5 [label="Goo.Tools.Pooling.ListOf\lGameObject",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/daf/classGoo_1_1Tools_1_1Pooling_1_1ListOfGameObject.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node6 [label="ListOfRecyclable\< GameObject \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d78/classGoo_1_1Tools_1_1Pooling_1_1ListOfRecyclable.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< GameObject \>" ,fontname="Calibrii"];
+  Node7 [label="Goo.Tools.Pooling.ListOf\lRecyclable\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d78/classGoo_1_1Tools_1_1Pooling_1_1ListOfRecyclable.html",tooltip=" "];
+  Node8 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node8 [label="List\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+}

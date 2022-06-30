@@ -1,0 +1,15 @@
+digraph "Goo.Saves.SaveManager"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.Saves.SaveManager",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="SceneSingleton\< SaveManager \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/df2/classGoo_1_1Tools_1_1Patterns_1_1SceneSingleton.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< SaveManager \>" ,fontname="Calibrii"];
+  Node3 [label="Goo.Tools.Patterns.Scene\lSingleton\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/df2/classGoo_1_1Tools_1_1Patterns_1_1SceneSingleton.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _file" ,fontname="Calibrii"];
+  Node5 [label="Goo.Saves.SaveFileProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/da0/classGoo_1_1Saves_1_1SaveFileProvider.html",tooltip=" "];
+}

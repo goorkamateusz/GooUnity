@@ -1,0 +1,15 @@
+digraph "Tests"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_e4c3806cc439c34e030c5963d30ab12c {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="com.goorkamateusz.goo", fontname="Calibrii", fontsize="10", URL="dir_e4c3806cc439c34e030c5963d30ab12c.html"]
+  subgraph clusterdir_169ab53ff5650b1c280262e0a1b877bf {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_169ab53ff5650b1c280262e0a1b877bf.html"]
+    dir_169ab53ff5650b1c280262e0a1b877bf [shape=plaintext, label="Tests"];
+  dir_e079bda6a108b0a52d8ca262fd6032fa [shape=box, label="Editor", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_e079bda6a108b0a52d8ca262fd6032fa.html"];
+  }
+  }
+}

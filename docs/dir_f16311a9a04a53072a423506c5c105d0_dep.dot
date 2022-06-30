@@ -1,0 +1,15 @@
+digraph "NPC"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_d246d505dd15704a91f1b72223078db8 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Characters", fontname="Calibrii", fontsize="10", URL="dir_d246d505dd15704a91f1b72223078db8.html"]
+  subgraph clusterdir_f16311a9a04a53072a423506c5c105d0 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_f16311a9a04a53072a423506c5c105d0.html"]
+    dir_f16311a9a04a53072a423506c5c105d0 [shape=plaintext, label="NPC"];
+  dir_fcc9a4280128cf4173d998e7f0d99508 [shape=box, label="Movement", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_fcc9a4280128cf4173d998e7f0d99508.html"];
+  }
+  }
+}

@@ -1,0 +1,11 @@
+digraph "General"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_d246d505dd15704a91f1b72223078db8 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Characters", fontname="Calibrii", fontsize="10", URL="dir_d246d505dd15704a91f1b72223078db8.html"]
+  dir_a1b10d796555dfc587f744af2a712fd4 [shape=box, label="General", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_a1b10d796555dfc587f744af2a712fd4.html"];
+  }
+}

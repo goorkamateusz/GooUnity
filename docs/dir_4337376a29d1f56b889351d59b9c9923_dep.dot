@@ -1,0 +1,11 @@
+digraph "Mechanisms"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_8534970120b8989d0c05a6b68a87fe21 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="OpenMechanism", fontname="Calibrii", fontsize="10", URL="dir_8534970120b8989d0c05a6b68a87fe21.html"]
+  dir_4337376a29d1f56b889351d59b9c9923 [shape=box, label="Mechanisms", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_4337376a29d1f56b889351d59b9c9923.html"];
+  }
+}

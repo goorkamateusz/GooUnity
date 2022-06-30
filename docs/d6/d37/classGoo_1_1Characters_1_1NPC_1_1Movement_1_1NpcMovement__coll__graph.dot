@@ -1,0 +1,43 @@
+digraph "Goo.Characters.NPC.Movement.NpcMovement"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Goo.Characters.NPC.Movement.\lNpcMovement",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="CharacterMovement",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dbf/classCharacterMovement.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="CharacterComponent\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d2c/classGoo_1_1Characters_1_1CharacterComponent.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="ICharacterComponent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d11/interfaceGoo_1_1Characters_1_1ICharacterComponent.html",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _pathfinding" ,fontname="Calibrii"];
+  Node6 [label="CharacterPathfinding",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/dd3/classCharacterPathfinding.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _character" ,fontname="Calibrii"];
+  Node7 [label="Goo.Characters.Character",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d97/classGoo_1_1Characters_1_1Character.html",tooltip=" "];
+  Node4 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node8 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _components" ,fontname="Calibrii"];
+  Node8 [label="Goo.Characters.Character\lComponentsManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d2e/classGoo_1_1Characters_1_1CharacterComponentsManager.html",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _movement" ,fontname="Calibrii"];
+  Node9 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _animatorHandler" ,fontname="Calibrii"];
+  Node9 [label="AnimatorHandler",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d76/classAnimatorHandler.html",tooltip=" "];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node10 [label="CharacterComponent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d2c/classGoo_1_1Characters_1_1CharacterComponent.html",tooltip=" "];
+  Node4 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node11 -> Node9 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _animator" ,fontname="Calibrii"];
+  Node11 [label="Goo.Characters.Animations.\lAnimatorAsyncController",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/da9/classGoo_1_1Characters_1_1Animations_1_1AnimatorAsyncController.html",tooltip=" "];
+  Node12 -> Node7 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _colliderInteractions" ,fontname="Calibrii"];
+  Node12 [label="Goo.Characters.Interactions.\lCharacterColliderInteractions",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d8c/classGoo_1_1Characters_1_1Interactions_1_1CharacterColliderInteractions.html",tooltip=" "];
+  Node4 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node13 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node13 [label="IInteractionsProvider\l\< ColliderListener \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d29/interfaceGoo_1_1Characters_1_1Interactions_1_1IInteractionsProvider.html",tooltip=" "];
+  Node14 -> Node13 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< ColliderListener \>" ,fontname="Calibrii"];
+  Node14 [label="Goo.Characters.Interactions.\lIInteractionsProvider\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d29/interfaceGoo_1_1Characters_1_1Interactions_1_1IInteractionsProvider.html",tooltip=" "];
+  Node2 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _movement" ,fontname="Calibrii"];
+  Node15 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _tasks" ,fontname="Calibrii"];
+  Node15 [label="MovementTaskProvider",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d68/classMovementTaskProvider.html",tooltip=" "];
+}

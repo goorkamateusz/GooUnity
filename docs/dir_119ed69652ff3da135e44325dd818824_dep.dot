@@ -1,0 +1,11 @@
+digraph "Player"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_0c9dc24c35c8d4bdcee60378504c2111 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Movement", fontname="Calibrii", fontsize="10", URL="dir_0c9dc24c35c8d4bdcee60378504c2111.html"]
+  dir_119ed69652ff3da135e44325dd818824 [shape=box, label="Player", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_119ed69652ff3da135e44325dd818824.html"];
+  }
+}

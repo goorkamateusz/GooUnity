@@ -1,0 +1,20 @@
+digraph "Character3rdPersonMovement.Keyboard"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Character3rdPersonMovement.\lKeyboard",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Up" ,fontname="Calibrii"];
+  Node2 [label="Character3rdPersonMovement.\lForwardAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d89/classCharacter3rdPersonMovement_1_1ForwardAction.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="KeyAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d5/d95/classCharacter3rdPersonMovement_1_1KeyAction.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="InputKeyAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Down" ,fontname="Calibrii"];
+  Node5 [label="Character3rdPersonMovement.\lBackAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d4b/classCharacter3rdPersonMovement_1_1BackAction.html",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node6 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" Left\nRight" ,fontname="Calibrii"];
+  Node6 [label="Character3rdPersonMovement.\lTurnAction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d7c/classCharacter3rdPersonMovement_1_1TurnAction.html",tooltip=" "];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+}

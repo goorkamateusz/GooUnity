@@ -1,0 +1,15 @@
+digraph "Effects"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_4e14d5ee7efdd742dd5cdebb8389bd20 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Tools", fontname="Calibrii", fontsize="10", URL="dir_4e14d5ee7efdd742dd5cdebb8389bd20.html"]
+  subgraph clusterdir_2f71f7aa4cc41bbbff3bfb7002739e71 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_2f71f7aa4cc41bbbff3bfb7002739e71.html"]
+    dir_2f71f7aa4cc41bbbff3bfb7002739e71 [shape=plaintext, label="Effects"];
+  dir_8f48cd62a9d9deb2f0ba903e09c3cedd [shape=box, label="Inertia", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_8f48cd62a9d9deb2f0ba903e09c3cedd.html"];
+  }
+  }
+}

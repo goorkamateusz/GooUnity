@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Goo.Tools.Effects.Inertia.\lInertiaTemplate\< Vector3 \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/d6f/classGoo_1_1Tools_1_1Effects_1_1Inertia_1_1InertiaTemplate.html",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node1 [label="Goo.Tools.Effects.Inertia.\lPositionInertia",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dc/d1b/classGoo_1_1Tools_1_1Effects_1_1Inertia_1_1PositionInertia.html",tooltip=" "];
+}

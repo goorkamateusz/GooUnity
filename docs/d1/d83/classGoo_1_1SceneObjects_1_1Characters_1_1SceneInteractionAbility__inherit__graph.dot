@@ -1,0 +1,23 @@
+digraph "Goo.SceneObjects.Characters.SceneInteractionAbility"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.SceneObjects.Characters.\lSceneInteractionAbility",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="KeyInputOrientedAbility",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/da9/classGoo_1_1Characters_1_1Ability_1_1KeyInputOrientedAbility.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="Ability",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/db9/classGoo_1_1Characters_1_1Ability_1_1Ability.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="PlayerComponent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d97/classGoo_1_1Characters_1_1PlayerComponent.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="CharacterComponent\l\< Player \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d2c/classGoo_1_1Characters_1_1CharacterComponent.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< Player \>" ,fontname="Calibrii"];
+  Node6 [label="Goo.Characters.Character\lComponent\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d2c/classGoo_1_1Characters_1_1CharacterComponent.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node7 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node8 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node8 [label="ICharacterComponent",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d11/interfaceGoo_1_1Characters_1_1ICharacterComponent.html",tooltip=" "];
+  Node9 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node9 [label="ICharacterInteraction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d59/interfaceGoo_1_1SceneObjects_1_1ICharacterInteraction.html",tooltip=" "];
+}

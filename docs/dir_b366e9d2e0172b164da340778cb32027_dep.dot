@@ -1,0 +1,11 @@
+digraph "Pooling"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_e079bda6a108b0a52d8ca262fd6032fa {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Editor", fontname="Calibrii", fontsize="10", URL="dir_e079bda6a108b0a52d8ca262fd6032fa.html"]
+  dir_b366e9d2e0172b164da340778cb32027 [shape=box, label="Pooling", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_b366e9d2e0172b164da340778cb32027.html"];
+  }
+}

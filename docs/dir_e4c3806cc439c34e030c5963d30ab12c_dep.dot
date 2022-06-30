@@ -1,0 +1,17 @@
+digraph "com.goorkamateusz.goo"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_395bafe2adc24fcfed5d14b8ce406a4f {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,dashed,", label="Packages", fontname="Calibrii", fontsize="10", URL="dir_395bafe2adc24fcfed5d14b8ce406a4f.html"]
+  subgraph clusterdir_e4c3806cc439c34e030c5963d30ab12c {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_e4c3806cc439c34e030c5963d30ab12c.html"]
+    dir_e4c3806cc439c34e030c5963d30ab12c [shape=plaintext, label="com.goorkamateusz.goo"];
+  dir_25ba4a9eac4495641c7fdd3574b865dd [shape=box, label="Editor", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_25ba4a9eac4495641c7fdd3574b865dd.html"];
+  dir_986a059e7bfcc3c70acbbcf04d55a08e [shape=box, label="Runtime", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_986a059e7bfcc3c70acbbcf04d55a08e.html"];
+  dir_169ab53ff5650b1c280262e0a1b877bf [shape=box, label="Tests", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_169ab53ff5650b1c280262e0a1b877bf.html"];
+  }
+  }
+}

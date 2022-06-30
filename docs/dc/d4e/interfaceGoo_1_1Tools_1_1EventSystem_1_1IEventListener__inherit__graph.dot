@@ -1,0 +1,29 @@
+digraph "Goo.Tools.EventSystem.IEventListener&lt; T &gt;"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="Goo.Tools.EventSystem.IEvent\lListener\< T \>",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="IEventListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< Event \>" ,fontname="Calibrii"];
+  Node3 [label="Goo.Tools.EventSystem.IEvent\lListener\< Event \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="Goo.Tests.Editor.EventSystem.\lEventSystemTests.Listener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/dbf/classGoo_1_1Tests_1_1Editor_1_1EventSystem_1_1EventSystemTests_1_1Listener.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< EventA \>" ,fontname="Calibrii"];
+  Node5 [label="Goo.Tools.EventSystem.IEvent\lListener\< EventA \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node6 [label="Goo.Tests.Editor.EventSystem.\lMultipleEventListenerTests.Listener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$df/d8c/classGoo_1_1Tests_1_1Editor_1_1EventSystem_1_1MultipleEventListenerTests_1_1Listener.html",tooltip=" "];
+  Node1 -> Node7 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< EventB \>" ,fontname="Calibrii"];
+  Node7 [label="Goo.Tools.EventSystem.IEvent\lListener\< EventB \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node1 -> Node8 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< IFloatingTextEvent\l\< TLabel \> \>" ,fontname="Calibrii"];
+  Node8 [label="Goo.Tools.EventSystem.IEvent\lListener\< IFloatingTextEvent\l\< TLabel \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node9 [label="Goo.Visuals.FloatingTexts.\lFloatingTextManager\< TLabel \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d2f/classGoo_1_1Visuals_1_1FloatingTexts_1_1FloatingTextManager.html",tooltip=" "];
+  Node9 -> Node10 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< string \>" ,fontname="Calibrii"];
+  Node10 [label="Goo.Visuals.FloatingTexts.\lFloatingTextManager\< string \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d2f/classGoo_1_1Visuals_1_1FloatingTexts_1_1FloatingTextManager.html",tooltip=" "];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node11 [label="Goo.Visuals.FloatingTexts.\lUsage.FloatingTextManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/dcc/classGoo_1_1Visuals_1_1FloatingTexts_1_1Usage_1_1FloatingTextManager.html",tooltip=" "];
+}

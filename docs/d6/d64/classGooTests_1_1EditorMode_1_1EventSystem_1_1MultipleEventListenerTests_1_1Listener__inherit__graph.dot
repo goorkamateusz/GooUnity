@@ -1,0 +1,16 @@
+digraph "GooTests.EditorMode.EventSystem.MultipleEventListenerTests.Listener"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="GooTests.EditorMode.Event\lSystem.MultipleEventListenerTests.\lListener",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="IEventListener\< EventA \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< EventA \>" ,fontname="Calibrii"];
+  Node3 [label="Goo.Tools.EventSystem.IEvent\lListener\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="IEventListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="IEventListener\< EventB \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node3 -> Node5 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< EventB \>" ,fontname="Calibrii"];
+}

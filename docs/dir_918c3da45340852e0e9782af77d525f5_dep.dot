@@ -1,0 +1,15 @@
+digraph "SceneObjects"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Scripts", fontname="Calibrii", fontsize="10", URL="dir_f13b41af88cf68434578284aaf699e39.html"]
+  subgraph clusterdir_918c3da45340852e0e9782af77d525f5 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_918c3da45340852e0e9782af77d525f5.html"]
+    dir_918c3da45340852e0e9782af77d525f5 [shape=plaintext, label="SceneObjects"];
+  dir_c40cc76c6b7a638d83b292fa2688bbc3 [shape=box, label="Interactive", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_c40cc76c6b7a638d83b292fa2688bbc3.html"];
+  }
+  }
+}

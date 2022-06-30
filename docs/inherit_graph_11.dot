@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Goo.Tools.EventSystem.IEvent\l\< EventB \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$da/df2/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEvent.html",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node1 [label="Goo.Tests.Editor.EventSystem.\lMultipleEventListenerTests.EventB",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d4c/classGoo_1_1Tests_1_1Editor_1_1EventSystem_1_1MultipleEventListenerTests_1_1EventB.html",tooltip=" "];
+}

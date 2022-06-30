@@ -1,0 +1,11 @@
+digraph "GlobalManagers"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_986a059e7bfcc3c70acbbcf04d55a08e {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Runtime", fontname="Calibrii", fontsize="10", URL="dir_986a059e7bfcc3c70acbbcf04d55a08e.html"]
+  dir_1b59e5999a37b6481b2a747339321379 [shape=box, label="GlobalManagers", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_1b59e5999a37b6481b2a747339321379.html"];
+  }
+}

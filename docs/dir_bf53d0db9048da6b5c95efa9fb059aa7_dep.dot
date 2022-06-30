@@ -1,0 +1,19 @@
+digraph "Character"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Scripts", fontname="Calibrii", fontsize="10", URL="dir_f13b41af88cf68434578284aaf699e39.html"]
+  subgraph clusterdir_bf53d0db9048da6b5c95efa9fb059aa7 {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_bf53d0db9048da6b5c95efa9fb059aa7.html"]
+    dir_bf53d0db9048da6b5c95efa9fb059aa7 [shape=plaintext, label="Character"];
+  dir_30de46c826773a4412eca69f8304e38a [shape=box, label="Abilities", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_30de46c826773a4412eca69f8304e38a.html"];
+  dir_0ef7b9e3e68345fb2eaf859f3bc78c44 [shape=box, label="Attack", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_0ef7b9e3e68345fb2eaf859f3bc78c44.html"];
+  dir_4b3dd79692d693d9067947ddbbe9d5c4 [shape=box, label="Input", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_4b3dd79692d693d9067947ddbbe9d5c4.html"];
+  dir_0c9dc24c35c8d4bdcee60378504c2111 [shape=box, label="Movement", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_0c9dc24c35c8d4bdcee60378504c2111.html"];
+  dir_92e072e12fc4b0fcb732fe26937f755f [shape=box, label="Visuals", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_92e072e12fc4b0fcb732fe26937f755f.html"];
+  }
+  }
+}

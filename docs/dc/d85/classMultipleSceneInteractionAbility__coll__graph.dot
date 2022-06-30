@@ -1,0 +1,13 @@
+digraph "MultipleSceneInteractionAbility"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="MultipleSceneInteraction\lAbility",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="Ability",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _interactivesDtos" ,fontname="Calibrii"];
+  Node3 [label="MultipleSceneInteraction\lAbility.CharacterInteractiveDto",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/da5/structMultipleSceneInteractionAbility_1_1CharacterInteractiveDto.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="ICharacterInteraction",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+}

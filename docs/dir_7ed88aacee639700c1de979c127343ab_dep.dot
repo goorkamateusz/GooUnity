@@ -1,0 +1,16 @@
+digraph "Inventory"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Scripts", fontname="Calibrii", fontsize="10", URL="dir_f13b41af88cf68434578284aaf699e39.html"]
+  subgraph clusterdir_7ed88aacee639700c1de979c127343ab {
+    graph [ bgcolor="#edf0f7", pencolor="grey25", style="filled,bold,", label="", fontname="Calibrii", fontsize="10", URL="dir_7ed88aacee639700c1de979c127343ab.html"]
+    dir_7ed88aacee639700c1de979c127343ab [shape=plaintext, label="Inventory"];
+  dir_2eb2b791452dd6e431ab9fae128e9f85 [shape=box, label="View", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_2eb2b791452dd6e431ab9fae128e9f85.html"];
+  dir_d68a979af4e1da16aaabffce951ef4e1 [shape=box, label="Visuals", style="filled,", fillcolor="#a2b4d6", color="grey25", URL="dir_d68a979af4e1da16aaabffce951ef4e1.html"];
+  }
+  }
+}

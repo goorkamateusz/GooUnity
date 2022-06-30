@@ -1,0 +1,10 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="MovementMouseListener",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node0 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node1 [label="Goo.Characters.Interactions.\lMovementMouseListener\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/d3e/classGoo_1_1Characters_1_1Interactions_1_1MovementMouseListener.html",tooltip=" "];
+}

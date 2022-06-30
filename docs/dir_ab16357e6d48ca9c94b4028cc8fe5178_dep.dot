@@ -1,0 +1,11 @@
+digraph "MovementAbilities"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_30de46c826773a4412eca69f8304e38a {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Abilities", fontname="Calibrii", fontsize="10", URL="dir_30de46c826773a4412eca69f8304e38a.html"]
+  dir_ab16357e6d48ca9c94b4028cc8fe5178 [shape=box, label="MovementAbilities", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_ab16357e6d48ca9c94b4028cc8fe5178.html"];
+  }
+}

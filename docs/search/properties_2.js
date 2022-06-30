@@ -1,0 +1,6 @@
+var searchData=
+[
+  ['initialized_0',['Initialized',['../db/df2/classGoo_1_1Tools_1_1Patterns_1_1SceneSingleton.html#a1e1270d68e1387af7bb8e579de933046',1,'Goo.Tools.Patterns.SceneSingleton.Initialized()'],['../d3/d25/classGoo_1_1Tools_1_1Patterns_1_1Singleton.html#ac4067b200b13973f4567d49affec23fe',1,'Goo.Tools.Patterns.Singleton.Initialized()']]],
+  ['instance_1',['Instance',['../db/df2/classGoo_1_1Tools_1_1Patterns_1_1SceneSingleton.html#ab1f8b058417fbe18d18e66d4ae01ac1c',1,'Goo.Tools.Patterns.SceneSingleton.Instance()'],['../d3/d25/classGoo_1_1Tools_1_1Patterns_1_1Singleton.html#a9ef9411f47968eb6a0bbd02b0e226b68',1,'Goo.Tools.Patterns.Singleton.Instance()']]],
+  ['istestfinished_2',['IsTestFinished',['../dd/d6a/classGoo_1_1Tests_1_1Editor_1_1Pooling_1_1ExtendedTestablePooler.html#a9e785bf3180d8f18db33d883f540ea79',1,'Goo.Tests.Editor.Pooling.ExtendedTestablePooler.IsTestFinished()'],['../dc/dba/interfaceGoo_1_1Tests_1_1Editor_1_1Pooling_1_1IMyMonoBehaviourTest.html#a8b1322eb55c89115a741a2664dc9ac4d',1,'Goo.Tests.Editor.Pooling.IMyMonoBehaviourTest.IsTestFinished()'],['../d7/dd3/classGoo_1_1Tests_1_1Editor_1_1Pooling_1_1TestablePooler.html#a165a0eb78bd9db6f3a1cb3799c3f6712',1,'Goo.Tests.Editor.Pooling.TestablePooler.IsTestFinished()']]]
+];

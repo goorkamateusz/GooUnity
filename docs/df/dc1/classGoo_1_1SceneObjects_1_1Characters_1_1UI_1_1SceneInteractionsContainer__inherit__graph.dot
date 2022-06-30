@@ -1,0 +1,15 @@
+digraph "Goo.SceneObjects.Characters.UI.SceneInteractionsContainer"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.SceneObjects.Characters.\lUI.SceneInteractionsContainer",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="IEventListener\< SceneInteractive\lElement.Event \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="orange",fontsize="10",style="dashed",label=" \< SceneInteractiveElement.\lEvent \>" ,fontname="Calibrii"];
+  Node4 [label="Goo.Tools.EventSystem.IEvent\lListener\< T \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d13/interfaceGoo_1_1Tools_1_1EventSystem_1_1IEventListener.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="IEventListener",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+}

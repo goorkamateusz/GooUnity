@@ -1,0 +1,15 @@
+digraph "CameraChangeAbility"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="CameraChangeAbility",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="KeyInputOrientedAbility",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" _settings" ,fontname="Calibrii"];
+  Node3 [label="CameraReferencedSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d0/d23/classCameraReferencedSettings.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="MonoBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+  Node5 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node5 [label="ICameraSettings",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/d08/interfaceICameraSettings.html",tooltip=" "];
+}

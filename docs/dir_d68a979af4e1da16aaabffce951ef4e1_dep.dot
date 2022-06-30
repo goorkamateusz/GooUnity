@@ -1,0 +1,11 @@
+digraph "Visuals"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_7ed88aacee639700c1de979c127343ab {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Inventory", fontname="Calibrii", fontsize="10", URL="dir_7ed88aacee639700c1de979c127343ab.html"]
+  dir_d68a979af4e1da16aaabffce951ef4e1 [shape=box, label="Visuals", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_d68a979af4e1da16aaabffce951ef4e1.html"];
+  }
+}

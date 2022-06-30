@@ -1,0 +1,13 @@
+digraph "Goo.Saves.SaveSerializable"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  Node1 [label="Goo.Saves.SaveSerializable",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node2 [label="Goo.Saves.AttributedSave\lSerializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d09/classGoo_1_1Saves_1_1AttributedSaveSerializable.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node3 [label="Goo.Saves.Demo.DemoCharacter.\lTestSerializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/dc0/classGoo_1_1Saves_1_1Demo_1_1DemoCharacter_1_1TestSerializable.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Calibrii"];
+  Node4 [label="Goo.Saves.Demo.DemoManager.\lTestSerializable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/df7/classGoo_1_1Saves_1_1Demo_1_1DemoManager_1_1TestSerializable.html",tooltip=" "];
+}

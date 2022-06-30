@@ -1,0 +1,11 @@
+digraph "Camera"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Calibrii",fontsize="10",labelfontname="Calibrii",labelfontsize="10"];
+  node [fontname="Calibrii",fontsize="10",shape=record];
+  compound=true
+  subgraph clusterdir_f13b41af88cf68434578284aaf699e39 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", style="filled,dashed,", label="Scripts", fontname="Calibrii", fontsize="10", URL="dir_f13b41af88cf68434578284aaf699e39.html"]
+  dir_0bf270a3dff40e62f0f506b27c955a6e [shape=box, label="Camera", style="filled,bold,", fillcolor="#edf0f7", color="grey25", URL="dir_0bf270a3dff40e62f0f506b27c955a6e.html"];
+  }
+}
