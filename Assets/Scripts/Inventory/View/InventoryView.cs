@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InventoryView : MonoBehaviour
 {
-    [SerializeField] private ObjectPooler _pooling;
+    [SerializeField] private SimpleObjectPooler _pooling;
     [SerializeField] private RectTransform _emptyMsg;
 
     public void Open(CharacterInventoryCollection inventory)
